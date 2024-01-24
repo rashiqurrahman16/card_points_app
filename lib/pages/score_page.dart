@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 
-class ScorePage extends StatefulWidget {
-  const ScorePage({super.key});
+class ScorePage extends StatelessWidget {
 
-  @override
-  State<ScorePage> createState() => _ScorePageState();
-}
+  final String player1, player2, player3, player4;
 
-class _ScorePageState extends State<ScorePage> {
+  const ScorePage({
+    super.key,
+    required this.player1,
+    required this.player2,
+    required this.player3,
+    required this.player4,
+
+  });
+
   @override
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
+
+    TextEditingController _player1 = TextEditingController(text: player1);
+    TextEditingController _player2 = TextEditingController(text: player2);
+    TextEditingController _player3 = TextEditingController(text: player3);
+    TextEditingController _player4 = TextEditingController(text: player4);
+
+
     return Scaffold(
       appBar: AppBar(
 
@@ -137,7 +149,7 @@ class _ScorePageState extends State<ScorePage> {
         height: 64,
         width: 64,
         child: FloatingActionButton(
-          elevation: 0,
+          elevation: 10,
           child: Icon(Icons.add),
           backgroundColor: Colors.blue,
           onPressed: (){},

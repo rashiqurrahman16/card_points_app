@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hazari/pages/score_page.dart';
 
 class PlayerNamePage extends StatefulWidget {
   const PlayerNamePage({super.key});
@@ -8,6 +9,14 @@ class PlayerNamePage extends StatefulWidget {
 }
 
 class _PlayerNamePageState extends State<PlayerNamePage> {
+
+  final TextEditingController _player1 = TextEditingController();
+  final TextEditingController _player2 = TextEditingController();
+  final TextEditingController _player3 = TextEditingController();
+  final TextEditingController _player4 = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
@@ -22,113 +31,47 @@ class _PlayerNamePageState extends State<PlayerNamePage> {
 
 
       body: SafeArea(
-
         child: Column(
-          children: [
-            Column(
-              children: [
-                Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(height: 10,),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  child: TextField(
+                    controller: _player1,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Player 1"),
+                  )
+              ),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  child: TextField(
+                    controller: _player2,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Player 2"),
+                  )
+              ),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  child: TextField(
+                    controller: _player3,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Player 3"),
+                  )
+              ),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+                  child: TextField(
+                    controller: _player4,
+                    decoration: const InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Player 4"),
+                  )
+              ),
+        
+        
+            ],
+          ),
 
-                  children: [
-
-
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          border: Border.all(width: 2, color: Colors.white),
-                          borderRadius: BorderRadius.all(Radius.circular(10))
-                      ),
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(5),
-                      width: screenSize.width/4,
-                      child: Text("ABCDEF", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          border: Border.all(width: 2, color: Colors.white),
-                          borderRadius: BorderRadius.all(Radius.circular(10))
-                      ),
-                      alignment: Alignment.center,
-
-                      padding: EdgeInsets.all(5),
-                      width: screenSize.width/4,
-                      child: Text("ABCDEF", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          border: Border.all(width: 2, color: Colors.white),
-                          borderRadius: BorderRadius.all(Radius.circular(10))
-                      ),
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(5),
-                      width: screenSize.width/4,
-                      child: Text("ABCDEF", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.grey,
-                          border: Border.all(width: 2, color: Colors.white),
-                          borderRadius: BorderRadius.all(Radius.circular(10))
-                      ),
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(5),
-                      width: screenSize.width/4,
-                      child: Text("ABCDEF", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
-                    ),
-
-
-                  ],
-                ),
-
-              ],
-            ),
-            SizedBox(height: 10),
-
-
-
-            Column(
-              children: [
-                Row(
-
-                  children: [
-
-
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(5),
-                      width: screenSize.width/4,
-                      child: Text("150", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-
-                      padding: EdgeInsets.all(5),
-                      width: screenSize.width/4,
-                      child: Text("100", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(5),
-                      width: screenSize.width/4,
-                      child: Text("50", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
-                    ),
-                    Container(
-                      alignment: Alignment.center,
-                      padding: EdgeInsets.all(5),
-                      width: screenSize.width/4,
-                      child: Text("60", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
-                    ),
-
-                  ],
-                ),
-
-              ],
-            ),
-
-          ],
-        ),
       ),
 
 
@@ -138,10 +81,21 @@ class _PlayerNamePageState extends State<PlayerNamePage> {
         height: 64,
         width: 64,
         child: FloatingActionButton(
-          elevation: 0,
-          child: Icon(Icons.add),
+          elevation: 10,
+          child: Text('Done'),
           backgroundColor: Colors.blue,
-          onPressed: (){},
+          onPressed: (){
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (context) => ScorePage(
+                    player1: _player1,
+                    player2: _player2,
+                    player3: _player3,
+                    player4: _player4,
+                  )
+              ),
+            );
+          },
           shape: RoundedRectangleBorder(
             side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
             borderRadius: BorderRadius.circular(100),
@@ -152,31 +106,6 @@ class _PlayerNamePageState extends State<PlayerNamePage> {
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue,
         shape: const CircularNotchedRectangle(),
-        child: Container(
-          alignment: Alignment.center,
-          height: 10,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                color: Colors.white,
-                iconSize: 30,
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                icon: Icon(Icons.minimize_rounded),
-                onPressed: (){},
-              ),
-              IconButton(
-                color: Colors.white,
-                iconSize: 30,
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                icon: Icon(Icons.refresh),
-                onPressed: (){},
-              ),
-            ],
-          ),
-
-        ),
       ),
     );
   }
