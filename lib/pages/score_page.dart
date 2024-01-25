@@ -53,7 +53,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text("ABCDEF", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text(_player1.text, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -65,7 +65,7 @@ class ScorePage extends StatelessWidget {
 
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text("ABCDEF", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text(_player2.text, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -76,7 +76,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text("ABCDEF", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text(_player3.text, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -87,7 +87,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text("ABCDEF", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text(_player4.text, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
 
 

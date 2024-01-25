@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
       title: 'Hazari App',
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: true,
-      home: const PlayerNamePage(),
+      // home: const PlayerNamePage(),
       // home: const ScorePage(),
-      // home: const PiontAddPage(),
+      home: const PiontAddPage(),
     );
   }
 }

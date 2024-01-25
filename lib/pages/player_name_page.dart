@@ -82,16 +82,17 @@ class _PlayerNamePageState extends State<PlayerNamePage> {
         width: 64,
         child: FloatingActionButton(
           elevation: 10,
+
           child: Text('Done'),
           backgroundColor: Colors.blue,
           onPressed: (){
             Navigator.of(context).push(
               MaterialPageRoute(
                   builder: (context) => ScorePage(
-                    player1: _player1,
-                    player2: _player2,
-                    player3: _player3,
-                    player4: _player4,
+                    player1: _player1.text,
+                    player2: _player2.text,
+                    player3: _player3.text,
+                    player4: _player4.text,
                   )
               ),
             );
