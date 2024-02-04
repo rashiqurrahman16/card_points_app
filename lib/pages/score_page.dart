@@ -2,25 +2,14 @@ import 'package:flutter/material.dart';
 
 class ScorePage extends StatelessWidget {
 
-  final String player1, player2, player3, player4;
 
   const ScorePage({
     super.key,
-    required this.player1,
-    required this.player2,
-    required this.player3,
-    required this.player4,
-
   });
 
   @override
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
-
-    TextEditingController _player1 = TextEditingController(text: player1);
-    TextEditingController _player2 = TextEditingController(text: player2);
-    TextEditingController _player3 = TextEditingController(text: player3);
-    TextEditingController _player4 = TextEditingController(text: player4);
 
 
     return Scaffold(
@@ -53,7 +42,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text(_player1.text, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text("player1", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -65,7 +54,7 @@ class ScorePage extends StatelessWidget {
 
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text(_player2.text, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text("player2", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -76,7 +65,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text(_player3.text, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text("player3", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -87,7 +76,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text(_player4.text, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text("player4", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
 
 

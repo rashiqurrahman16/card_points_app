@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:hazari/pages/player_name_page.dart';
-import 'package:hazari/pages/score_page.dart';
-import 'package:hazari/pages/point_add_page.dart';
+import 'package:hazari/pages/home_page.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:hazari/models/name_score_model.dart';
 
 
-void main() {
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
+
+  Hive.registerAdapter(NameModelAdapter());
+
+  await Hive.openBox<NameModel>('names');
+
+  Hive.registerAdapter(ScoreModelAdapter());
+
+  await Hive.openBox<ScoreModel>('score');
+
+
   runApp(const MyApp());
 }
 
@@ -18,9 +33,7 @@ class MyApp extends StatelessWidget {
       title: 'Hazari App',
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: true,
-      // home: const PlayerNamePage(),
-      // home: const ScorePage(),
-      home: const PiontAddPage(),
+      home: const HomePage(),
     );
   }
 }
