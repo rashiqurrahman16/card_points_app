@@ -1,11 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:hazari/boxes/boxes.dart';
+import 'package:hazari/pages/point_add_page.dart';
+import 'package:hive/hive.dart';
 
-class ScorePage extends StatelessWidget {
+import '../models/name_score_model.dart';
+
+class ScorePage extends StatefulWidget {
 
 
   const ScorePage({
     super.key,
   });
+
+  @override
+  State<ScorePage> createState() => _ScorePageState();
+}
+
+class _ScorePageState extends State<ScorePage> {
+
+
+  String player1 = "";
+  String player2 = "";
+  String player3 = "";
+  String player4 = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _retrieveNames();
+  }
+
+  void _retrieveNames() async {
+    final box = Boxes.getNames();
+    final names = box.values.toList().cast<NameModel>();
+
+    final nameData = names.last; // Assuming there's only one set of names
+    setState(() {
+      player1 = nameData.player1;
+      player2 = nameData.player2;
+      player3 = nameData.player3;
+      player4 = nameData.player4;
+    });
+    print("Saved Names:");
+    for (var name in names) {
+      print("- Player 1: ${name.player1}, Player 2: ${name.player2}, Player 3: ${name.player3}, Player 4: ${name.player4}");
+    }
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +84,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text("player1", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text(player1, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -54,7 +96,7 @@ class ScorePage extends StatelessWidget {
 
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text("player2", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text(player2, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -65,7 +107,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text("player3", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text(player3, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
                         Container(
                           decoration: BoxDecoration(
@@ -76,7 +118,7 @@ class ScorePage extends StatelessWidget {
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(5),
                           width: screenSize.width/4,
-                          child: Text("player4", style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
+                          child: Text(player4, style: TextStyle(color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),),
                         ),
 
 
@@ -141,7 +183,15 @@ class ScorePage extends StatelessWidget {
           elevation: 10,
           child: Icon(Icons.add),
           backgroundColor: Colors.blue,
-          onPressed: (){},
+          onPressed: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PiontAddPage(
+                  )
+              ),
+            );
+          },
           shape: RoundedRectangleBorder(
             side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
             borderRadius: BorderRadius.circular(100),
