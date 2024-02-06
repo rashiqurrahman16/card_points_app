@@ -19,10 +19,6 @@ class _HomePageState extends State<HomePage> {
   final player3Controller = TextEditingController();
   final player4Controller = TextEditingController();
 
-  String player1 = "";
-  String player2 = "";
-  String player3 = "";
-  String player4 = "";
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +38,9 @@ class _HomePageState extends State<HomePage> {
         child: ValueListenableBuilder<Box<NameModel>>(
           valueListenable: Boxes.getNames().listenable(),
           builder: (context, box, _) {
-            var data = box.values.toList().cast<NameModel>();
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            var nameData = box.values.toList().cast<NameModel>();
+            return ListView(
+              // mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(height: 10,),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -53,6 +49,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: "Player 1"),
+                      maxLength: 5,
                     )
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -61,6 +58,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: "Player 2"),
+                      maxLength: 5,
                     )
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -69,6 +67,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: "Player 3"),
+                      maxLength: 5,
                     )
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -77,6 +76,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: "Player 4"),
+                      maxLength: 5,
                     )
                 ),
 
@@ -101,15 +101,37 @@ class _HomePageState extends State<HomePage> {
           child: Text('Done'),
           backgroundColor: Colors.blue,
           onPressed: () async{
-            final data = NameModel(
+            final player1 = player1Controller.text;
+            final player2 = player2Controller.text;
+            final player3 = player3Controller.text;
+            final player4 = player4Controller.text;
+
+            if (player1.isEmpty || player2.isEmpty || player3.isEmpty || player4.isEmpty) {
+              _emptyDialog();
+              return; // Prevent saving and showing the dialog
+            }
+
+            // Check for duplicate names
+            if (player1 == player2 ||
+                player1 == player3 ||
+                player1 == player4 ||
+                player2 == player3 ||
+                player2 == player4 ||
+                player3 == player4) {
+              // Show an error Dialog if duplicates found
+              _sameNameErrorDialog();
+              return; // Prevent saving and showing the dialog
+            }
+
+            final nameData = NameModel(
                 player1: player1Controller.text,
-                player2: player1Controller.text,
-                player3: player1Controller.text,
-                player4: player1Controller.text
+                player2: player2Controller.text,
+                player3: player3Controller.text,
+                player4: player4Controller.text
             );
             final box = Boxes.getNames();
-            box.add(data);
-            _showMyDialog(data, player1, player2, player3, player4);
+            box.add(nameData);
+            _showMyDialog(player1, player2, player3, player4);
           },
           shape: RoundedRectangleBorder(
             side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
@@ -126,12 +148,9 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-  Future<void> _showMyDialog(NameModel nameModel, player1, player2, player3, player4) async{
+  Future<void> _showMyDialog(player1, player2, player3, player4) async{
 
-    player1Controller.text = player1;
-    player2Controller.text = player2;
-    player3Controller.text = player3;
-    player4Controller.text = player4;
+
     return showDialog(
         context: context,
         builder: (context){
@@ -141,21 +160,26 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   Text("Players names are:"),
-                  Text(player1Controller.text),
-                  Text("player2Controller.text"),
-                  Text("player3Controller.text"),
-                  Text("player4Controller.text"),
+                  Text(player1),
+                  Text(player2),
+                  Text(player3),
+                  Text(player4),
                 ],
               ),
             ),
             actions: [
               TextButton(
-                  onPressed: (){
+                  onPressed: () async{
                     player1Controller.clear();
                     player2Controller.clear();
                     player3Controller.clear();
                     player4Controller.clear();
+
+                    final box = Boxes.getNames();
+                    await box.clear();
+
                     Navigator.pop(context);
+
                   },
                   child: Text('No')
               ),
@@ -165,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ScorePage(
+                          builder: (context) => const ScorePage(
                           )
                       ),
                     );
@@ -176,6 +200,58 @@ class _HomePageState extends State<HomePage> {
 
       );
     });
+  }
+
+  Future<void> _sameNameErrorDialog(){
+    return showDialog(
+        context: context,
+        builder: (context){
+          return AlertDialog(
+              title: Text('Error'),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text("Players can't have same name"),
+                  ],
+                ),
+              ),
+              actions: [
+              TextButton(
+              onPressed: () async{
+                Navigator.pop(context);
+              },
+                  child: Text('Ok')
+             ),
+            ]
+          );
+        }
+    );
+  }
+
+  Future<void> _emptyDialog(){
+    return showDialog(
+        context: context,
+        builder: (context){
+          return AlertDialog(
+              title: Text('Error'),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Text("Please enter every players name"),
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () async{
+                      Navigator.pop(context);
+                    },
+                    child: Text('Ok')
+                ),
+              ]
+          );
+        }
+    );
   }
 
 
