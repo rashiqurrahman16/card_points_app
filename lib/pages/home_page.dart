@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
         child: ValueListenableBuilder<Box<NameModel>>(
           valueListenable: Boxes.getNames().listenable(),
           builder: (context, box, _) {
-            var data = box.values.toList().cast<NameModel>();
+            var nameData = box.values.toList().cast<NameModel>();
             return ListView(
               // mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -123,14 +123,14 @@ class _HomePageState extends State<HomePage> {
               return; // Prevent saving and showing the dialog
             }
 
-            final data = NameModel(
+            final nameData = NameModel(
                 player1: player1Controller.text,
                 player2: player2Controller.text,
                 player3: player3Controller.text,
                 player4: player4Controller.text
             );
             final box = Boxes.getNames();
-            box.add(data);
+            box.add(nameData);
             _showMyDialog(player1, player2, player3, player4);
           },
           shape: RoundedRectangleBorder(
@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => ScorePage(
+                          builder: (context) => const ScorePage(
                           )
                       ),
                     );
