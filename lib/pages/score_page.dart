@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hazari/boxes/boxes.dart';
+import 'package:hazari/pages/name_row_page.dart';
 import 'package:hazari/pages/point_add_page.dart';
+import 'package:hazari/pages/score_row_page.dart';
+import 'package:hazari/pages/total_score_page.dart';
 
 import '../models/name_score_model.dart';
 
@@ -57,10 +60,10 @@ class _ScorePageState extends State<ScorePage> {
     // for (var name in names) {
     //   print("- Player 1: ${name.player1}, Player 2: ${name.player2}, Player 3: ${name.player3}, Player 4: ${name.player4}");
     // }
-    // print("Saved scores:");
-    // for (var score in scores) {
-    //   print("- Player 1: ${score.score1}, Player 2: ${score.score2}, Player 3: ${score.score3}, Player 4: ${score.score4}");
-    // }
+    print("Saved scores:");
+    for (var score in scores) {
+      print("- Player 1: ${score.score1}, Player 2: ${score.score2}, Player 3: ${score.score3}, Player 4: ${score.score4}");
+    }
     //----------
 
   }
@@ -88,165 +91,29 @@ class _ScorePageState extends State<ScorePage> {
             return SafeArea(
               child: Column(
                   children: [
-                    if (index==0)
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  border: Border.all(
-                                      width: 2, color: Colors.white),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))
-                              ),
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.all(5),
-                              width: screenSize.width / 4,
-                              child: Text(player1, style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  border: Border.all(
-                                      width: 2, color: Colors.white),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))
-                              ),
-                              alignment: Alignment.center,
 
-                              padding: const EdgeInsets.all(5),
-                              width: screenSize.width / 4,
-                              child: Text(player2, style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  border: Border.all(
-                                      width: 2, color: Colors.white),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))
-                              ),
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.all(5),
-                              width: screenSize.width / 4,
-                              child: Text(player3, style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  border: Border.all(
-                                      width: 2, color: Colors.white),
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))
-                              ),
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.all(5),
-                              width: screenSize.width / 4,
-                              child: Text(player4, style: const TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),),
-                            ),
+                    NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
+                    const SizedBox(height: 5),
 
+                    ScoreRow(scoreData: scoreData),
+                    if (index==scoresList.length - 1)
 
-                          ],
+                      Column(
+                        children: [
+                        TotalScore(
+                            scoreData: scoreData,
+                            totalScore1: calculateTotalScore1(scoresList),
+                            totalScore2: calculateTotalScore2(scoresList),
+                            totalScore3: calculateTotalScore3(scoresList),
+                            totalScore4: calculateTotalScore4(scoresList)
                         ),
-
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    if (index!=0)
-                    Column(
-                      children: [
-                        Row(
-
-                          children: [
+                        const SizedBox(height: 10),
+                        ],
+                      ),
 
 
-                            Container(
-                              // decoration: BoxDecoration(
-                              //     color: Colors.grey,
-                              //     border: Border.all(width: 2, color: Colors.white),
-                              //     borderRadius: BorderRadius.all(Radius.circular(10))
-                              // ),
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.all(5),
-                              width: screenSize.width / 4,
-                              child: Text("${scoreData.score1}",
-                                style: const TextStyle(color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),),
-                            ),
-                            Container(
-                              // decoration: BoxDecoration(
-                              //     color: Colors.grey,
-                              //     border: Border.all(width: 2, color: Colors.white),
-                              //     borderRadius: BorderRadius.all(Radius.circular(10))
-                              // ),
-                              alignment: Alignment.center,
-
-                              padding: const EdgeInsets.all(5),
-                              width: screenSize.width / 4,
-                              child: Text("${scoreData.score2}",
-                                style: const TextStyle(color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),),
-                            ),
-                            Container(
-                              // decoration: BoxDecoration(
-                              //     color: Colors.grey,
-                              //     border: Border.all(width: 2, color: Colors.white),
-                              //     borderRadius: BorderRadius.all(Radius.circular(10))
-                              // ),
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.all(5),
-                              width: screenSize.width / 4,
-                              child: Text("${scoreData.score3}",
-                                style: const TextStyle(color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),),
-                            ),
-                            Container(
-                              // decoration: BoxDecoration(
-                              //   color: Colors.grey,
-                              //   border: Border.all(width: 2, color: Colors.white),
-                              //   borderRadius: BorderRadius.all(Radius.circular(10))
-                              // ),
-                              alignment: Alignment.center,
-                              padding: const EdgeInsets.all(5),
-                              width: screenSize.width / 4,
-                              child: Text("${scoreData.score4}",
-                                style: const TextStyle(color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),),
-                            ),
-
-                          ],
-                        ),
-
-                      ],
-                    ),
                   ]
               ),
-
-
-              // return ListTile(
-              //   title: Text("score ${index + 1}"),
-              //   subtitle: Text("score 1: ${scoreData.score1}"),
-              //   trailing: Text("score 4: ${scoreData.score4}"),
-              // );
-
             );
           }
     ),
@@ -301,7 +168,9 @@ class _ScorePageState extends State<ScorePage> {
                 iconSize: 30,
                 padding: const EdgeInsets.symmetric(horizontal: 40),
                 icon: Icon(Icons.refresh),
-                onPressed: (){},
+                onPressed: (){
+                  _showRefreshDialog();
+                },
               ),
             ],
           ),
@@ -311,4 +180,52 @@ class _ScorePageState extends State<ScorePage> {
 
     );
   }
+
+
+
+  Future<void> _showRefreshDialog() async{
+
+
+    return showDialog(
+        context: context,
+        builder: (context){
+          return AlertDialog(
+            title: Text('Confirmation'),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text("Are you sure want to refresh the score sheet"),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () async{
+                    Navigator.pop(context);
+                  },
+                  child: Text('No')
+              ),
+
+              TextButton(
+                  onPressed: () async {
+
+
+                    final box = Boxes.getScores();
+                    await box.clear();
+                    setState(() {
+                      scoresList = [];
+                    });
+                    Navigator.pop(context);
+
+
+                  },
+                  child: Text('Yes')
+              )
+            ],
+
+          );
+        });
+  }
+
+
 }
