@@ -83,40 +83,50 @@ class _ScorePageState extends State<ScorePage> {
         backgroundColor: Colors.blue,
 
       ),
-      body: ListView.builder(
-          itemCount: scoresList.length,
-          itemBuilder: (context, index) {
-            final scoreData = scoresList[index];
+      body: Stack(
+        children:[
+        SizedBox(
+          height: screenSize.height - 120,
+          child: ListView.builder(
+              itemCount: scoresList.length,
+              itemBuilder: (context, index) {
+                final scoreData = scoresList[index];
 
-            return SafeArea(
-              child: Column(
-                  children: [
+                return Column(
+                      children: [
+                        if(index==0)
+                        NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
+                        const SizedBox(height: 5),
+                        ScoreRow(scoreData: scoreData),
+                      ]
+                  );
 
-                    NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
-                    const SizedBox(height: 5),
-
-                    ScoreRow(scoreData: scoreData),
-                    if (index==scoresList.length - 1)
-
-                      Column(
-                        children: [
-                        TotalScore(
-                            scoreData: scoreData,
-                            totalScore1: calculateTotalScore1(scoresList),
-                            totalScore2: calculateTotalScore2(scoresList),
-                            totalScore3: calculateTotalScore3(scoresList),
-                            totalScore4: calculateTotalScore4(scoresList)
-                        ),
-                        const SizedBox(height: 10),
-                        ],
-                      ),
-
-
-                  ]
+              }
               ),
-            );
-          }
-    ),
+        ),
+          Positioned(
+              bottom: 25.0,
+              child: Column(
+
+                children: [
+                  Text("Total Score",
+                    style: const TextStyle(color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900),
+                  ),
+                  TotalScore(
+                      totalScore1: calculateTotalScore1(scoresList),
+                      totalScore2: calculateTotalScore2(scoresList),
+                      totalScore3: calculateTotalScore3(scoresList),
+                      totalScore4: calculateTotalScore4(scoresList)
+                  ),
+                  const SizedBox(height: 10),
+
+                ],
+              )
+          )
+        ]
+      ),
 
 
 

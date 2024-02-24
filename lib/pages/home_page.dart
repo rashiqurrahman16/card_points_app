@@ -26,9 +26,30 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hazari'),
-        toolbarHeight: 200,
-
+        title: Row(
+          children: [
+            SizedBox(
+              width: 50.0,
+              height: 50.0,
+              child: Image(
+                image: AssetImage('assets/3cards.png'),
+              ),
+            ),
+            Text(
+              'HAZARI',
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            Spacer(),
+            SizedBox(
+              width: 100.0,
+              height: 100.0,
+              child: Image(
+                image: AssetImage('assets/Desktopit-logo.png'),
+              ),
+            ),
+          ],
+        ),
+        toolbarHeight: 80,
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),

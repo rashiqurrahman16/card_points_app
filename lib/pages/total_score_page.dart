@@ -35,14 +35,14 @@ int calculateTotalScore4(List<ScoreModel> scoresList){
 }
 
 class TotalScore extends StatelessWidget {
-  final ScoreModel scoreData;
+
   final int totalScore1;
   final int totalScore2;
   final int totalScore3;
   final int totalScore4;
 
   const TotalScore({
-    required this.scoreData,
+
     required this.totalScore1,
     required this.totalScore2,
     required this.totalScore3,
