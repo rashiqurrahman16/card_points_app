@@ -14,11 +14,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  late Box namesBox;
+  late Box scoreBox;
+
   final player1Controller = TextEditingController();
   final player2Controller = TextEditingController();
   final player3Controller = TextEditingController();
   final player4Controller = TextEditingController();
-
+  @override
+  void initState() {
+    super.initState();
+    namesBox = Boxes.getNames();
+    namesBox.clear();
+    scoreBox = Boxes.getScores();
+    scoreBox.clear();// Clear the box's data
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +36,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
             SizedBox(
               width: 50.0,
@@ -37,14 +47,14 @@ class _HomePageState extends State<HomePage> {
             ),
             Text(
               'HAZARI',
-              style: TextStyle(fontWeight: FontWeight.w500),
+              style: TextStyle(fontWeight: FontWeight.w500,),
             ),
             Spacer(),
             SizedBox(
               width: 100.0,
               height: 100.0,
               child: Image(
-                image: AssetImage('assets/Desktopit-logo.png'),
+                image: AssetImage('assets/DesktopIt-logo-white.png'),
               ),
             ),
           ],
@@ -61,8 +71,19 @@ class _HomePageState extends State<HomePage> {
           builder: (context, box, _) {
             var nameData = box.values.toList().cast<NameModel>();
             return ListView(
-              // mainAxisAlignment: MainAxisAlignment.start,
+              // mainAxisAlignment: MainAxisAlignment.center,
+
               children: [
+                SizedBox(height: 10,),
+                Center(
+                  child: Text(
+                      "Players Name",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
                 SizedBox(height: 10,),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
                     child: TextField(

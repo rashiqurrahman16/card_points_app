@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hazari/pages/home_page.dart';
 import 'package:hazari/pages/splash_screen.dart';
 import 'package:hazari/pages/winner_page.dart';
 import 'package:hive/hive.dart';
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
       title: 'Hazari App',
       theme: ThemeData.light(),
       debugShowCheckedModeBanner: true,
-      home: const WinnerPage(),
+      home: const SplashScreenPage(),
     );
   }
 }

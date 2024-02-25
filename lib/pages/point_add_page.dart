@@ -19,8 +19,6 @@ class PointAddPage extends StatefulWidget {
 
 class _PointAddPageState extends State<PointAddPage> {
 
-
-
   final score1Controller = TextEditingController();
   final score2Controller = TextEditingController();
   final score3Controller = TextEditingController();
@@ -30,12 +28,33 @@ class _PointAddPageState extends State<PointAddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Hazari"),
-        toolbarHeight: 200,
-
+        title: const Row(
+          children: [
+            SizedBox(
+              width: 50.0,
+              height: 50.0,
+              child: Image(
+                image: AssetImage('assets/3cards.png'),
+              ),
+            ),
+            Text(
+              'HAZARI',
+              style: TextStyle(fontWeight: FontWeight.w500,),
+            ),
+            Spacer(),
+            SizedBox(
+              width: 100.0,
+              height: 100.0,
+              child: Image(
+                image: AssetImage('assets/DesktopIt-logo-white.png'),
+              ),
+            ),
+          ],
+        ),
+        toolbarHeight: 80,
         centerTitle: true,
         backgroundColor: Colors.blue,
-
+          automaticallyImplyLeading: false,
       ),
 
       body: SafeArea(
@@ -46,50 +65,114 @@ class _PointAddPageState extends State<PointAddPage> {
 
             return ListView(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: score1Controller,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    maxLength: 3,
-                    keyboardType: TextInputType.number,
+                ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                          "Player 1",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+
+                      ),
+                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 200,
+                          child: TextField(
+                            controller: score1Controller,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                            ),
+
+                            maxLength: 3,
+                            keyboardType: TextInputType.number,
+                          ),
+                      ),
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: score2Controller,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    maxLength: 3,
-                    keyboardType: TextInputType.number,
+                ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Player 2",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+
+                      ),
+                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: score2Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+
+                          maxLength: 3,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: score3Controller,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    maxLength: 3,
-                    keyboardType: TextInputType.number,
+                ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Player 3",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+
+                      ),
+                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: score3Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+
+                          maxLength: 3,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextField(
-                    controller: score4Controller,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                    maxLength: 3,
-                    keyboardType: TextInputType.number,
+                ListTile(
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Player 4",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+
+                      ),
+                      SizedBox(width: 10,),
+                      SizedBox(
+                        width: 200,
+                        child: TextField(
+                          controller: score4Controller,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+
+                          maxLength: 3,
+                          keyboardType: TextInputType.number,
+                        ),
+                      ),
+                    ],
                   ),
-                )
+                ),
               ],
             );
 
@@ -153,7 +236,7 @@ class _PointAddPageState extends State<PointAddPage> {
             );
             final box = Boxes.getScores();
             box.add(scoreData);
-            
+
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
