@@ -56,10 +56,10 @@ class _ScorePageState extends State<ScorePage> {
     });
 
     // ---------- For Checking Names and scores
-    // print("Saved Names:");
-    // for (var name in names) {
-    //   print("- Player 1: ${name.player1}, Player 2: ${name.player2}, Player 3: ${name.player3}, Player 4: ${name.player4}");
-    // }
+    print("Saved Names:");
+    for (var name in names) {
+      print("- Player 1: ${name.player1}, Player 2: ${name.player2}, Player 3: ${name.player3}, Player 4: ${name.player4}");
+    }
     print("Saved scores:");
     for (var score in scores) {
       print("- Player 1: ${score.score1}, Player 2: ${score.score2}, Player 3: ${score.score3}, Player 4: ${score.score4}");
@@ -76,12 +76,33 @@ class _ScorePageState extends State<ScorePage> {
 
     return Scaffold(
       appBar: AppBar(
-
-        title: Text('Hazari'),
-        toolbarHeight: 200,
+        title: const Row(
+          children: [
+            SizedBox(
+              width: 50.0,
+              height: 50.0,
+              child: Image(
+                image: AssetImage('assets/3cards.png'),
+              ),
+            ),
+            Text(
+              'HAZARI',
+              style: TextStyle(fontWeight: FontWeight.w500,),
+            ),
+            Spacer(),
+            SizedBox(
+              width: 100.0,
+              height: 100.0,
+              child: Image(
+                image: AssetImage('assets/DesktopIt-logo-white.png'),
+              ),
+            ),
+          ],
+        ),
+        toolbarHeight: 80,
         centerTitle: true,
         backgroundColor: Colors.blue,
-
+        automaticallyImplyLeading: false,
       ),
       body: Stack(
         children:[
