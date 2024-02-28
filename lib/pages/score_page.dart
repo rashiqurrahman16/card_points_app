@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:hazari/boxes/boxes.dart';
+import 'package:hazari/pages/home_page.dart';
 import 'package:hazari/pages/name_row_page.dart';
 import 'package:hazari/pages/point_add_page.dart';
 import 'package:hazari/pages/score_row_page.dart';
 import 'package:hazari/pages/total_score_page.dart';
+import 'package:hazari/pages/winner_page.dart';
+
 
 import '../models/name_score_model.dart';
+
+
 
 class ScorePage extends StatefulWidget {
 
@@ -115,8 +120,9 @@ class _ScorePageState extends State<ScorePage> {
 
                 return Column(
                       children: [
-                        if(index==0)
-                        NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
+                        if (index == 0)
+                          NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
+
                         const SizedBox(height: 5),
                         ScoreRow(scoreData: scoreData),
                       ]
@@ -125,29 +131,35 @@ class _ScorePageState extends State<ScorePage> {
               }
               ),
         ),
-          Positioned(
-              bottom: 25.0,
-              child: Column(
+        Positioned(
+            bottom: 25.0,
+            child: Column(
+              children: [
+              Text(
+              "Total Score",
+              style: const TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontWeight: FontWeight.w900,
+              ),
+            ),
+              TotalScore(
+                totalScore1: calculateTotalScore1(scoresList),
+                totalScore2: calculateTotalScore2(scoresList),
+                totalScore3: calculateTotalScore3(scoresList),
+                totalScore4: calculateTotalScore4(scoresList),
+              ),
+              const SizedBox(height: 10),
 
-                children: [
-                  Text("Total Score",
-                    style: const TextStyle(color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900),
-                  ),
-                  TotalScore(
-                      totalScore1: calculateTotalScore1(scoresList),
-                      totalScore2: calculateTotalScore2(scoresList),
-                      totalScore3: calculateTotalScore3(scoresList),
-                      totalScore4: calculateTotalScore4(scoresList)
-                  ),
-                  const SizedBox(height: 10),
 
-                ],
-              )
-          )
+
+              ],
+            ),
+          ),
         ]
       ),
+
+
 
 
 
@@ -215,8 +227,6 @@ class _ScorePageState extends State<ScorePage> {
 
 
   Future<void> _showRefreshDialog() async{
-
-
     return showDialog(
         context: context,
         builder: (context){
@@ -239,24 +249,21 @@ class _ScorePageState extends State<ScorePage> {
 
               TextButton(
                   onPressed: () async {
-
-
                     final box = Boxes.getScores();
                     await box.clear();
                     setState(() {
                       scoresList = [];
                     });
                     Navigator.pop(context);
-
-
                   },
                   child: Text('Yes')
               )
             ],
-
           );
         });
   }
+
+
 
 
 }
