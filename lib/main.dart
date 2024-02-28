@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hazari App',
       theme: ThemeData.light(),
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       home: const SplashScreenPage(),
     );
   }

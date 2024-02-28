@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 
 class NameRow extends StatelessWidget {
-
   final String player1;
   final String player2;
   final String player3;
@@ -45,6 +44,7 @@ class NameRow extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),),
+
             ),
             Container(
               decoration: BoxDecoration(
