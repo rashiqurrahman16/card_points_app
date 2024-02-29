@@ -1,9 +1,7 @@
-
-
-
 import 'package:flutter/material.dart';
-
+import 'package:hazari/pages/winner_page.dart';
 import '../models/name_score_model.dart';
+
 
 int calculateTotalScore1(List<ScoreModel> scoresList){
   int totalScore1 = 0;
@@ -50,16 +48,43 @@ class TotalScore extends StatelessWidget {
     super.key
   });
 
+
+
+
   @override
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
+
+    if (totalScore1 >= 400) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const WinnerPage()),
+      );
+    }
+    if (totalScore2 >= 400) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const WinnerPage()),
+      );
+    }
+    if (totalScore3 >= 400) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const WinnerPage()),
+      );
+    }
+    if (totalScore4 >= 400) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const WinnerPage()),
+      );
+    }
 
     return Column(
       children: [
         Row(
 
           children: [
-
 
             Container(
               decoration: BoxDecoration(

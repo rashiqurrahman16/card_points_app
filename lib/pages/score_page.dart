@@ -122,7 +122,6 @@ class _ScorePageState extends State<ScorePage> {
                       children: [
                         if (index == 0)
                           NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
-
                         const SizedBox(height: 5),
                         ScoreRow(scoreData: scoreData),
                       ]
@@ -150,8 +149,6 @@ class _ScorePageState extends State<ScorePage> {
                 totalScore4: calculateTotalScore4(scoresList),
               ),
               const SizedBox(height: 10),
-
-
 
               ],
             ),
