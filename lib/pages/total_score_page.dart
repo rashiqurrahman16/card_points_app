@@ -32,7 +32,7 @@ int calculateTotalScore4(List<ScoreModel> scoresList){
   return totalScore4;
 }
 
-class TotalScore extends StatelessWidget {
+class TotalScore extends StatefulWidget {
 
   final int totalScore1;
   final int totalScore2;
@@ -48,37 +48,15 @@ class TotalScore extends StatelessWidget {
     super.key
   });
 
+  @override
+  State<TotalScore> createState() => _TotalScoreState();
+}
 
-
-
+class _TotalScoreState extends State<TotalScore> {
   @override
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
 
-    if (totalScore1 >= 400) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const WinnerPage()),
-      );
-    }
-    if (totalScore2 >= 400) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const WinnerPage()),
-      );
-    }
-    if (totalScore3 >= 400) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const WinnerPage()),
-      );
-    }
-    if (totalScore4 >= 400) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const WinnerPage()),
-      );
-    }
 
     return Column(
       children: [
@@ -94,7 +72,7 @@ class TotalScore extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
-              child: Text("$totalScore1",
+              child: Text("${widget.totalScore1}",
                 style: const TextStyle(color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),),
@@ -108,7 +86,7 @@ class TotalScore extends StatelessWidget {
 
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
-              child: Text("$totalScore2",
+              child: Text("${widget.totalScore2}",
                 style: const TextStyle(color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),),
@@ -121,7 +99,7 @@ class TotalScore extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
-              child: Text("$totalScore3",
+              child: Text("${widget.totalScore3}",
                 style: const TextStyle(color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),),
@@ -134,7 +112,7 @@ class TotalScore extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
-              child: Text("$totalScore4",
+              child: Text("${widget.totalScore4}",
                 style: const TextStyle(color: Colors.black,
                     fontSize: 15,
                     fontWeight: FontWeight.bold),),
@@ -146,4 +124,6 @@ class TotalScore extends StatelessWidget {
       ],
     );
   }
+
+
 }
