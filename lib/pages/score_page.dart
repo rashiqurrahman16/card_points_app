@@ -4,6 +4,7 @@ import 'package:hazari/pages/home_page.dart';
 import 'package:hazari/pages/name_row_page.dart';
 import 'package:hazari/pages/point_add_page.dart';
 import 'package:hazari/pages/score_row_page.dart';
+import 'package:hazari/pages/splash_screen.dart';
 import 'package:hazari/pages/total_score_page.dart';
 import 'package:hazari/pages/winner_page.dart';
 
@@ -13,8 +14,6 @@ import '../models/name_score_model.dart';
 
 
 class ScorePage extends StatefulWidget {
-
-
   const ScorePage({
     super.key,
   });
@@ -28,6 +27,7 @@ class _ScorePageState extends State<ScorePage> {
   List<ScoreModel> scoresList = [];
 
   int winner = 0;
+  String winnerName = "";
   String player1 = "";
   String player2 = "";
   String player3 = "";
@@ -78,13 +78,6 @@ class _ScorePageState extends State<ScorePage> {
   @override
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
-
-    if(calculateTotalScore1(scoresList)>400){
-      winner = 1;
-    }
-
-
-
 
     return Scaffold(
 
@@ -160,6 +153,7 @@ class _ScorePageState extends State<ScorePage> {
 
               ],
             ),
+
           ),
         ]
       ),
@@ -173,17 +167,16 @@ class _ScorePageState extends State<ScorePage> {
         width: 64,
         child: FloatingActionButton(
           elevation: 10,
-          child: Icon(Icons.add),
+
           backgroundColor: Colors.blue,
-          onPressed: (){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const PointAddPage(
-                  )
-              ),
-            );
-          },
+          onPressed: () => calculateTotalScore1(scoresList)>=400? _winningDialog(player1)
+              :calculateTotalScore2(scoresList)>=400? _winningDialog(player2)
+              :calculateTotalScore3(scoresList)>=400? _winningDialog(player3)
+              :calculateTotalScore4(scoresList)>=400? _winningDialog(player4)
+              :_redirectToPointAddPage(context),
+          child: Icon(
+              Icons.add
+          ),
           shape: RoundedRectangleBorder(
             side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
             borderRadius: BorderRadius.circular(100),
@@ -265,6 +258,77 @@ class _ScorePageState extends State<ScorePage> {
         });
   }
 
+  Future<void> _winningDialog(winner) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            alignment: Alignment.center,
+            content: Column(
+              mainAxisSize: MainAxisSize.min, // Ensure content fits within screen
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 40),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Winner',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40.0,
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            winner,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          SizedBox(width: 15),
+                          Text(
+                            '1000 pts',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            // actions: [
+            //   TextButton(
+            //     onPressed: () => _showRefreshDialog(), // Changed onPressed
+            //     child: Text(
+            //       'Go to Home',
+            //       style: TextStyle(color: Colors.blue),
+            //     ),
+            //   ),
+            // ],
+          );
+        });
+  }
+
+  void _redirectToPointAddPage(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const PointAddPage()),
+      );
+    });
+  }
 
 
 }
