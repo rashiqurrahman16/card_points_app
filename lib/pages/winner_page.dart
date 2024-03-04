@@ -33,7 +33,7 @@ class _WinnerPageState extends State<WinnerPage> {
               ),
             ),
             Text(
-                'HAZARI',
+              'HAZARI',
               style: TextStyle(fontWeight: FontWeight.w500),
             ),
             Spacer(),
@@ -103,25 +103,7 @@ class _WinnerPageState extends State<WinnerPage> {
         ),
       ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(top: 10),
-        height: 64,
-        width: 64,
-        child: FloatingActionButton(
-          elevation: 10,
-          child: Text('Restart'),
-          backgroundColor: Colors.blue,
-          onPressed: () {
-            _showRestartDialog();
-          },
 
-          shape: RoundedRectangleBorder(
-            side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
-            borderRadius: BorderRadius.circular(100),
-          ),
-        ),
-      ),
 
       bottomNavigationBar: BottomAppBar(
 
@@ -133,45 +115,6 @@ class _WinnerPageState extends State<WinnerPage> {
 
 
 
-  Future<void> _showRestartDialog() async{
-    return showDialog(
-        context: context,
-        builder: (context){
-          return AlertDialog(
-            title: Text('Confirmation'),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text("Are you sure want to restart the game"),
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                  onPressed: () async{
-                    Navigator.pop(context);
-                  },
-                  child: Text('No')
-              ),
 
-              TextButton(
-                onPressed: () async {
-                  Navigator.pop(context); // Pop the current route
-                  Navigator.pushReplacement(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation1, animation2) => HomePage(),
-                      transitionDuration: Duration.zero,
-                    ),
-                  );
-                },
-                child: Text('Yes'),
-              ),
-            ],
-
-          );
-        });
-  }
 
 }
-

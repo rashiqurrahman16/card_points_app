@@ -27,6 +27,7 @@ class _ScorePageState extends State<ScorePage> {
 
   List<ScoreModel> scoresList = [];
 
+  int winner = 0;
   String player1 = "";
   String player2 = "";
   String player3 = "";
@@ -78,8 +79,15 @@ class _ScorePageState extends State<ScorePage> {
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
 
+    if(calculateTotalScore1(scoresList)>400){
+      winner = 1;
+    }
+
+
+
 
     return Scaffold(
+
       appBar: AppBar(
         title: const Row(
           children: [
@@ -122,7 +130,6 @@ class _ScorePageState extends State<ScorePage> {
                       children: [
                         if (index == 0)
                           NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
-
                         const SizedBox(height: 5),
                         ScoreRow(scoreData: scoreData),
                       ]
@@ -151,16 +158,11 @@ class _ScorePageState extends State<ScorePage> {
               ),
               const SizedBox(height: 10),
 
-
-
               ],
             ),
           ),
         ]
       ),
-
-
-
 
 
 
@@ -262,7 +264,6 @@ class _ScorePageState extends State<ScorePage> {
           );
         });
   }
-
 
 
 
