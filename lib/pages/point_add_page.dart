@@ -24,8 +24,36 @@ class _PointAddPageState extends State<PointAddPage> {
   final score3Controller = TextEditingController();
   final score4Controller = TextEditingController();
 
+
+
+  String player1 = "";
+  String player2 = "";
+  String player3 = "";
+  String player4 = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _retrieveNamesScores();
+  }
+
+  void _retrieveNamesScores() async {
+    final box1 = Boxes.getNames();
+    final names = box1.values.toList().cast<NameModel>();
+    final nameData = names.last; // Assuming there's only one set of names
+    setState(() {
+      player1 = nameData.player1;
+      player2 = nameData.player2;
+      player3 = nameData.player3;
+      player4 = nameData.player4;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    final screenSize=MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: const Row(
@@ -65,18 +93,28 @@ class _PointAddPageState extends State<PointAddPage> {
 
             return ListView(
               children: [
+                const Center(
+                child: Text(
+                "Add Points",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                ),
+                const SizedBox(height: 20,),
                 ListTile(
                   title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                          "Player 1",
-                        style: TextStyle(
+                          player1,
+                        style: const TextStyle(
                           fontSize: 20,
                         ),
 
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       SizedBox(
                         width: 200,
                           child: TextField(
@@ -94,16 +132,16 @@ class _PointAddPageState extends State<PointAddPage> {
                 ),
                 ListTile(
                   title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        "Player 2",
-                        style: TextStyle(
+                        player2,
+                        style: const TextStyle(
                           fontSize: 20,
                         ),
 
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       SizedBox(
                         width: 200,
                         child: TextField(
@@ -121,16 +159,16 @@ class _PointAddPageState extends State<PointAddPage> {
                 ),
                 ListTile(
                   title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        "Player 3",
-                        style: TextStyle(
+                        player3,
+                        style: const TextStyle(
                           fontSize: 20,
                         ),
 
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       SizedBox(
                         width: 200,
                         child: TextField(
@@ -148,16 +186,16 @@ class _PointAddPageState extends State<PointAddPage> {
                 ),
                 ListTile(
                   title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Text(
-                        "Player 4",
-                        style: TextStyle(
+                        player4,
+                        style: const TextStyle(
                           fontSize: 20,
                         ),
 
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(width: 10,),
                       SizedBox(
                         width: 200,
                         child: TextField(
@@ -189,7 +227,6 @@ class _PointAddPageState extends State<PointAddPage> {
         width: 64,
         child: FloatingActionButton(
           elevation: 10,
-          child: Text('Done'),
           backgroundColor: Colors.blue,
           onPressed: () {
             final score1 = score1Controller.text;
@@ -207,27 +244,6 @@ class _PointAddPageState extends State<PointAddPage> {
               return; // Prevent saving and showing the dialog
             }
 
-            // if (int.parse(score1)+int.parse(score2)+int.parse(score3)+int.parse(score4)==360) {
-            //   //---------- for test purpose only
-            //   ScaffoldMessenger.of(context).showSnackBar(
-            //     SnackBar(
-            //       content: Text('Action completed!'), // Customize the message here
-            //       action: SnackBarAction(
-            //         label: 'Undo', // Optional action button
-            //         onPressed: () {
-            //           // Perform undo action here
-            //         },
-            //       ),
-            //     ),
-            //   );
-            //   //----------
-            //   return; // Prevent saving and showing the dialog
-            // }
-
-
-
-
-
             final scoreData = ScoreModel(
                 score1: int.parse(score1Controller.text),
                 score2: int.parse(score2Controller.text),
@@ -244,17 +260,13 @@ class _PointAddPageState extends State<PointAddPage> {
                   )
               ),
             );
-
-
-
-
-
           },
 
           shape: RoundedRectangleBorder(
             side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
             borderRadius: BorderRadius.circular(100),
           ),
+          child: const Text('Done'),
         ),
       ),
 
