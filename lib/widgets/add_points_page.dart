@@ -56,7 +56,9 @@ class _AddPointsPageState extends State<AddPointsPage> {
 
     return AlertDialog(
 
-      title: Text("Add Points"),
+      title: Center(child: Text("Add Points", style: TextStyle(fontSize: 20),)),
+
+
       content: SizedBox(
         width: double.infinity,
         child: Column(
@@ -65,24 +67,24 @@ class _AddPointsPageState extends State<AddPointsPage> {
           children: [
             ListTile(
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     player1,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                     ),
 
                   ),
-                  const SizedBox(width: 10,),
+                  const SizedBox(width: 5,),
                   SizedBox(
-                    width: 200,
+                    width: 150,
                     child: TextField(
                       controller: score1Controller,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
+                        counterText: "",
                       ),
-
                       maxLength: 3,
                       keyboardType: TextInputType.number,
                     ),
@@ -92,24 +94,24 @@ class _AddPointsPageState extends State<AddPointsPage> {
             ),
             ListTile(
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     player2,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                     ),
 
                   ),
-                  const SizedBox(width: 10,),
+                  const SizedBox(width: 5,),
                   SizedBox(
-                    width: 200,
+                    width: 150,
                     child: TextField(
                       controller: score2Controller,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
+                        counterText: "",
                       ),
-
                       maxLength: 3,
                       keyboardType: TextInputType.number,
                     ),
@@ -119,24 +121,23 @@ class _AddPointsPageState extends State<AddPointsPage> {
             ),
             ListTile(
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     player3,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                     ),
-
                   ),
-                  const SizedBox(width: 10,),
+                  const SizedBox(width: 5,),
                   SizedBox(
-                    width: 200,
+                    width: 150,
                     child: TextField(
                       controller: score3Controller,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
+                        counterText: "",
                       ),
-
                       maxLength: 3,
                       keyboardType: TextInputType.number,
                     ),
@@ -146,24 +147,24 @@ class _AddPointsPageState extends State<AddPointsPage> {
             ),
             ListTile(
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     player4,
                     style: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                     ),
 
                   ),
-                  const SizedBox(width: 10,),
+                  const SizedBox(width: 5,),
                   SizedBox(
-                    width: 200,
+                    width: 150,
                     child: TextField(
                       controller: score4Controller,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
+                        counterText: "",
                       ),
-
                       maxLength: 3,
                       keyboardType: TextInputType.number,
                     ),
@@ -172,17 +173,21 @@ class _AddPointsPageState extends State<AddPointsPage> {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(onPressed: (){
-                  Navigator.pop(context);
-                }, child: Text("Cancel")),
+                TextButton(
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                    child: Text("Cancel")
+                ),
                 TextButton(onPressed: (){
                   final score1 = score1Controller.text;
                   final score2 = score2Controller.text;
                   final score3 = score3Controller.text;
                   final score4 = score4Controller.text;
 
-                  if (score1.isEmpty || score2.isEmpty || score3.isEmpty || score4.isEmpty) {
+                  if (int.parse(score1)%5!=0 || int.parse(score2)%5!=0 || int.parse(score3)%5!=0 || int.parse(score4)%5!=0) {
                     _emptyPointsDialog();
                     return; // Prevent saving and showing the dialog
                   }
@@ -201,7 +206,13 @@ class _AddPointsPageState extends State<AddPointsPage> {
                   final box = Boxes.getScores();
                   box.add(scoreData);
 
-                  Navigator.pop(context);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ScorePage(
+                        )
+                    ),
+                  );
                 }, child: Text("Add")),
               ],
             )

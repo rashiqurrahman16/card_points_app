@@ -234,7 +234,7 @@ class _PointAddPageState extends State<PointAddPage> {
             final score3 = score3Controller.text;
             final score4 = score4Controller.text;
 
-            if (score1.isEmpty || score2.isEmpty || score3.isEmpty || score4.isEmpty) {
+            if (int.parse(score1)%5!=0) {
               _emptyPointsDialog();
               return; // Prevent saving and showing the dialog
             }

@@ -12,8 +12,6 @@ import 'package:hazari/pages/winner_page.dart';
 import '../models/name_score_model.dart';
 import '../widgets/add_points_page.dart';
 
-
-
 class ScorePage extends StatefulWidget {
   const ScorePage({
     super.key,
@@ -158,7 +156,7 @@ class _ScorePageState extends State<ScorePage> {
               :calculateTotalScore2(scoresList)>=400? _winningDialog(player2)
               :calculateTotalScore3(scoresList)>=400? _winningDialog(player3)
               :calculateTotalScore4(scoresList)>=400? _winningDialog(player4)
-              :_redirectToPointAddPage(context),
+              :_redirectToAddPointPage(context),
           child: Icon(
               Icons.add
           ),
@@ -184,7 +182,15 @@ class _ScorePageState extends State<ScorePage> {
                   iconSize: 30,
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   icon: Icon(Icons.minimize_rounded),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                        builder: (context) => const ScorePage(
+                    )
+                    ),
+                    );
+                  },
               ),
               IconButton(
                 color: Colors.white,
@@ -340,14 +346,15 @@ class _ScorePageState extends State<ScorePage> {
         });
   }
 
-  void _redirectToPointAddPage(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const AddPointsPage()),
-      );
-    });
+  void _redirectToAddPointPage(BuildContext context) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddPointsPage(),
+      ),
+    );
   }
+
 
 
 }
