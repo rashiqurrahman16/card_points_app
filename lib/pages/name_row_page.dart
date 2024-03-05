@@ -31,69 +31,57 @@ class NameRow extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Colors.orange.shade400,
                   border: Border.all(
-                      width: 2, color: Colors.white),
-                  borderRadius: const BorderRadius.all(
-                      Radius.circular(10))
+                      width: 1, color: Colors.white),
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
               child: Text(player1, style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),),
+                  color: Colors.white,
+                  fontSize: 15,),),
 
             ),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.grey,
-                  border: Border.all(
-                      width: 2, color: Colors.white),
-                  borderRadius: const BorderRadius.all(
-                      Radius.circular(10))
+                color: Colors.orange.shade400,
+                border: Border.all(
+                    width: 1, color: Colors.white),
               ),
               alignment: Alignment.center,
 
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
               child: Text(player2, style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),),
+                  color: Colors.white,
+                  fontSize: 15,),),
             ),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.grey,
-                  border: Border.all(
-                      width: 2, color: Colors.white),
-                  borderRadius: const BorderRadius.all(
-                      Radius.circular(10))
+                color: Colors.orange.shade400,
+                border: Border.all(
+                    width: 1, color: Colors.white),
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
               child: Text(player3, style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),),
+                  color: Colors.white,
+                  fontSize: 15,),),
             ),
             Container(
               decoration: BoxDecoration(
-                  color: Colors.grey,
-                  border: Border.all(
-                      width: 2, color: Colors.white),
-                  borderRadius: const BorderRadius.all(
-                      Radius.circular(10))
+                color: Colors.orange.shade400,
+                border: Border.all(
+                    width: 1, color: Colors.white),
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
               child: Text(player4, style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),),
+                  color: Colors.white,
+                  fontSize: 15,),),
             ),
 
 

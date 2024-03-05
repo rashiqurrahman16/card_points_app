@@ -79,8 +79,8 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                       "Players Name",
                     style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),
@@ -90,8 +90,10 @@ class _HomePageState extends State<HomePage> {
                       controller: player1Controller,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Player 1"),
-                      maxLength: 5,
+                          labelText: "Player 1",
+                        counterText: "",),
+                      maxLength: 8,
+
                     )
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -99,8 +101,9 @@ class _HomePageState extends State<HomePage> {
                       controller: player2Controller,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Player 2"),
-                      maxLength: 5,
+                          labelText: "Player 2",
+                        counterText: "",),
+                      maxLength: 8,
                     )
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -108,8 +111,9 @@ class _HomePageState extends State<HomePage> {
                       controller: player3Controller,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Player 3"),
-                      maxLength: 5,
+                          labelText: "Player 3",
+                        counterText: "",),
+                      maxLength: 8,
                     )
                 ),
                 Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -117,8 +121,9 @@ class _HomePageState extends State<HomePage> {
                       controller: player4Controller,
                       decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: "Player 4"),
-                      maxLength: 5,
+                          labelText: "Player 4",
+                        counterText: "",),
+                      maxLength: 8,
                     )
                 ),
 
