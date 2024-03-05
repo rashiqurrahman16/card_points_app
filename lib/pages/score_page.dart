@@ -10,6 +10,7 @@ import 'package:hazari/pages/winner_page.dart';
 
 
 import '../models/name_score_model.dart';
+import '../widgets/add_points_page.dart';
 
 
 
@@ -125,36 +126,20 @@ class _ScorePageState extends State<ScorePage> {
                           NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
                         const SizedBox(height: 5),
                         ScoreRow(scoreData: scoreData),
+                        if (index == scoresList.length - 1)
+                          TotalScore(
+                            totalScore1: calculateTotalScore1(scoresList),
+                            totalScore2: calculateTotalScore2(scoresList),
+                            totalScore3: calculateTotalScore3(scoresList),
+                            totalScore4: calculateTotalScore4(scoresList),
+                          ),
+
                       ]
                   );
 
               }
               ),
         ),
-        Positioned(
-            bottom: 25.0,
-            child: Column(
-              children: [
-              Text(
-              "Total Score",
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-              TotalScore(
-                totalScore1: calculateTotalScore1(scoresList),
-                totalScore2: calculateTotalScore2(scoresList),
-                totalScore3: calculateTotalScore3(scoresList),
-                totalScore4: calculateTotalScore4(scoresList),
-              ),
-              const SizedBox(height: 10),
-
-              ],
-            ),
-
-          ),
         ]
       ),
 
@@ -244,12 +229,46 @@ class _ScorePageState extends State<ScorePage> {
 
               TextButton(
                   onPressed: () async {
-                    final box = Boxes.getScores();
-                    await box.clear();
-                    setState(() {
-                      scoresList = [];
-                    });
                     Navigator.pop(context);
+                    await showDialog(
+                        context: context,
+                        builder: (context){
+                          return AlertDialog(
+                            title: Text('Confirmation'),
+                            content: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  Text("Are you sure want to refresh the game"),
+                                ],
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                  onPressed: () async{
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text('No')
+                              ),
+
+                              TextButton(
+                                  onPressed: () async {
+                                    final box1 = Boxes.getNames();
+                                    await box1.clear();
+                                    final box2 = Boxes.getScores();
+                                    await box2.clear();
+                                    setState(() {
+                                      scoresList = [];
+                                    });
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => const HomePage()),
+                                    );
+                                  },
+                                  child: Text('Yes')
+                              )
+                            ],
+                          );
+                        });
                   },
                   child: Text('Yes')
               )
@@ -325,7 +344,7 @@ class _ScorePageState extends State<ScorePage> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const PointAddPage()),
+        MaterialPageRoute(builder: (context) => const AddPointsPage()),
       );
     });
   }

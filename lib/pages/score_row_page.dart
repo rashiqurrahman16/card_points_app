@@ -26,8 +26,7 @@ class ScoreRow extends StatelessWidget {
               width: screenSize.width / 4,
               child: Text("${scoreData.score1}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),),
+                    fontSize: 15,),),
             ),
             Container(
               alignment: Alignment.center,
@@ -36,8 +35,7 @@ class ScoreRow extends StatelessWidget {
               width: screenSize.width / 4,
               child: Text("${scoreData.score2}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),),
+                    fontSize: 15,),),
             ),
             Container(
               alignment: Alignment.center,
@@ -45,8 +43,7 @@ class ScoreRow extends StatelessWidget {
               width: screenSize.width / 4,
               child: Text("${scoreData.score3}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),),
+                    fontSize: 15,),),
             ),
             Container(
               alignment: Alignment.center,
@@ -54,8 +51,7 @@ class ScoreRow extends StatelessWidget {
               width: screenSize.width / 4,
               child: Text("${scoreData.score4}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),),
+                    fontSize: 15,),),
             ),
 
           ],

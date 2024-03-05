@@ -97,8 +97,8 @@ class _PointAddPageState extends State<PointAddPage> {
                 child: Text(
                 "Add Points",
                   style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w500,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
                 ),
@@ -273,31 +273,7 @@ class _PointAddPageState extends State<PointAddPage> {
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue,
         shape: const CircularNotchedRectangle(),
-        child: Container(
-          alignment: Alignment.center,
-          height: 10,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                color: Colors.white,
-                iconSize: 30,
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                icon: Icon(Icons.minimize_rounded),
-                onPressed: (){},
-              ),
-              IconButton(
-                color: Colors.white,
-                iconSize: 30,
-                padding: EdgeInsets.symmetric(horizontal: 40),
-                icon: Icon(Icons.refresh),
-                onPressed: (){},
-              ),
-            ],
-          ),
 
-        ),
       ),
 
 

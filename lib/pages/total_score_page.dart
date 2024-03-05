@@ -33,14 +33,12 @@ int calculateTotalScore4(List<ScoreModel> scoresList){
 }
 
 class TotalScore extends StatefulWidget {
-
   final int totalScore1;
   final int totalScore2;
   final int totalScore3;
   final int totalScore4;
 
   const TotalScore({
-
     required this.totalScore1,
     required this.totalScore2,
     required this.totalScore3,
@@ -63,24 +61,24 @@ class _TotalScoreState extends State<TotalScore> {
         Row(
 
           children: [
-
             Container(
               decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  border: Border.all(width: 2, color: Colors.black),
+                  border: Border(
+                    top: BorderSide(width: 1, color: Colors.black),
+                  ),
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
               child: Text("${widget.totalScore1}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),),
+                    fontSize: 15,),),
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                border: Border.all(width: 2, color: Colors.black),
+                border: Border(
+                  top: BorderSide(width: 1, color: Colors.black),
+                ),
               ),
               alignment: Alignment.center,
 
@@ -88,34 +86,33 @@ class _TotalScoreState extends State<TotalScore> {
               width: screenSize.width / 4,
               child: Text("${widget.totalScore2}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),),
+                    fontSize: 15,),),
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                border: Border.all(width: 2, color: Colors.black),
+                border: Border(
+                  top: BorderSide(width: 1, color: Colors.black),
+                ),
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
               child: Text("${widget.totalScore3}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),),
+                    fontSize: 15,),),
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                border: Border.all(width: 2, color: Colors.black),
+                border: Border(
+                  top: BorderSide(width: 1, color: Colors.black),
+                ),
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
               width: screenSize.width / 4,
               child: Text("${widget.totalScore4}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold),),
+                    fontSize: 15,),),
             ),
 
           ],
