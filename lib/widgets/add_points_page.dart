@@ -187,15 +187,27 @@ class _AddPointsPageState extends State<AddPointsPage> {
                   final score3 = score3Controller.text;
                   final score4 = score4Controller.text;
 
-                  if (int.parse(score1)%5!=0 || int.parse(score2)%5!=0 || int.parse(score3)%5!=0 || int.parse(score4)%5!=0) {
-                    _emptyPointsDialog();
+
+
+
+                  if (int.parse(score1)+int.parse(score2)+int.parse(score3)+int.parse(score4)!=360) {
+                    _errorPointsDialog(1);
+                    return; // Prevent saving if total score is not equal to 360
+                  }
+                  if (int.parse(score1)<60 || int.parse(score2)<60 || int.parse(score3)<60 || int.parse(score4)<60) {
+                    _errorPointsDialog(2);
                     return; // Prevent saving and showing the dialog
                   }
 
-                  if (int.parse(score1)+int.parse(score2)+int.parse(score3)+int.parse(score4)!=360) {
-                    _errorPointsDialog();
+                  if (int.parse(score1)%5!=0 || int.parse(score2)%5!=0 || int.parse(score3)%5!=0 || int.parse(score4)%5!=0) {
+                    _errorPointsDialog(3);
                     return; // Prevent saving and showing the dialog
                   }
+                  if (score1.isEmpty || score2.isEmpty || score3.isEmpty || score4.isEmpty){
+                    _emptyPointsDialog();
+                    return;
+                  }
+
 
                   final scoreData = ScoreModel(
                       score1: int.parse(score1Controller.text),
@@ -222,14 +234,26 @@ class _AddPointsPageState extends State<AddPointsPage> {
     );
   }
 
-  _emptyPointsDialog(){
+
+
+  _errorPointsDialog(int i){
     return showDialog(
         context: context,
         builder: (context){
           return AlertDialog(
             title: Text('Error'),
             content: SingleChildScrollView(
-              child: Text('Enter points for every players'),
+              child: Column(
+                children: [
+                  if(i==1)
+                  Text('Sum of all players points must be equal to 360'),
+                  if(i==2)
+                  Text('No player can have less than 60 points'),
+                  if(i==3)
+                  Text('Must be able to divide by 5'),
+                ],
+              ),
+
             ),
             actions: [
               TextButton(onPressed: (){
@@ -242,16 +266,14 @@ class _AddPointsPageState extends State<AddPointsPage> {
         }
     );
   }
-
-
-  _errorPointsDialog(){
+  _emptyPointsDialog(){
     return showDialog(
         context: context,
         builder: (context){
           return AlertDialog(
             title: Text('Error'),
             content: SingleChildScrollView(
-              child: Text('Sum of all players points must be equal to 360'),
+              child: Text('Enter points for every players'),
             ),
             actions: [
               TextButton(onPressed: (){
