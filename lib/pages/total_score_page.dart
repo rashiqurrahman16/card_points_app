@@ -64,7 +64,7 @@ class _TotalScoreState extends State<TotalScore> {
             Container(
               decoration: BoxDecoration(
                   border: Border(
-                    top: BorderSide(width: 1, color: Colors.black),
+                    top: BorderSide(width: 2, color: Colors.orange.shade200),
                   ),
               ),
               alignment: Alignment.center,
@@ -77,7 +77,7 @@ class _TotalScoreState extends State<TotalScore> {
             Container(
               decoration: BoxDecoration(
                 border: Border(
-                  top: BorderSide(width: 1, color: Colors.black),
+                  top: BorderSide(width: 2, color: Colors.orange.shade200),
                 ),
               ),
               alignment: Alignment.center,
@@ -91,7 +91,7 @@ class _TotalScoreState extends State<TotalScore> {
             Container(
               decoration: BoxDecoration(
                 border: Border(
-                  top: BorderSide(width: 1, color: Colors.black),
+                  top: BorderSide(width: 2, color: Colors.orange.shade200),
                 ),
               ),
               alignment: Alignment.center,
@@ -104,7 +104,7 @@ class _TotalScoreState extends State<TotalScore> {
             Container(
               decoration: BoxDecoration(
                 border: Border(
-                  top: BorderSide(width: 1, color: Colors.black),
+                  top: BorderSide(width: 2, color: Colors.orange.shade200),
                 ),
               ),
               alignment: Alignment.center,

@@ -1,8 +1,5 @@
 
-
-
 import 'package:flutter/material.dart';
-
 
 class NameRow extends StatelessWidget {
   final String player1;

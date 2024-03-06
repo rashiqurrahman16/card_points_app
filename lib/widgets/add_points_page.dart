@@ -72,18 +72,19 @@ class _AddPointsPageState extends State<AddPointsPage> {
                   Text(
                     player1,
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: 18,
                     ),
 
                   ),
-                  const SizedBox(width: 5,),
+                  const SizedBox(width: 10,),
                   SizedBox(
-                    width: 150,
+                    width: 120,
                     child: TextField(
                       controller: score1Controller,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         counterText: "",
+                        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       ),
                       maxLength: 3,
                       keyboardType: TextInputType.number,
@@ -99,18 +100,19 @@ class _AddPointsPageState extends State<AddPointsPage> {
                   Text(
                     player2,
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: 18,
                     ),
 
                   ),
-                  const SizedBox(width: 5,),
+                  const SizedBox(width: 10,),
                   SizedBox(
-                    width: 150,
+                    width: 120,
                     child: TextField(
                       controller: score2Controller,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         counterText: "",
+                        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       ),
                       maxLength: 3,
                       keyboardType: TextInputType.number,
@@ -126,17 +128,18 @@ class _AddPointsPageState extends State<AddPointsPage> {
                   Text(
                     player3,
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: 18,
                     ),
                   ),
-                  const SizedBox(width: 5,),
+                  const SizedBox(width: 10,),
                   SizedBox(
-                    width: 150,
+                    width: 120,
                     child: TextField(
                       controller: score3Controller,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         counterText: "",
+                        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       ),
                       maxLength: 3,
                       keyboardType: TextInputType.number,
@@ -152,18 +155,19 @@ class _AddPointsPageState extends State<AddPointsPage> {
                   Text(
                     player4,
                     style: const TextStyle(
-                      fontSize: 15,
+                      fontSize: 18,
                     ),
 
                   ),
-                  const SizedBox(width: 5,),
+                  const SizedBox(width: 10,),
                   SizedBox(
-                    width: 150,
+                    width: 120,
                     child: TextField(
                       controller: score4Controller,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         counterText: "",
+                        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                       ),
                       maxLength: 3,
                       keyboardType: TextInputType.number,
@@ -172,60 +176,77 @@ class _AddPointsPageState extends State<AddPointsPage> {
                 ],
               ),
             ),
+            SizedBox(height: 10,),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    child: Text("Cancel")
-                ),
-                TextButton(onPressed: (){
-                  final score1 = score1Controller.text;
-                  final score2 = score2Controller.text;
-                  final score3 = score3Controller.text;
-                  final score4 = score4Controller.text;
 
-
-
-
-                  if (int.parse(score1)+int.parse(score2)+int.parse(score3)+int.parse(score4)!=360) {
-                    _errorPointsDialog(1);
-                    return; // Prevent saving if total score is not equal to 360
-                  }
-                  if (int.parse(score1)<60 || int.parse(score2)<60 || int.parse(score3)<60 || int.parse(score4)<60) {
-                    _errorPointsDialog(2);
-                    return; // Prevent saving and showing the dialog
-                  }
-
-                  if (int.parse(score1)%5!=0 || int.parse(score2)%5!=0 || int.parse(score3)%5!=0 || int.parse(score4)%5!=0) {
-                    _errorPointsDialog(3);
-                    return; // Prevent saving and showing the dialog
-                  }
-                  if (score1.isEmpty || score2.isEmpty || score3.isEmpty || score4.isEmpty){
-                    _emptyPointsDialog();
-                    return;
-                  }
-
-
-                  final scoreData = ScoreModel(
-                      score1: int.parse(score1Controller.text),
-                      score2: int.parse(score2Controller.text),
-                      score3: int.parse(score3Controller.text),
-                      score4: int.parse(score4Controller.text)
-                  );
-                  final box = Boxes.getScores();
-                  box.add(scoreData);
-
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ScorePage(
-                        )
+                SizedBox(
+                  height: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        child: Text("Cancel", style: TextStyle(color: Colors.white, fontSize: 18),)
                     ),
-                  );
-                }, child: Text("Add")),
+                  ),
+                ),
+                SizedBox(width: 20),
+                SizedBox(
+                  height: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.all(3),
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                        onPressed: (){
+                      final score1 = score1Controller.text;
+                      final score2 = score2Controller.text;
+                      final score3 = score3Controller.text;
+                      final score4 = score4Controller.text;
+
+
+                      if (score1.isEmpty || score2.isEmpty || score3.isEmpty || score4.isEmpty){
+                        _errorPointsDialog(2);
+                        return;
+                      }
+                      if (int.parse(score1)+int.parse(score2)+int.parse(score3)+int.parse(score4)!=360) {
+                        _errorPointsDialog(1);
+                        return; // Prevent saving if total score is not equal to 360
+                      }
+                      if (int.parse(score1)<60 || int.parse(score2)<60 || int.parse(score3)<60 || int.parse(score4)<60) {
+                        _errorPointsDialog(2);
+                        return; // Prevent saving and showing the dialog
+                      }
+
+                      if (int.parse(score1)%5!=0 || int.parse(score2)%5!=0 || int.parse(score3)%5!=0 || int.parse(score4)%5!=0) {
+                        _errorPointsDialog(3);
+                        return; // Prevent saving and showing the dialog
+                      }
+
+
+
+                      final scoreData = ScoreModel(
+                          score1: int.parse(score1Controller.text),
+                          score2: int.parse(score2Controller.text),
+                          score3: int.parse(score3Controller.text),
+                          score4: int.parse(score4Controller.text)
+                      );
+                      final box = Boxes.getScores();
+                      box.add(scoreData);
+
+                      // Navigator.pop(context);
+
+                      Navigator.of(context).popUntil((route) => route.isFirst);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ScorePage()),
+                      );
+                    }, child: Text("Submit", style: TextStyle(color: Colors.white, fontSize: 18),)),
+                  ),
+                ),
               ],
             )
           ],
@@ -266,28 +287,6 @@ class _AddPointsPageState extends State<AddPointsPage> {
         }
     );
   }
-  _emptyPointsDialog(){
-    return showDialog(
-        context: context,
-        builder: (context){
-          return AlertDialog(
-            title: Text('Error'),
-            content: SingleChildScrollView(
-              child: Text('Enter points for every players'),
-            ),
-            actions: [
-              TextButton(onPressed: (){
-                Navigator.pop(context);
-              },
-                  child:  Text('OK')
-              )
-            ],
-          );
-        }
-    );
-  }
-
-
 
 
 }

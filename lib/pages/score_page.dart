@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hazari/boxes/boxes.dart';
 import 'package:hazari/pages/home_page.dart';
 import 'package:hazari/pages/name_row_page.dart';
@@ -22,6 +23,8 @@ class ScorePage extends StatefulWidget {
 }
 
 class _ScorePageState extends State<ScorePage> {
+
+  bool _goToMainScreen = false;
 
   List<ScoreModel> scoresList = [];
 
@@ -78,135 +81,145 @@ class _ScorePageState extends State<ScorePage> {
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
 
-    return Scaffold(
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop){
+        if (didPop) {
+          return; // Allow exiting the app
+        }
+        else {
+          _goToMainScreenDialog();
+          return; // Prevent immediate exit
+        }
+      },
+      child: Scaffold(
 
-      appBar: AppBar(
-        title: const Row(
-          children: [
-            SizedBox(
-              width: 50.0,
-              height: 50.0,
-              child: Image(
-                image: AssetImage('assets/3cards.png'),
-              ),
-            ),
-            Text(
-              'HAZARI',
-              style: TextStyle(fontWeight: FontWeight.w500,),
-            ),
-            Spacer(),
-            SizedBox(
-              width: 100.0,
-              height: 100.0,
-              child: Image(
-                image: AssetImage('assets/DesktopIt-logo-white.png'),
-              ),
-            ),
-          ],
-        ),
-        toolbarHeight: 80,
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-        automaticallyImplyLeading: false,
-      ),
-      body: Stack(
-        children:[
-        SizedBox(
-          height: screenSize.height - 120,
-          child: ListView.builder(
-              itemCount: scoresList.length,
-              itemBuilder: (context, index) {
-                final scoreData = scoresList[index];
-
-                return Column(
-                      children: [
-                        if (index == 0)
-                          NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
-                        const SizedBox(height: 5),
-                        ScoreRow(scoreData: scoreData),
-                        if (index == scoresList.length - 1)
-                          TotalScore(
-                            totalScore1: calculateTotalScore1(scoresList),
-                            totalScore2: calculateTotalScore2(scoresList),
-                            totalScore3: calculateTotalScore3(scoresList),
-                            totalScore4: calculateTotalScore4(scoresList),
-                          ),
-
-                      ]
-                  );
-
-              }
-              ),
-        ),
-        ]
-      ),
-
-
-
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
-        margin: const EdgeInsets.only(top: 10),
-        height: 64,
-        width: 64,
-        child: FloatingActionButton(
-          elevation: 10,
-
-          backgroundColor: Colors.blue,
-          onPressed: () => calculateTotalScore1(scoresList)>=400? _winningDialog(player1)
-              :calculateTotalScore2(scoresList)>=400? _winningDialog(player2)
-              :calculateTotalScore3(scoresList)>=400? _winningDialog(player3)
-              :calculateTotalScore4(scoresList)>=400? _winningDialog(player4)
-              :_redirectToAddPointPage(context),
-          child: Icon(
-              Icons.add
-          ),
-          shape: RoundedRectangleBorder(
-            side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
-            borderRadius: BorderRadius.circular(100),
-          ),
-        ),
-      ),
-
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
-        shape: const CircularNotchedRectangle(),
-        child: Container(
-          alignment: Alignment.center,
-          height: 10,
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        appBar: AppBar(
+          title: const Row(
             children: [
-              IconButton(
-                  color: Colors.white,
-                  iconSize: 30,
-                  padding: EdgeInsets.symmetric(horizontal: 40),
-                  icon: Icon(Icons.minimize_rounded),
-                  onPressed: (){
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                        builder: (context) => const ScorePage(
-                    )
-                    ),
-                    );
-                  },
+              SizedBox(
+                width: 50.0,
+                height: 50.0,
+                child: Image(
+                  image: AssetImage('assets/3cards.png'),
+                ),
               ),
-              IconButton(
-                color: Colors.white,
-                iconSize: 30,
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                icon: Icon(Icons.refresh),
-                onPressed: (){
-                  _showRefreshDialog();
-                },
+              Text(
+                'HAZARI',
+                style: TextStyle(fontWeight: FontWeight.w500,),
+              ),
+              Spacer(),
+              SizedBox(
+                width: 100.0,
+                height: 100.0,
+                child: Image(
+                  image: AssetImage('assets/DesktopIt-logo-white.png'),
+                ),
               ),
             ],
           ),
-
+          toolbarHeight: 80,
+          centerTitle: true,
+          backgroundColor: Colors.blue,
+          automaticallyImplyLeading: false,
         ),
-      )
+        body: ListView(
+          children:[
+            NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
+          SizedBox(
+            height: screenSize.height - 120,
+            child: ListView.builder(
+                itemCount: scoresList.length,
+                itemBuilder: (context, index) {
+                  final scoreData = scoresList[index];
 
+                  return Column(
+                        children: [
+                          if (index == 0)
+
+                          const SizedBox(height: 5),
+                          ScoreRow(scoreData: scoreData),
+                          if (index == scoresList.length - 1)
+                            TotalScore(
+                              totalScore1: calculateTotalScore1(scoresList),
+                              totalScore2: calculateTotalScore2(scoresList),
+                              totalScore3: calculateTotalScore3(scoresList),
+                              totalScore4: calculateTotalScore4(scoresList),
+                            ),
+
+                        ]
+                    );
+
+                }
+                ),
+          ),
+          ]
+        ),
+
+
+
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Container(
+          margin: const EdgeInsets.only(top: 10),
+          height: 64,
+          width: 64,
+          child: FloatingActionButton(
+            elevation: 10,
+
+            backgroundColor: Colors.blue,
+            onPressed: () => calculateTotalScore1(scoresList)>=400? _winningDialog(player1, calculateTotalScore1(scoresList))
+                :calculateTotalScore2(scoresList)>=400? _winningDialog(player2, calculateTotalScore2(scoresList))
+                :calculateTotalScore3(scoresList)>=400? _winningDialog(player3, calculateTotalScore3(scoresList))
+                :calculateTotalScore4(scoresList)>=400? _winningDialog(player4, calculateTotalScore4(scoresList))
+                :_redirectToAddPointPage(context),
+            child: Icon(
+                Icons.add,
+              color: Colors.orange.shade400,
+              size: 30,
+              shadows: [],
+            ),
+            shape: RoundedRectangleBorder(
+              side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
+              borderRadius: BorderRadius.circular(100),
+            ),
+          ),
+        ),
+
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.blue,
+          shape: const CircularNotchedRectangle(),
+          child: Container(
+            alignment: Alignment.center,
+            height: 10,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    color: Colors.orange.shade400,
+                    iconSize: 30,
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: (){
+                      _goToMainScreenDialog();
+                    },
+                ),
+                IconButton(
+                  color: Colors.orange.shade400,
+                  iconSize: 30,
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  icon: Icon(Icons.refresh),
+                  onPressed: (){
+                    _showRefreshDialog();
+                  },
+                ),
+              ],
+            ),
+
+          ),
+        )
+
+      ),
     );
   }
 
@@ -217,77 +230,113 @@ class _ScorePageState extends State<ScorePage> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Text('Confirmation'),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text("Are you sure want to refresh the score sheet"),
-                ],
-              ),
-            ),
+            title: Center(child: Text('Refresh the score?', style: TextStyle(fontSize: 18),)),
+
             actions: [
-              TextButton(
-                  onPressed: () async{
-                    Navigator.pop(context);
-                  },
-                  child: Text('No')
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    width: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
+                          onPressed: () async{
+                            Navigator.pop(context);
+                          },
+                          child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),)
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  SizedBox(
+                    height: 50,
+                    width: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            await showDialog(
+                                context: context,
+                                builder: (context){
+                                  return AlertDialog(
+                                    title: Center(child: Text('Are you sure?')),
+                                    content: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          Text("Current score will be reset", style: TextStyle(fontSize: 15),),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          SizedBox(
+                                            height: 50,
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(3),
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
+                                                  onPressed: () async{
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('Cancel', style: TextStyle(color: Colors.white, fontSize: 18),)
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 5,),
+                                          SizedBox(
+                                            height: 50,
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(3),
+                                              child: ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                                                  onPressed: () async {
+                                                    final box2 = Boxes.getScores();
+                                                    await box2.clear();
+                                                    setState(() {
+                                                      scoresList = [];
+                                                    });
+                                                    Navigator.of(context).popUntil((route) => route.isFirst);
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(builder: (context) => const ScorePage()),
+                                                    );
+                                                  },
+                                                  child: Text('Confirm', style: TextStyle(color: Colors.white, fontSize: 18),)
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
 
-              TextButton(
-                  onPressed: () async {
-                    Navigator.pop(context);
-                    await showDialog(
-                        context: context,
-                        builder: (context){
-                          return AlertDialog(
-                            title: Text('Confirmation'),
-                            content: SingleChildScrollView(
-                              child: Column(
-                                children: [
-                                  Text("Are you sure want to refresh the game"),
-                                ],
-                              ),
-                            ),
-                            actions: [
-                              TextButton(
-                                  onPressed: () async{
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('No')
-                              ),
-
-                              TextButton(
-                                  onPressed: () async {
-                                    final box1 = Boxes.getNames();
-                                    await box1.clear();
-                                    final box2 = Boxes.getScores();
-                                    await box2.clear();
-                                    setState(() {
-                                      scoresList = [];
-                                    });
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => const HomePage()),
-                                    );
-                                  },
-                                  child: Text('Yes')
-                              )
-                            ],
-                          );
-                        });
-                  },
-                  child: Text('Yes')
+                                    ],
+                                  );
+                                });
+                          },
+                          child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),)
+                      ),
+                    ),
+                  )
+                ],
               )
+
             ],
           );
         });
   }
 
-  Future<void> _winningDialog(winner) async {
+  Future<void> _winningDialog(winner, points) async {
     return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Colors.orange.shade400,
             alignment: Alignment.center,
             content: Column(
               mainAxisSize: MainAxisSize.min, // Ensure content fits within screen
@@ -295,7 +344,6 @@ class _ScorePageState extends State<ScorePage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 40),
                   decoration: BoxDecoration(
-                    color: Colors.blue,
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Column(
@@ -319,7 +367,7 @@ class _ScorePageState extends State<ScorePage> {
                           ),
                           SizedBox(width: 15),
                           Text(
-                            '1000 pts',
+                            points.toString(),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20.0,
@@ -333,15 +381,6 @@ class _ScorePageState extends State<ScorePage> {
                 ),
               ],
             ),
-            // actions: [
-            //   TextButton(
-            //     onPressed: () => _showRefreshDialog(), // Changed onPressed
-            //     child: Text(
-            //       'Go to Home',
-            //       style: TextStyle(color: Colors.blue),
-            //     ),
-            //   ),
-            // ],
           );
         });
   }
@@ -351,6 +390,45 @@ class _ScorePageState extends State<ScorePage> {
       context,
       MaterialPageRoute(
         builder: (context) => AddPointsPage(),
+      ),
+    );
+  }
+
+  Future<void> _goToMainScreenDialog() async {
+    _goToMainScreen = true; // Set flag to prevent immediate exit
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Create New Game?'),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context); // Cancel exit
+                  _goToMainScreen = false; // Reset flag
+                },
+                child: Text('No', style: TextStyle(color: Colors.orange.shade400, fontSize: 20),),
+              ),
+              SizedBox(width: 40,),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).popUntil((route) => route.isFirst);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomePage(
+                        )
+                    ),
+                  ); // Exit the app
+                },
+                child: Text('Yes', style: TextStyle(color: Colors.green.shade400, fontSize: 20),),
+              ),
+            ],
+          )
+
+        ],
       ),
     );
   }
