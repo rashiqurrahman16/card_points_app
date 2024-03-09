@@ -28,8 +28,6 @@ class _ScorePageState extends State<ScorePage> {
 
   List<ScoreModel> scoresList = [];
 
-  int winner = 0;
-  String winnerName = "";
   String player1 = "";
   String player2 = "";
   String player3 = "";
@@ -140,32 +138,39 @@ class _ScorePageState extends State<ScorePage> {
                           const SizedBox(height: 5),
                           ScoreRow(scoreData: scoreData),
                           if (index == scoresList.length - 1)
+                          TotalScore(
+                          totalScore1: calculateTotalScore1(scoresList),
+                          totalScore2: calculateTotalScore2(scoresList),
+                          totalScore3: calculateTotalScore3(scoresList),
+                          totalScore4: calculateTotalScore4(scoresList),
+                          ),
 
-                            // FutureBuilder(
-                            //   future: totalScore1 > 400 ? _showWinningDialog1(player1, totalScore1) : null,
-                            //   builder: (context, snapshot) {
-                            //     return TotalScore(
-                            //       totalScore1: calculateTotalScore1(scoresList),
-                            //       totalScore2: calculateTotalScore2(scoresList),
-                            //       totalScore3: calculateTotalScore3(scoresList),
-                            //       totalScore4: calculateTotalScore4(scoresList),
-                            //     );
-                            //   },
-                            // ),
-
-                            FutureBuilder(
-                                future: calculateTotalScore1(scoresList)>400? _winningDialog(player1, calculateTotalScore1(scoresList)):
-                                calculateTotalScore2(scoresList)>400? _winningDialog(player2, calculateTotalScore2(scoresList)):
-                                calculateTotalScore3(scoresList)>400? _winningDialog(player3, calculateTotalScore3(scoresList)):
-                                calculateTotalScore4(scoresList)>400? _winningDialog(player4, calculateTotalScore4(scoresList)):null,
-                                builder: (context, snapshot){
-                                  return TotalScore(
-                                    totalScore1: calculateTotalScore1(scoresList),
-                                    totalScore2: calculateTotalScore2(scoresList),
-                                    totalScore3: calculateTotalScore3(scoresList),
-                                    totalScore4: calculateTotalScore4(scoresList),
-                                  );
-                                })
+                  //
+                  //           // FutureBuilder(
+                  //           //   future: totalScore1 > 400 ? _showWinningDialog1(player1, totalScore1) : null,
+                  //           //   builder: (context, snapshot) {
+                  //           //     return TotalScore(
+                  //           //       totalScore1: calculateTotalScore1(scoresList),
+                  //           //       totalScore2: calculateTotalScore2(scoresList),
+                  //           //       totalScore3: calculateTotalScore3(scoresList),
+                  //           //       totalScore4: calculateTotalScore4(scoresList),
+                  //           //     );
+                  //           //   },
+                  //           // ),
+                  //
+                  //           FutureBuilder(
+                  //               future: calculateTotalScore1(scoresList)>400? _winningDialog(player1, calculateTotalScore1(scoresList)):
+                  //               calculateTotalScore2(scoresList)>400? _winningDialog(player2, calculateTotalScore2(scoresList)):
+                  //               calculateTotalScore3(scoresList)>400? _winningDialog(player3, calculateTotalScore3(scoresList)):
+                  //               calculateTotalScore4(scoresList)>400? _winningDialog(player4, calculateTotalScore4(scoresList)):null,
+                  //               builder: (context, snapshot){
+                  //                 return TotalScore(
+                  //                   totalScore1: calculateTotalScore1(scoresList),
+                  //                   totalScore2: calculateTotalScore2(scoresList),
+                  //                   totalScore3: calculateTotalScore3(scoresList),
+                  //                   totalScore4: calculateTotalScore4(scoresList),
+                  //                 );
+                  //               })
 
 
 
@@ -358,70 +363,7 @@ class _ScorePageState extends State<ScorePage> {
         });
   }
 
-  Future<void> _winningDialog(winner, points) async {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-          builder: (context) => const WinningPage(
-          )
-      ),
-    );
 
-    // return showDialog(
-    //     context: context,
-    //     builder: (context) {
-    //       return AlertDialog(
-    //         backgroundColor: Colors.orange.shade400,
-    //         alignment: Alignment.center,
-    //         content: Column(
-    //           mainAxisSize: MainAxisSize.min, // Ensure content fits within screen
-    //           children: [
-    //             Container(
-    //               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 40),
-    //               decoration: BoxDecoration(
-    //                 borderRadius: BorderRadius.circular(10.0),
-    //               ),
-    //               child: Column(
-    //                 children: [
-    //                   Text(
-    //                     'Winner',
-    //                     style: TextStyle(
-    //                       color: Colors.white,
-    //                       fontSize: 40.0,
-    //                     ),
-    //                   ),
-    //                   Row(
-    //                     mainAxisSize: MainAxisSize.min,
-    //                     children: [
-    //                       Text(
-    //                         winner,
-    //                         style: TextStyle(
-    //                           color: Colors.white,
-    //                           fontSize: 20.0,
-    //                         ),
-    //                       ),
-    //                       SizedBox(width: 15),
-    //                       Text(
-    //                         points.toString(),
-    //                         style: TextStyle(
-    //                           color: Colors.white,
-    //                           fontSize: 20.0,
-    //                         ),
-    //                       ),
-    //                     ],
-    //                   ),
-    //                   SizedBox(height: 10),
-    //                   ElevatedButton(
-    //                       onPressed: (){},
-    //                       child: Text('Exit', style: TextStyle(color: Colors.white),)),
-    //                 ],
-    //               ),
-    //             ),
-    //           ],
-    //         ),
-    //       );
-    //     });
-  }
 
   void _redirectToAddPointPage(BuildContext context) async {
     await Navigator.push(

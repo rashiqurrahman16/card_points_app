@@ -36,7 +36,8 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: const SplashScreenPage(),
+      // home: const SplashScreenPage(),
+      home: const WinnerPage(),
     );
   }
 }
