@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:hazari/boxes/boxes.dart';
 import 'package:hazari/pages/home_page.dart';
 import 'package:hazari/pages/name_row_page.dart';
-import 'package:hazari/pages/point_add_page.dart';
+
 import 'package:hazari/pages/score_row_page.dart';
-import 'package:hazari/pages/splash_screen.dart';
+
 import 'package:hazari/pages/total_score_page.dart';
 import 'package:hazari/pages/winner_page.dart';
 
@@ -24,7 +24,7 @@ class ScorePage extends StatefulWidget {
 
 class _ScorePageState extends State<ScorePage> {
 
-  bool _goToMainScreen = false;
+  bool _willRefresh = false;
 
   List<ScoreModel> scoresList = [];
 
@@ -88,7 +88,7 @@ class _ScorePageState extends State<ScorePage> {
           return; // Allow exiting the app
         }
         else {
-          _goToMainScreenDialog();
+          _showRefreshDialog();
           return; // Prevent immediate exit
         }
       },
@@ -140,21 +140,44 @@ class _ScorePageState extends State<ScorePage> {
                           const SizedBox(height: 5),
                           ScoreRow(scoreData: scoreData),
                           if (index == scoresList.length - 1)
-                            TotalScore(
-                              totalScore1: calculateTotalScore1(scoresList),
-                              totalScore2: calculateTotalScore2(scoresList),
-                              totalScore3: calculateTotalScore3(scoresList),
-                              totalScore4: calculateTotalScore4(scoresList),
-                            ),
+
+                            // FutureBuilder(
+                            //   future: totalScore1 > 400 ? _showWinningDialog1(player1, totalScore1) : null,
+                            //   builder: (context, snapshot) {
+                            //     return TotalScore(
+                            //       totalScore1: calculateTotalScore1(scoresList),
+                            //       totalScore2: calculateTotalScore2(scoresList),
+                            //       totalScore3: calculateTotalScore3(scoresList),
+                            //       totalScore4: calculateTotalScore4(scoresList),
+                            //     );
+                            //   },
+                            // ),
+
+                            FutureBuilder(
+                                future: calculateTotalScore1(scoresList)>400? _winningDialog(player1, calculateTotalScore1(scoresList)):
+                                calculateTotalScore2(scoresList)>400? _winningDialog(player2, calculateTotalScore2(scoresList)):
+                                calculateTotalScore3(scoresList)>400? _winningDialog(player3, calculateTotalScore3(scoresList)):
+                                calculateTotalScore4(scoresList)>400? _winningDialog(player4, calculateTotalScore4(scoresList)):null,
+                                builder: (context, snapshot){
+                                  return TotalScore(
+                                    totalScore1: calculateTotalScore1(scoresList),
+                                    totalScore2: calculateTotalScore2(scoresList),
+                                    totalScore3: calculateTotalScore3(scoresList),
+                                    totalScore4: calculateTotalScore4(scoresList),
+                                  );
+                                })
+
+
 
                         ]
                     );
 
                 }
-                ),
+            ),
           ),
           ]
         ),
+
 
 
 
@@ -167,11 +190,7 @@ class _ScorePageState extends State<ScorePage> {
             elevation: 10,
 
             backgroundColor: Colors.blue,
-            onPressed: () => calculateTotalScore1(scoresList)>=400? _winningDialog(player1, calculateTotalScore1(scoresList))
-                :calculateTotalScore2(scoresList)>=400? _winningDialog(player2, calculateTotalScore2(scoresList))
-                :calculateTotalScore3(scoresList)>=400? _winningDialog(player3, calculateTotalScore3(scoresList))
-                :calculateTotalScore4(scoresList)>=400? _winningDialog(player4, calculateTotalScore4(scoresList))
-                :_redirectToAddPointPage(context),
+            onPressed: () => _redirectToAddPointPage(context),
             child: Icon(
                 Icons.add,
               color: Colors.orange.shade400,
@@ -196,15 +215,6 @@ class _ScorePageState extends State<ScorePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    color: Colors.orange.shade400,
-                    iconSize: 30,
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: (){
-                      _goToMainScreenDialog();
-                    },
-                ),
-                IconButton(
                   color: Colors.orange.shade400,
                   iconSize: 30,
                   padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -212,6 +222,15 @@ class _ScorePageState extends State<ScorePage> {
                   onPressed: (){
                     _showRefreshDialog();
                   },
+                ),
+                IconButton(
+                    color: Colors.orange.shade400,
+                    iconSize: 30,
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    icon: Icon(Icons.exit_to_app_outlined),
+                    onPressed: (){
+                      _showExitConfirmationDialog();
+                    },
                 ),
               ],
             ),
@@ -226,6 +245,7 @@ class _ScorePageState extends State<ScorePage> {
 
 
   Future<void> _showRefreshDialog() async{
+    _willRefresh = true;
     return showDialog(
         context: context,
         builder: (context){
@@ -245,6 +265,7 @@ class _ScorePageState extends State<ScorePage> {
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                           onPressed: () async{
                             Navigator.pop(context);
+                            bool _willRefresh = false;
                           },
                           child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
@@ -284,6 +305,7 @@ class _ScorePageState extends State<ScorePage> {
                                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                                                   onPressed: () async{
                                                     Navigator.pop(context);
+                                                    bool _willRefresh = false;
                                                   },
                                                   child: Text('Cancel', style: TextStyle(color: Colors.white, fontSize: 18),)
                                               ),
@@ -297,15 +319,20 @@ class _ScorePageState extends State<ScorePage> {
                                               child: ElevatedButton(
                                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
                                                   onPressed: () async {
+                                                    final box1 = Boxes.getNames();
                                                     final box2 = Boxes.getScores();
+                                                    await box1.clear();
                                                     await box2.clear();
                                                     setState(() {
                                                       scoresList = [];
                                                     });
                                                     Navigator.of(context).popUntil((route) => route.isFirst);
-                                                    Navigator.push(
+                                                    Navigator.pushReplacement(
                                                       context,
-                                                      MaterialPageRoute(builder: (context) => const ScorePage()),
+                                                      MaterialPageRoute(
+                                                          builder: (context) => const HomePage(
+                                                          )
+                                                      ),
                                                     );
                                                   },
                                                   child: Text('Confirm', style: TextStyle(color: Colors.white, fontSize: 18),)
@@ -332,57 +359,68 @@ class _ScorePageState extends State<ScorePage> {
   }
 
   Future<void> _winningDialog(winner, points) async {
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            backgroundColor: Colors.orange.shade400,
-            alignment: Alignment.center,
-            content: Column(
-              mainAxisSize: MainAxisSize.min, // Ensure content fits within screen
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 40),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Winner',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 40.0,
-                        ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            winner,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
-                          ),
-                          SizedBox(width: 15),
-                          Text(
-                            points.toString(),
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        });
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+          builder: (context) => const WinningPage(
+          )
+      ),
+    );
+
+    // return showDialog(
+    //     context: context,
+    //     builder: (context) {
+    //       return AlertDialog(
+    //         backgroundColor: Colors.orange.shade400,
+    //         alignment: Alignment.center,
+    //         content: Column(
+    //           mainAxisSize: MainAxisSize.min, // Ensure content fits within screen
+    //           children: [
+    //             Container(
+    //               padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 40),
+    //               decoration: BoxDecoration(
+    //                 borderRadius: BorderRadius.circular(10.0),
+    //               ),
+    //               child: Column(
+    //                 children: [
+    //                   Text(
+    //                     'Winner',
+    //                     style: TextStyle(
+    //                       color: Colors.white,
+    //                       fontSize: 40.0,
+    //                     ),
+    //                   ),
+    //                   Row(
+    //                     mainAxisSize: MainAxisSize.min,
+    //                     children: [
+    //                       Text(
+    //                         winner,
+    //                         style: TextStyle(
+    //                           color: Colors.white,
+    //                           fontSize: 20.0,
+    //                         ),
+    //                       ),
+    //                       SizedBox(width: 15),
+    //                       Text(
+    //                         points.toString(),
+    //                         style: TextStyle(
+    //                           color: Colors.white,
+    //                           fontSize: 20.0,
+    //                         ),
+    //                       ),
+    //                     ],
+    //                   ),
+    //                   SizedBox(height: 10),
+    //                   ElevatedButton(
+    //                       onPressed: (){},
+    //                       child: Text('Exit', style: TextStyle(color: Colors.white),)),
+    //                 ],
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       );
+    //     });
   }
 
   void _redirectToAddPointPage(BuildContext context) async {
@@ -394,40 +432,49 @@ class _ScorePageState extends State<ScorePage> {
     );
   }
 
-  Future<void> _goToMainScreenDialog() async {
-    _goToMainScreen = true; // Set flag to prevent immediate exit
+  Future<void> _showExitConfirmationDialog() async {
+   // Set flag to prevent immediate exit
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Create New Game?'),
+        title: Center(child: Text('Exit Confirmation', style: TextStyle(fontSize: 18),)),
+        content: Text('Are you sure you want to exit the app?'),
         actions: [
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context); // Cancel exit
-                  _goToMainScreen = false; // Reset flag
-                },
-                child: Text('No', style: TextStyle(color: Colors.orange.shade400, fontSize: 20),),
+              SizedBox(
+                height: 50,
+                width: 100,
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
+                    onPressed: () {
+                      Navigator.pop(context); // Cancel exit
+                    },
+                    child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
+                  ),
+                ),
               ),
-              SizedBox(width: 40,),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).popUntil((route) => route.isFirst);
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HomePage(
-                        )
-                    ),
-                  ); // Exit the app
-                },
-                child: Text('Yes', style: TextStyle(color: Colors.green.shade400, fontSize: 20),),
+              SizedBox(width: 20,),
+              SizedBox(
+                height: 50,
+                width: 100,
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                    onPressed: () {
+                      SystemNavigator.pop(); // Exit the app
+                    },
+                    child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
+                  ),
+                ),
               ),
             ],
-          )
-
+          ),
         ],
       ),
     );

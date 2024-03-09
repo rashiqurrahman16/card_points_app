@@ -64,7 +64,7 @@ class _TotalScoreState extends State<TotalScore> {
             Container(
               decoration: BoxDecoration(
                   border: Border(
-                    top: BorderSide(width: 2, color: Colors.orange.shade200),
+                    top: BorderSide(width: 5, color: Colors.orange.shade400),
                   ),
               ),
               alignment: Alignment.center,
@@ -72,12 +72,14 @@ class _TotalScoreState extends State<TotalScore> {
               width: screenSize.width / 4,
               child: Text("${widget.totalScore1}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,),),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                ),),
             ),
             Container(
               decoration: BoxDecoration(
                 border: Border(
-                  top: BorderSide(width: 2, color: Colors.orange.shade200),
+                  top: BorderSide(width: 5, color: Colors.orange.shade400),
                 ),
               ),
               alignment: Alignment.center,
@@ -86,12 +88,14 @@ class _TotalScoreState extends State<TotalScore> {
               width: screenSize.width / 4,
               child: Text("${widget.totalScore2}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,),),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                ),),
             ),
             Container(
               decoration: BoxDecoration(
                 border: Border(
-                  top: BorderSide(width: 2, color: Colors.orange.shade200),
+                  top: BorderSide(width: 5, color: Colors.orange.shade400),
                 ),
               ),
               alignment: Alignment.center,
@@ -99,12 +103,14 @@ class _TotalScoreState extends State<TotalScore> {
               width: screenSize.width / 4,
               child: Text("${widget.totalScore3}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,),),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                ),),
             ),
             Container(
               decoration: BoxDecoration(
                 border: Border(
-                  top: BorderSide(width: 2, color: Colors.orange.shade200),
+                  top: BorderSide(width: 5, color: Colors.orange.shade400),
                 ),
               ),
               alignment: Alignment.center,
@@ -112,7 +118,9 @@ class _TotalScoreState extends State<TotalScore> {
               width: screenSize.width / 4,
               child: Text("${widget.totalScore4}",
                 style: const TextStyle(color: Colors.black,
-                    fontSize: 15,),),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                ),),
             ),
 
           ],

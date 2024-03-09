@@ -17,9 +17,7 @@ class ScoreRow extends StatelessWidget {
     return Column(
       children: [
         Row(
-
           children: [
-
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),

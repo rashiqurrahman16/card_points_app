@@ -216,9 +216,11 @@ class _AddPointsPageState extends State<AddPointsPage> {
                         _errorPointsDialog(1);
                         return; // Prevent saving if total score is not equal to 360
                       }
-                      if (int.parse(score1)<60 || int.parse(score2)<60 || int.parse(score3)<60 || int.parse(score4)<60) {
+                      if ((int.parse(score1)!=0 && int.parse(score1)<60) || (int.parse(score2)!=0 && int.parse(score2)<60)
+                          || (int.parse(score3)!=0 && int.parse(score3)<60) || (int.parse(score4)!=0 && int.parse(score4)<60)) {
                         _errorPointsDialog(2);
                         return; // Prevent saving and showing the dialog
+
                       }
 
                       if (int.parse(score1)%5!=0 || int.parse(score2)%5!=0 || int.parse(score3)%5!=0 || int.parse(score4)%5!=0) {

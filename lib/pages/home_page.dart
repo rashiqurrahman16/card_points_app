@@ -203,7 +203,26 @@ class _HomePageState extends State<HomePage> {
 
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue,
-        shape: const CircularNotchedRectangle(),
+
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 160, vertical: 10),
+            child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange.shade400,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    side: BorderSide(
+                      color: Colors.white,  // Set border color to white
+                      width: 2.0,           // Adjust border width as desired
+                    ),
+                  ),
+                ),
+                onPressed: (){
+                  _showExitConfirmationDialog();
+                },
+                child: Text('Exit', style: TextStyle(color: Colors.white),)),
+          ),
+
       ),
     );
   }
@@ -214,7 +233,7 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Text('Confirmation'),
+            title: Center(child: Text('Confirmation')),
             content: SingleChildScrollView(
               child: Column(
                 children: [
@@ -227,34 +246,54 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             actions: [
-              TextButton(
-                  onPressed: () async{
-                    player1Controller.clear();
-                    player2Controller.clear();
-                    player3Controller.clear();
-                    player4Controller.clear();
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    width: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
+                        onPressed: () async {
+                          player1Controller.clear();
+                          player2Controller.clear();
+                          player3Controller.clear();
+                          player4Controller.clear();
 
-                    final box = Boxes.getNames();
-                    await box.clear();
-
-                    Navigator.pop(context);
-
-                  },
-                  child: Text('No')
+                          final box = Boxes.getNames();
+                          await box.clear();
+                          Navigator.pop(context);
+                        },
+                        child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20,),
+                  SizedBox(
+                    height: 50,
+                    width: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ScorePage(
+                                )
+                            ),
+                          );
+                        },
+                        child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
-              TextButton(
-                  onPressed: (){
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ScorePage(
-                          )
-                      ),
-                    );
-                  },
-                  child: Text('Yes')
-              )
             ],
 
       );
@@ -266,21 +305,34 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (context){
           return AlertDialog(
-              title: Text('Error'),
+              title: Center(child: Text('Error')),
               content: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text("Players can't have same name"),
+                    Text("Players can't have the same name."),
                   ],
                 ),
               ),
               actions: [
-              TextButton(
-              onPressed: () async{
-                Navigator.pop(context);
-              },
-                  child: Text('Ok')
-             ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 100,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                            onPressed: () async{
+                              Navigator.pop(context);
+                            },
+                            child: Text('Ok', style: TextStyle(color: Colors.white, fontSize: 18),)
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
             ]
           );
         }
@@ -292,20 +344,33 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (context){
           return AlertDialog(
-              title: Text('Error'),
+              title: Center(child: Text('Error')),
               content: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text("Please enter every players name"),
+                    Text("Please add the names of each player."),
                   ],
                 ),
               ),
               actions: [
-                TextButton(
-                    onPressed: () async{
-                      Navigator.pop(context);
-                    },
-                    child: Text('Ok')
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 100,
+                      child: Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                            onPressed: () async{
+                              Navigator.pop(context);
+                            },
+                            child: Text('Ok', style: TextStyle(color: Colors.white, fontSize: 18),)
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ]
           );
@@ -318,22 +383,44 @@ class _HomePageState extends State<HomePage> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Exit Confirmation'),
+        title: Center(child: Text('Exit Confirmation', style: TextStyle(fontSize: 18),)),
         content: Text('Are you sure you want to exit the app?'),
         actions: [
 
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context); // Cancel exit
-              _willExitApp = false; // Reset flag
-            },
-            child: Text('No', style: TextStyle(color: Colors.orange.shade400, fontSize: 20),),
-          ),
-          TextButton(
-            onPressed: () {
-              SystemNavigator.pop(); // Exit the app
-            },
-            child: Text('Yes', style: TextStyle(color: Colors.green.shade400, fontSize: 20),),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+                width: 100,
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
+                    onPressed: () {
+                      Navigator.pop(context); // Cancel exit
+                      _willExitApp = false; // Reset flag
+                    },
+                    child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
+                  ),
+                ),
+              ),
+              SizedBox(width: 20,),
+              SizedBox(
+                height: 50,
+                width: 100,
+                child: Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                    onPressed: () {
+                      SystemNavigator.pop(); // Exit the app
+                    },
+                    child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
