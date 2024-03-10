@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:hazari/models/name_score_model.dart';
 import 'package:hazari/pages/score_page.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import '../boxes/boxes.dart';
 
 
@@ -230,6 +229,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
 
 
 
+
                       final scoreData = ScoreModel(
                           score1: int.parse(score1Controller.text),
                           score2: int.parse(score2Controller.text),
@@ -238,8 +238,6 @@ class _AddPointsPageState extends State<AddPointsPage> {
                       );
                       final box = Boxes.getScores();
                       box.add(scoreData);
-
-                      // Navigator.pop(context);
 
                       Navigator.of(context).popUntil((route) => route.isFirst);
                       Navigator.push(
