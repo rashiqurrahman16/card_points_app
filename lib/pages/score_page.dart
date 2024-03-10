@@ -151,41 +151,6 @@ class _ScorePageState extends State<ScorePage> {
                             _riderctToWinnerPage(player3, calculateTotalScore3(scoresList)),
                           if (calculateTotalScore4(scoresList)>=300)
                             _riderctToWinnerPage(player4, calculateTotalScore4(scoresList)),
-
-
-
-
-
-
-                  //
-                  //           // FutureBuilder(
-                  //           //   future: totalScore1 > 400 ? _showWinningDialog1(player1, totalScore1) : null,
-                  //           //   builder: (context, snapshot) {
-                  //           //     return TotalScore(
-                  //           //       totalScore1: calculateTotalScore1(scoresList),
-                  //           //       totalScore2: calculateTotalScore2(scoresList),
-                  //           //       totalScore3: calculateTotalScore3(scoresList),
-                  //           //       totalScore4: calculateTotalScore4(scoresList),
-                  //           //     );
-                  //           //   },
-                  //           // ),
-                  //
-                  //           FutureBuilder(
-                  //               future: calculateTotalScore1(scoresList)>400? _winningDialog(player1, calculateTotalScore1(scoresList)):
-                  //               calculateTotalScore2(scoresList)>400? _winningDialog(player2, calculateTotalScore2(scoresList)):
-                  //               calculateTotalScore3(scoresList)>400? _winningDialog(player3, calculateTotalScore3(scoresList)):
-                  //               calculateTotalScore4(scoresList)>400? _winningDialog(player4, calculateTotalScore4(scoresList)):null,
-                  //               builder: (context, snapshot){
-                  //                 return TotalScore(
-                  //                   totalScore1: calculateTotalScore1(scoresList),
-                  //                   totalScore2: calculateTotalScore2(scoresList),
-                  //                   totalScore3: calculateTotalScore3(scoresList),
-                  //                   totalScore4: calculateTotalScore4(scoresList),
-                  //                 );
-                  //               })
-
-
-
                         ]
                     );
 
@@ -401,8 +366,8 @@ class _ScorePageState extends State<ScorePage> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Center(child: Text('Exit Confirmation', style: TextStyle(fontSize: 18),)),
-        content: Text('Are you sure you want to exit the app?'),
+        title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
+        content: Text('Are you sure you want to exit the game?'),
         actions: [
 
           Row(

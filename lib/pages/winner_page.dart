@@ -114,48 +114,48 @@ class _WinnerPageState extends State<WinnerPage> {
 
       body: Center(
         child: Container(
-            height: screenSize.height/4,
+            height: screenSize.height/3,
             width: screenSize.width / 1.5,
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.blue.shade300,
               shape: BoxShape.rectangle,
               borderRadius: BorderRadius.circular(20.0),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 70.0,
-                      height: 70.0,
-                      child: Image(
-                        image: AssetImage('assets/3cards.png'),
-                      ),
-                    ),
-                    Text(
-                      'HAZARI',
-                      style: TextStyle(fontSize: 20,fontWeight: FontWeight.w500,),
-                    ),
-                  ],
-                ),
                 Text("Winner", style: TextStyle(color: Colors.white, fontSize: 30),),
-                SizedBox(height: 10,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("${widget.winner}"),
-                    SizedBox(width: 10,),
-                    Text("${widget.winningScore}"),
-                  ],
+                SizedBox(height: 20,),
+                Text("${widget.winner}",
+                  style: TextStyle(
+                    color: Colors.orange.shade400,
+                    fontSize: 25,
+                    // backgroundColor: Colors.white,
+                  ),),
+                SizedBox(height: 15,),
+                Text("${widget.winningScore} pts",
+                  style: TextStyle(
+                    color: Colors.orange.shade400,
+                    fontSize: 18,
+                    // backgroundColor: Colors.white,
+                  ),
                 ),
 
                 SizedBox(height: 20,),
                 ElevatedButton(onPressed: (){
                   _showRefreshDialog();
                 },
-                    child: Text("Restart"))
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(
+                          color: Colors.orange.shade400,  // Set border color to white
+                          width: 2.0,           // Adjust border width as desired
+                        ),
+                      ),
+                    ),
+                    child: Text("Restart", style: TextStyle(color: Colors.orange.shade400),))
               ],
             ),
           ),
@@ -255,8 +255,8 @@ class _WinnerPageState extends State<WinnerPage> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Center(child: Text('Exit Confirmation', style: TextStyle(fontSize: 18),)),
-        content: Text('Are you sure you want to exit the app?'),
+        title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
+        content: Text('Are you sure you want to exit the game?'),
         actions: [
 
           Row(
