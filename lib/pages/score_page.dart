@@ -36,6 +36,7 @@ class _ScorePageState extends State<ScorePage> {
   int score2 = 0;
   int score3 = 0;
   int score4 = 0;
+  int dealer=1;
 
   @override
   void initState() {
@@ -122,7 +123,18 @@ class _ScorePageState extends State<ScorePage> {
         ),
         body: ListView(
           children:[
-            NameRow(player1: player1, player2: player2, player3: player3, player4: player4),
+            if(scoresList.length==0)
+              NameRow(dealer: 1, player1: player1, player2: player2, player3: player3, player4: player4),
+            if(scoresList.length%2!=0 && (scoresList.length+1)%4!=0 )
+              NameRow(dealer: 2, player1: player1, player2: player2, player3: player3, player4: player4),
+            if(scoresList.length%2==0 && scoresList.length%4!=0)
+              NameRow(dealer: 3, player1: player1, player2: player2, player3: player3, player4: player4),
+            if(scoresList.length%3==0 && scoresList.length!=0)
+              NameRow(dealer: 4, player1: player1, player2: player2, player3: player3, player4: player4),
+            if(scoresList.length%4==0 && scoresList.length!=0)
+              NameRow(dealer: 1, player1: player1, player2: player2, player3: player3, player4: player4),
+
+
           SizedBox(
             height: screenSize.height - 120,
             child: ListView.builder(
@@ -143,13 +155,13 @@ class _ScorePageState extends State<ScorePage> {
                           totalScore3: calculateTotalScore3(scoresList),
                           totalScore4: calculateTotalScore4(scoresList),
                           ),
-                          if (calculateTotalScore1(scoresList)>=300)
+                          if (calculateTotalScore1(scoresList)>=600)
                             _riderctToWinnerPage(player1, calculateTotalScore1(scoresList)),
-                          if (calculateTotalScore2(scoresList)>=300)
+                          if (calculateTotalScore2(scoresList)>=600)
                             _riderctToWinnerPage(player2, calculateTotalScore2(scoresList)),
-                          if (calculateTotalScore3(scoresList)>=300)
+                          if (calculateTotalScore3(scoresList)>=600)
                             _riderctToWinnerPage(player3, calculateTotalScore3(scoresList)),
-                          if (calculateTotalScore4(scoresList)>=300)
+                          if (calculateTotalScore4(scoresList)>=600)
                             _riderctToWinnerPage(player4, calculateTotalScore4(scoresList)),
                         ]
                     );
