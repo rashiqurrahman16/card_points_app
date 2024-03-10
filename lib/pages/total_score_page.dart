@@ -122,10 +122,8 @@ class _TotalScoreState extends State<TotalScore> {
                     fontWeight: FontWeight.bold,
                 ),),
             ),
-
           ],
         ),
-
       ],
     );
   }

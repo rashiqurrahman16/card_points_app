@@ -49,14 +49,13 @@ class _ScorePageState extends State<ScorePage> {
     final box2 = Boxes.getScores();
     final scores = box2.values.toList().cast<ScoreModel>();
 
-    final nameData = names.last; // Assuming there's only one set of names
+    final nameData = names.last;
     setState(() {
       player1 = nameData.player1;
       player2 = nameData.player2;
       player3 = nameData.player3;
       player4 = nameData.player4;
     });
-    // final scoreData = scores.first; //
     setState(() {
       scoresList = scores;
     });
@@ -144,6 +143,19 @@ class _ScorePageState extends State<ScorePage> {
                           totalScore3: calculateTotalScore3(scoresList),
                           totalScore4: calculateTotalScore4(scoresList),
                           ),
+                          if (calculateTotalScore1(scoresList)>=300)
+                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList)),
+                          if (calculateTotalScore2(scoresList)>=300)
+                            _riderctToWinnerPage(player2, calculateTotalScore2(scoresList)),
+                          if (calculateTotalScore3(scoresList)>=300)
+                            _riderctToWinnerPage(player3, calculateTotalScore3(scoresList)),
+                          if (calculateTotalScore4(scoresList)>=300)
+                            _riderctToWinnerPage(player4, calculateTotalScore4(scoresList)),
+
+
+
+
+
 
                   //
                   //           // FutureBuilder(
@@ -372,6 +384,16 @@ class _ScorePageState extends State<ScorePage> {
         builder: (context) => AddPointsPage(),
       ),
     );
+  }
+
+  _riderctToWinnerPage(winner, winningScore) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.of(context).popUntil((route) => route.isFirst);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => WinnerPage(winner: winner, winningScore: winningScore)),
+      );
+    });
   }
 
   Future<void> _showExitConfirmationDialog() async {

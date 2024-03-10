@@ -10,7 +10,14 @@ import 'home_page.dart';
 
 
 class WinnerPage extends StatefulWidget {
-  const WinnerPage({super.key});
+
+  final String winner;
+  final int winningScore;
+
+  const WinnerPage({
+    required this.winner,
+    required this.winningScore,
+    super.key});
 
   @override
   State<WinnerPage> createState() => _WinnerPageState();
@@ -138,9 +145,9 @@ class _WinnerPageState extends State<WinnerPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("100"),
+                    Text("${widget.winner}"),
                     SizedBox(width: 10,),
-                    Text("Name"),
+                    Text("${widget.winningScore}"),
                   ],
                 ),
 
