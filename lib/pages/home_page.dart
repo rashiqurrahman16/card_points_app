@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                         controller: player1Controller,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: "Player 1",
+                            labelText: "Player 1 - Dealer",
                           counterText: "",
                           contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10)),
                         maxLength: 8,
@@ -237,11 +237,12 @@ class _HomePageState extends State<HomePage> {
             content: SingleChildScrollView(
               child: Column(
                 children: [
-                  Text("Players names are:"),
-                  Text(player1),
-                  Text(player2),
-                  Text(player3),
-                  Text(player4),
+                  Text("Players names are:", style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text("1. "+player1),
+                  Text("2. "+player2),
+                  Text("3. "+player3),
+                  Text("4. "+player4),
+
                 ],
               ),
             ),
@@ -257,11 +258,6 @@ class _HomePageState extends State<HomePage> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                         onPressed: () async {
-                          player1Controller.clear();
-                          player2Controller.clear();
-                          player3Controller.clear();
-                          player4Controller.clear();
-
                           final box = Boxes.getNames();
                           await box.clear();
                           Navigator.pop(context);
@@ -383,8 +379,8 @@ class _HomePageState extends State<HomePage> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Center(child: Text('Exit Confirmation', style: TextStyle(fontSize: 18),)),
-        content: Text('Are you sure you want to exit the app?'),
+        title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
+        content: Text('Are you sure you want to exit the game?'),
         actions: [
 
           Row(
