@@ -168,19 +168,21 @@ class _WinnerPageState extends State<WinnerPage> {
           padding: const EdgeInsets.symmetric(horizontal: 160, vertical: 10),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange.shade400,
+                backgroundColor: Colors.blue.shade400,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                   side: BorderSide(
-                    color: Colors.white,  // Set border color to white
+                    color: Colors.blue.shade600,  // Set border color to white
                     width: 2.0,           // Adjust border width as desired
                   ),
                 ),
               ),
               onPressed: (){
                 _showExitConfirmationDialog();
-              },
-              child: Text('Exit', style: TextStyle(color: Colors.white),)),
+
+              }, child: Text("Exit Game",
+            style: TextStyle(color: Colors.white, fontSize: 14),
+          )),
         ),
 
       ),

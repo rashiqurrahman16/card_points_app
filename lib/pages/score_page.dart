@@ -12,6 +12,8 @@ import 'package:hazari/pages/winner_page.dart';
 
 import '../models/name_score_model.dart';
 import '../widgets/add_points_page.dart';
+import 'about_us.dart';
+import 'about_us_2.dart';
 
 class ScorePage extends StatefulWidget {
   const ScorePage({
@@ -60,18 +62,6 @@ class _ScorePageState extends State<ScorePage> {
     setState(() {
       scoresList = scores;
     });
-
-    // ---------- For Checking Names and scores
-    print("Saved Names:");
-    for (var name in names) {
-      print("- Player 1: ${name.player1}, Player 2: ${name.player2}, Player 3: ${name.player3}, Player 4: ${name.player4}");
-    }
-    print("Saved scores:");
-    for (var score in scores) {
-      print("- Player 1: ${score.score1}, Player 2: ${score.score2}, Player 3: ${score.score3}, Player 4: ${score.score4}");
-    }
-    //----------
-
   }
 
 
@@ -93,27 +83,63 @@ class _ScorePageState extends State<ScorePage> {
       child: Scaffold(
 
         appBar: AppBar(
-          title: const Row(
+          title: Row(
             children: [
               SizedBox(
-                width: 50.0,
-                height: 50.0,
+                width: 35.0,
+                height: 35.0,
                 child: Image(
                   image: AssetImage('assets/3cards.png'),
                 ),
               ),
               Text(
                 'HAZARI',
-                style: TextStyle(fontWeight: FontWeight.w500,),
+                style: TextStyle(color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,),
               ),
               Spacer(),
-              SizedBox(
-                width: 100.0,
-                height: 100.0,
-                child: Image(
-                  image: AssetImage('assets/DesktopIt-logo-white.png'),
-                ),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutUsPage2()),
+                      );
+                    },
+                    child: Text(
+                      "Who We Are",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutUsPage2()),
+                      );
+                    },
+                    child:  SizedBox(
+                      width: 35.0,
+                      height: 35.0,
+                      child: Image(
+                        image: AssetImage('assets/Logo.png'),
+                      ),
+                    ),
+                  ),
+
+
+
+
+
+                ],
               ),
+
             ],
           ),
           toolbarHeight: 80,
@@ -155,13 +181,13 @@ class _ScorePageState extends State<ScorePage> {
                           totalScore3: calculateTotalScore3(scoresList),
                           totalScore4: calculateTotalScore4(scoresList),
                           ),
-                          if (calculateTotalScore1(scoresList)>=600)
+                          if (calculateTotalScore1(scoresList)>=1000)
                             _riderctToWinnerPage(player1, calculateTotalScore1(scoresList)),
-                          if (calculateTotalScore2(scoresList)>=600)
+                          if (calculateTotalScore2(scoresList)>=1000)
                             _riderctToWinnerPage(player2, calculateTotalScore2(scoresList)),
-                          if (calculateTotalScore3(scoresList)>=600)
+                          if (calculateTotalScore3(scoresList)>=1000)
                             _riderctToWinnerPage(player3, calculateTotalScore3(scoresList)),
-                          if (calculateTotalScore4(scoresList)>=600)
+                          if (calculateTotalScore4(scoresList)>=1000)
                             _riderctToWinnerPage(player4, calculateTotalScore4(scoresList)),
                         ]
                     );

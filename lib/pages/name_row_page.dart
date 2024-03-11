@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NameRow extends StatelessWidget {
@@ -27,36 +28,115 @@ class NameRow extends StatelessWidget {
     return Column(
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
+              width: screenSize.width/4,
               decoration: BoxDecoration(
-                  color: Colors.orange.shade400,
-                  border: dealer==1 ? Border(
-                    top: BorderSide(width: 1, color: Colors.white),
-                    right: BorderSide(width: 1, color: Colors.white),
-                    left: BorderSide(width: 1, color: Colors.white),
-                    bottom: BorderSide(width: 5, color: Colors.black),
-                  ):Border.all(
-                      width: 1, color: Colors.white),
+                color: Colors.orange.shade100,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(10), bottom: Radius.zero),
+                border: Border.symmetric(
+                  vertical: BorderSide(width: 1, color: Colors.orange.shade200),
+                ),
               ),
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(5),
-              width: screenSize.width / 4,
-              child: Text(player1, style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,),),
-
+              child:  dealer==1 ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.front_hand, size: 15,),
+                  SizedBox(width: 5,),
+                  Text("dealer",style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                ],
+              )
+                  : Text(""),
+            ),
+            Container(
+              width: screenSize.width/4,
+              decoration: BoxDecoration(
+                color: Colors.orange.shade100,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(10), bottom: Radius.zero),
+                border: Border.symmetric(
+                  vertical: BorderSide(width: 1, color: Colors.orange.shade200),
+                ),
+              ),
+              child:  dealer==2 ? const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.front_hand, size: 10,),
+                  SizedBox(width: 5,),
+                  Text("dealer",style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                ],
+              )
+                  : Text(""),
+            ),
+            Container(
+              width: screenSize.width/4,
+              decoration: BoxDecoration(
+                color: Colors.orange.shade100,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(10), bottom: Radius.zero),
+                border: Border.symmetric(
+                  vertical: BorderSide(width: 1, color: Colors.orange.shade200),
+                ),
+              ),
+              child:  dealer==3 ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.front_hand, size: 15,),
+                  SizedBox(width: 5,),
+                  Text("dealer",style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                ],
+              )
+                  : Text(""),
+            ),
+            Container(
+              width: screenSize.width/4,
+              decoration: BoxDecoration(
+                color: Colors.orange.shade100,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(10), bottom: Radius.zero),
+                border: Border.symmetric(
+                  vertical: BorderSide(width: 1, color: Colors.orange.shade200),
+                ),
+              ),
+              child:  dealer==4 ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.front_hand, size: 15,),
+                  SizedBox(width: 5,),
+                  Text("dealer",style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                ],
+              )
+                  : Text(""),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.orange.shade400,
+                      borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
+                      border: Border.symmetric(
+                        vertical: BorderSide(width: 2, color: Colors.orange.shade500),
+                      ),
+                  ),
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(5),
+                  width: screenSize.width / 4,
+                  child: Text(player1, style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 15,),),
+              
+                ),
+              ]
             ),
             Container(
               decoration: BoxDecoration(
                 color: Colors.orange.shade400,
-                border: dealer==2 ? Border(
-                  top: BorderSide(width: 1, color: Colors.white),
-                  right: BorderSide(width: 1, color: Colors.white),
-                  left: BorderSide(width: 1, color: Colors.white),
-                  bottom: BorderSide(width: 5, color: Colors.black),
-                ):Border.all(
-                    width: 1, color: Colors.white),
+                borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
+                border: Border.symmetric(
+                  vertical: BorderSide(width: 2, color: Colors.orange.shade500),
+                ),
               ),
               alignment: Alignment.center,
 
@@ -69,13 +149,10 @@ class NameRow extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.orange.shade400,
-                border: dealer==3 ? Border(
-                  top: BorderSide(width: 1, color: Colors.white),
-                  right: BorderSide(width: 1, color: Colors.white),
-                  left: BorderSide(width: 1, color: Colors.white),
-                  bottom: BorderSide(width: 5, color: Colors.black),
-                ):Border.all(
-                    width: 1, color: Colors.white),
+                borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
+                border: Border.symmetric(
+                  vertical: BorderSide(width: 2, color: Colors.orange.shade500),
+                ),
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
@@ -87,13 +164,10 @@ class NameRow extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.orange.shade400,
-                border: dealer==4 ? Border(
-                  top: BorderSide(width: 1, color: Colors.white),
-                  right: BorderSide(width: 1, color: Colors.white),
-                  left: BorderSide(width: 1, color: Colors.white),
-                  bottom: BorderSide(width: 5, color: Colors.black),
-                ):Border.all(
-                    width: 1, color: Colors.white),
+                borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
+                border: Border.symmetric(
+                  vertical: BorderSide(width: 2, color: Colors.orange.shade500),
+                ),
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(5),
@@ -106,6 +180,7 @@ class NameRow extends StatelessWidget {
 
           ],
         ),
+
 
       ],
     );

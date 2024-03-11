@@ -64,6 +64,8 @@ class _AddPointsPageState extends State<AddPointsPage> {
           mainAxisSize: MainAxisSize.min
           ,
           children: [
+            Text("(Sum of all Points must be 360)", style: TextStyle(fontSize: 13),),
+            SizedBox(height: 5,),
             ListTile(
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
