@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hazari/boxes/boxes.dart';
+import 'package:hazari/pages/about_us.dart';
+import 'package:hazari/pages/rules_page.dart';
 import 'package:hazari/pages/score_page.dart';
 import 'package:hazari/models/name_score_model.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hazari/pages/rules_page.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -40,27 +43,63 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           children: [
             SizedBox(
-              width: 50.0,
-              height: 50.0,
+              width: 35.0,
+              height: 35.0,
               child: Image(
                 image: AssetImage('assets/3cards.png'),
               ),
             ),
             Text(
               'HAZARI',
-              style: TextStyle(fontWeight: FontWeight.w500,),
+              style: TextStyle(color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w400,),
             ),
             Spacer(),
-            SizedBox(
-              width: 100.0,
-              height: 100.0,
-              child: Image(
-                image: AssetImage('assets/DesktopIt-logo-white.png'),
-              ),
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AboutUsPage()),
+                    );
+                  },
+                  child: Text(
+                    "Who We Are",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AboutUsPage()),
+                    );
+                  },
+                  child:  SizedBox(
+                    width: 35.0,
+                    height: 35.0,
+                    child: Image(
+                      image: AssetImage('assets/Logo.png'),
+                    ),
+                  ),
+                ),
+
+                
+
+
+
+              ],
             ),
+
           ],
         ),
         toolbarHeight: 80,
@@ -103,12 +142,13 @@ class _HomePageState extends State<HomePage> {
                       child: TextField(
                         controller: player1Controller,
                         decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
+                            border: OutlineInputBorder(
+
+                            ),
                             labelText: "Player 1 - Dealer",
                           counterText: "",
                           contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10)),
                         maxLength: 8,
-        
                       )
                   ),
                   Padding(padding: EdgeInsets.symmetric(horizontal: 50, vertical: 10),
@@ -201,29 +241,58 @@ class _HomePageState extends State<HomePage> {
       ),
 
 
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
-
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 160, vertical: 10),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orange.shade400,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(
-                      color: Colors.white,  // Set border color to white
-                      width: 2.0,           // Adjust border width as desired
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.blue,
+          shape: const CircularNotchedRectangle(),
+          child: Container(
+            alignment: Alignment.center,
+            height: 10,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.shade400,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(
+                          color: Colors.blue.shade600,  // Set border color to white
+                          width: 2.0,           // Adjust border width as desired
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                onPressed: (){
-                  _showExitConfirmationDialog();
-                },
-                child: Text('Exit', style: TextStyle(color: Colors.white),)),
-          ),
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RulesPage()),
+                      );
+                    }, child: Text("Rules",
+                style: TextStyle(color: Colors.white, fontSize: 14),
+                )),
 
-      ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.shade400,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(
+                          color: Colors.blue.shade600,  // Set border color to white
+                          width: 2.0,           // Adjust border width as desired
+                        ),
+                      ),
+                    ),
+                    onPressed: (){
+                      _showExitConfirmationDialog();
+
+                    }, child: Text("Exit Game",
+                  style: TextStyle(color: Colors.white, fontSize: 14),
+                )),
+              ],
+            ),
+
+          ),
+        )
     );
   }
 

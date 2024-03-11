@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hazari App',
       theme: ThemeData.light().copyWith(
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: Colors.blue.shade50,
       ),
       debugShowCheckedModeBanner: false,
       home: const SplashScreenPage(),
