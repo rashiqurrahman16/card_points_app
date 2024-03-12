@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hazari/pages/home_page.dart';
@@ -33,9 +34,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
 
-    return const Scaffold(
-
-      body: Column(
+    return Scaffold(
+      body: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
@@ -50,19 +50,26 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
               Text("HAZARI", style: TextStyle(fontWeight: FontWeight.w900),),
             ],
           ),
-          Row(
+        ],
+      ),
+
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue.shade50,
+        child: Container(
+          alignment: Alignment.center,
+          height: 10,
+          child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
+              Text("Developed By", style: TextStyle(fontWeight: FontWeight.w600),),
               Image(
-                image: AssetImage('assets/Desktopit-logo.png'),
-                height: 120,
-                width: 120,
+                image: AssetImage('assets/Logo.png'),
+                height: 60,
               ),
-
             ],
           ),
-        ],
+
+        ),
       ),
     );
   }

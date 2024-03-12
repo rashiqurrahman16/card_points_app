@@ -13,7 +13,6 @@ import 'package:hazari/pages/winner_page.dart';
 import '../models/name_score_model.dart';
 import '../widgets/add_points_page.dart';
 import 'about_us.dart';
-import 'about_us_2.dart';
 
 class ScorePage extends StatefulWidget {
   const ScorePage({
@@ -105,7 +104,7 @@ class _ScorePageState extends State<ScorePage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AboutUsPage2()),
+                        MaterialPageRoute(builder: (context) => AboutUsPage()),
                       );
                     },
                     child: Text(
@@ -121,7 +120,7 @@ class _ScorePageState extends State<ScorePage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => AboutUsPage2()),
+                        MaterialPageRoute(builder: (context) => AboutUsPage()),
                       );
                     },
                     child:  SizedBox(
@@ -149,16 +148,15 @@ class _ScorePageState extends State<ScorePage> {
         ),
         body: ListView(
           children:[
-            if(scoresList.length==0)
+            if((scoresList.length==0)||(scoresList.length%2==0 && scoresList.length%4==0))
               NameRow(dealer: 1, player1: player1, player2: player2, player3: player3, player4: player4),
-            if(scoresList.length%2!=0 && (scoresList.length+1)%4!=0 )
+            if(scoresList.length!=0 && scoresList.length%2!=0 && scoresList.length%4!=0 && (scoresList.length+1)%4!=0)
               NameRow(dealer: 2, player1: player1, player2: player2, player3: player3, player4: player4),
             if(scoresList.length%2==0 && scoresList.length%4!=0)
               NameRow(dealer: 3, player1: player1, player2: player2, player3: player3, player4: player4),
-            if(scoresList.length%3==0 && scoresList.length!=0)
+            if((scoresList.length+1)%4==0)
               NameRow(dealer: 4, player1: player1, player2: player2, player3: player3, player4: player4),
-            if(scoresList.length%4==0 && scoresList.length!=0)
-              NameRow(dealer: 1, player1: player1, player2: player2, player3: player3, player4: player4),
+
 
 
           SizedBox(
@@ -218,7 +216,7 @@ class _ScorePageState extends State<ScorePage> {
               shadows: [],
             ),
             shape: RoundedRectangleBorder(
-              side: BorderSide(width: 3, color: Colors.white, strokeAlign: BorderSide.strokeAlignOutside),
+              side: BorderSide(width: 3, color: Colors.blue.shade50, strokeAlign: BorderSide.strokeAlignOutside),
               borderRadius: BorderRadius.circular(100),
             ),
           ),

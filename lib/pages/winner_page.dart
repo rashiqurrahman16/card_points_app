@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 
 import '../boxes/boxes.dart';
 import '../models/name_score_model.dart';
+import 'about_us.dart';
 import 'home_page.dart';
 
 
@@ -61,18 +62,6 @@ class _WinnerPageState extends State<WinnerPage> {
     setState(() {
       scoresList = scores;
     });
-
-    // ---------- For Checking Names and scores
-    print("Saved Names:");
-    for (var name in names) {
-      print("- Player 1: ${name.player1}, Player 2: ${name.player2}, Player 3: ${name.player3}, Player 4: ${name.player4}");
-    }
-    print("Saved scores:");
-    for (var score in scores) {
-      print("- Player 1: ${score.score1}, Player 2: ${score.score2}, Player 3: ${score.score3}, Player 4: ${score.score4}");
-    }
-    //----------
-
   }
 
 
@@ -82,27 +71,63 @@ class _WinnerPageState extends State<WinnerPage> {
     final screenSize=MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
+        title: Row(
           children: [
             SizedBox(
-              width: 50.0,
-              height: 50.0,
+              width: 35.0,
+              height: 35.0,
               child: Image(
                 image: AssetImage('assets/3cards.png'),
               ),
             ),
             Text(
               'HAZARI',
-              style: TextStyle(fontWeight: FontWeight.w500,),
+              style: TextStyle(color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.w400,),
             ),
             Spacer(),
-            SizedBox(
-              width: 100.0,
-              height: 100.0,
-              child: Image(
-                image: AssetImage('assets/DesktopIt-logo-white.png'),
-              ),
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AboutUsPage()),
+                    );
+                  },
+                  child: Text(
+                    "Who We Are",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AboutUsPage()),
+                    );
+                  },
+                  child:  SizedBox(
+                    width: 35.0,
+                    height: 35.0,
+                    child: Image(
+                      image: AssetImage('assets/Logo.png'),
+                    ),
+                  ),
+                ),
+
+
+
+
+
+              ],
             ),
+
           ],
         ),
         toolbarHeight: 80,
@@ -114,8 +139,8 @@ class _WinnerPageState extends State<WinnerPage> {
 
       body: Center(
         child: Container(
-            height: screenSize.height/3,
-            width: screenSize.width / 1.5,
+            height: screenSize.height/2,
+            width: screenSize.width / 1.25,
             decoration: BoxDecoration(
               color: Colors.blue.shade300,
               shape: BoxShape.rectangle,
@@ -163,9 +188,10 @@ class _WinnerPageState extends State<WinnerPage> {
 
       bottomNavigationBar: BottomAppBar(
         color: Colors.blue,
-
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 160, vertical: 10),
+        shape: const CircularNotchedRectangle(),
+        child: Container(
+          alignment: Alignment.center,
+          height: 10,
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue.shade400,
@@ -179,12 +205,10 @@ class _WinnerPageState extends State<WinnerPage> {
               ),
               onPressed: (){
                 _showExitConfirmationDialog();
-
               }, child: Text("Exit Game",
             style: TextStyle(color: Colors.white, fontSize: 14),
           )),
-        ),
-
+        )
       ),
     );
   }

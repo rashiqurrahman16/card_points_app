@@ -138,13 +138,8 @@ class AboutUsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onPressed: (){
-                      Navigator.of(context).popUntil((route) => route.isFirst);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
-                    }, child: Text("Back",
+                    onPressed: () => Navigator.pop(context),
+                    child: Text("Back",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
 
