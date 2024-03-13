@@ -48,6 +48,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon.png"
+
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -60,9 +67,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
-
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -71,12 +75,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+     - assets/icon.png
+     - assets/only_cards.png
      - assets/3cards.png
      - assets/Desktopit-logo.png
      - assets/DesktopIt-logo-white.png
      - assets/Logo.png
      - assets/Gplay.png
-     - assets/icons/icon.png
+     #- assets/WinnerPageBckground.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

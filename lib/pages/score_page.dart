@@ -5,13 +5,11 @@ import 'package:hazari/pages/home_page.dart';
 import 'package:hazari/pages/name_row_page.dart';
 
 import 'package:hazari/pages/score_row_page.dart';
-
 import 'package:hazari/pages/total_score_page.dart';
 import 'package:hazari/pages/winner_page.dart';
-
-
 import '../models/name_score_model.dart';
 import '../widgets/add_points_page.dart';
+import '../widgets/exit_confirmation_page.dart';
 import 'about_us.dart';
 
 class ScorePage extends StatefulWidget {
@@ -179,14 +177,8 @@ class _ScorePageState extends State<ScorePage> {
                           totalScore3: calculateTotalScore3(scoresList),
                           totalScore4: calculateTotalScore4(scoresList),
                           ),
-                          if (calculateTotalScore1(scoresList)>=1000)
-                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList)),
-                          if (calculateTotalScore2(scoresList)>=1000)
-                            _riderctToWinnerPage(player2, calculateTotalScore2(scoresList)),
-                          if (calculateTotalScore3(scoresList)>=1000)
-                            _riderctToWinnerPage(player3, calculateTotalScore3(scoresList)),
-                          if (calculateTotalScore4(scoresList)>=1000)
-                            _riderctToWinnerPage(player4, calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore1(scoresList)>=300||calculateTotalScore2(scoresList)>=300||calculateTotalScore3(scoresList)>=300||calculateTotalScore4(scoresList)>=300)
+                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList) ),
                         ]
                     );
 
@@ -195,10 +187,6 @@ class _ScorePageState extends State<ScorePage> {
           ),
           ]
         ),
-
-
-
-
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Container(
           margin: const EdgeInsets.only(top: 10),
@@ -206,9 +194,15 @@ class _ScorePageState extends State<ScorePage> {
           width: 64,
           child: FloatingActionButton(
             elevation: 10,
-
             backgroundColor: Colors.blue,
-            onPressed: () => _redirectToAddPointPage(context),
+            onPressed: ()  {
+               Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddPointsPage(),
+                ),
+              );
+            },
             child: Icon(
                 Icons.add,
               color: Colors.orange.shade400,
@@ -221,7 +215,6 @@ class _ScorePageState extends State<ScorePage> {
             ),
           ),
         ),
-
         bottomNavigationBar: BottomAppBar(
           color: Colors.blue,
           shape: const CircularNotchedRectangle(),
@@ -246,8 +239,8 @@ class _ScorePageState extends State<ScorePage> {
                     iconSize: 30,
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     icon: Icon(Icons.exit_to_app_outlined),
-                    onPressed: (){
-                      _showExitConfirmationDialog();
+                    onPressed: () async {
+                      await ExitConfirmationPage().showExitConfirmationDialog(context);
                     },
                 ),
               ],
@@ -276,9 +269,9 @@ class _ScorePageState extends State<ScorePage> {
                 children: [
                   SizedBox(
                     height: 50,
-                    width: 100,
+                    width: 90,
                     child: Padding(
-                      padding: const EdgeInsets.all(3),
+                      padding: const EdgeInsets.symmetric(vertical: 4),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                           onPressed: () async{
@@ -292,9 +285,9 @@ class _ScorePageState extends State<ScorePage> {
                   SizedBox(width: 20,),
                   SizedBox(
                     height: 50,
-                    width: 100,
+                    width: 90,
                     child: Padding(
-                      padding: const EdgeInsets.all(3),
+                      padding: const EdgeInsets.symmetric(vertical: 4),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
                           onPressed: () async {
@@ -318,7 +311,7 @@ class _ScorePageState extends State<ScorePage> {
                                           SizedBox(
                                             height: 50,
                                             child: Padding(
-                                              padding: const EdgeInsets.all(3),
+                                              padding: const EdgeInsets.symmetric(vertical: 4),
                                               child: ElevatedButton(
                                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                                                   onPressed: () async{
@@ -333,7 +326,7 @@ class _ScorePageState extends State<ScorePage> {
                                           SizedBox(
                                             height: 50,
                                             child: Padding(
-                                              padding: const EdgeInsets.all(3),
+                                              padding: const EdgeInsets.symmetric(vertical: 4),
                                               child: ElevatedButton(
                                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
                                                   onPressed: () async {
@@ -378,72 +371,25 @@ class _ScorePageState extends State<ScorePage> {
 
 
 
-  void _redirectToAddPointPage(BuildContext context) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => AddPointsPage(),
-      ),
-    );
-  }
+  // void _redirectToAddPointPage(BuildContext context) async {
+  //   await Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => AddPointsPage(),
+  //     ),
+  //   );
+  // }
 
-  _riderctToWinnerPage(winner, winningScore) {
+  _riderctToWinnerPage(totalScore1, totalScore2, totalScore3, totalScore4) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.of(context).popUntil((route) => route.isFirst);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => WinnerPage(winner: winner, winningScore: winningScore)),
+        MaterialPageRoute(builder: (context) => WinnerPage(totalScore1: totalScore1, totalScore2: totalScore2, totalScore3: totalScore3, totalScore4: totalScore4,)),
       );
     });
   }
 
-  Future<void> _showExitConfirmationDialog() async {
-   // Set flag to prevent immediate exit
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
-        content: Text('Are you sure you want to exit the game?'),
-        actions: [
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 50,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
-                    onPressed: () {
-                      Navigator.pop(context); // Cancel exit
-                    },
-                    child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
-                  ),
-                ),
-              ),
-              SizedBox(width: 20,),
-              SizedBox(
-                height: 50,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
-                    onPressed: () {
-                      SystemNavigator.pop(); // Exit the app
-                    },
-                    child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 
 
 

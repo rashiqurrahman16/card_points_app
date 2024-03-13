@@ -5,9 +5,10 @@ import 'package:hazari/pages/about_us.dart';
 import 'package:hazari/pages/rules_page.dart';
 import 'package:hazari/pages/score_page.dart';
 import 'package:hazari/models/name_score_model.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hazari/pages/rules_page.dart';
+import 'package:hazari/widgets/exit_confirmation_page.dart';
+
+import '../widgets/name_confirmation_page.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -19,7 +20,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  bool _willExitApp = false;
 
   late Box namesBox;
   late Box scoreBox;
@@ -116,7 +116,7 @@ class _HomePageState extends State<HomePage> {
           return; // Allow exiting the app
           }
           else {
-            _showExitConfirmationDialog();
+            ExitConfirmationPage().showExitConfirmationDialog(context);
             return; // Prevent immediate exit
           }
         },
@@ -198,12 +198,12 @@ class _HomePageState extends State<HomePage> {
                             final player2 = player2Controller.text;
                             final player3 = player3Controller.text;
                             final player4 = player4Controller.text;
-        
+
                             if (player1.isEmpty || player2.isEmpty || player3.isEmpty || player4.isEmpty) {
                               _emptyDialog();
                               return; // Prevent saving and showing the dialog
                             }
-        
+
                             // Check for duplicate names
                             if (player1 == player2 ||
                                 player1 == player3 ||
@@ -215,7 +215,7 @@ class _HomePageState extends State<HomePage> {
                               _sameNameErrorDialog();
                               return; // Prevent saving and showing the dialog
                             }
-        
+
                             final nameData = NameModel(
                                 player1: player1Controller.text,
                                 player2: player2Controller.text,
@@ -224,7 +224,7 @@ class _HomePageState extends State<HomePage> {
                             );
                             final box = Boxes.getNames();
                             box.add(nameData);
-                            _showMyDialog(player1, player2, player3, player4);
+                            await NameConfirmationPage().nameConfirmationDialog(context, player1, player2, player3, player4);
                           },
                           child: Text("Start", style: TextStyle(color: Colors.white),)),
                     )
@@ -282,9 +282,8 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    onPressed: (){
-                      _showExitConfirmationDialog();
-
+                    onPressed: () async {
+                      await ExitConfirmationPage().showExitConfirmationDialog(context);
                     }, child: Text("Exit Game",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
@@ -297,73 +296,73 @@ class _HomePageState extends State<HomePage> {
   }
 
 
-  Future<void> _showMyDialog(player1, player2, player3, player4) async{
-    return showDialog(
-        context: context,
-        builder: (context){
-          return AlertDialog(
-            title: Center(child: Text('Confirmation')),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Text("Players names are:", style: TextStyle(fontWeight: FontWeight.bold),),
-                  Text("1. "+player1),
-                  Text("2. "+player2),
-                  Text("3. "+player3),
-                  Text("4. "+player4),
-
-                ],
-              ),
-            ),
-            actions: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 50,
-                    width: 100,
-                    child: Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
-                        onPressed: () async {
-                          final box = Boxes.getNames();
-                          await box.clear();
-                          Navigator.pop(context);
-                        },
-                        child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20,),
-                  SizedBox(
-                    height: 50,
-                    width: 100,
-                    child: Padding(
-                      padding: const EdgeInsets.all(3),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ScorePage(
-                                )
-                            ),
-                          );
-                        },
-                        child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-            ],
-
-      );
-    });
-  }
+  // Future<void> _showMyDialog(player1, player2, player3, player4) async{
+  //   return showDialog(
+  //       context: context,
+  //       builder: (context){
+  //         return AlertDialog(
+  //           title: Center(child: Text('Confirmation')),
+  //           content: SingleChildScrollView(
+  //             child: Column(
+  //               children: [
+  //                 Text("Players names are:", style: TextStyle(fontWeight: FontWeight.bold),),
+  //                 Text("1. "+player1),
+  //                 Text("2. "+player2),
+  //                 Text("3. "+player3),
+  //                 Text("4. "+player4),
+  //
+  //               ],
+  //             ),
+  //           ),
+  //           actions: [
+  //             Row(
+  //               mainAxisAlignment: MainAxisAlignment.center,
+  //               children: [
+  //                 SizedBox(
+  //                   height: 50,
+  //                   width: 100,
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.all(3),
+  //                     child: ElevatedButton(
+  //                       style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
+  //                       onPressed: () async {
+  //                         final box = Boxes.getNames();
+  //                         await box.clear();
+  //                         Navigator.pop(context);
+  //                       },
+  //                       child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
+  //                     ),
+  //                   ),
+  //                 ),
+  //                 SizedBox(width: 20,),
+  //                 SizedBox(
+  //                   height: 50,
+  //                   width: 100,
+  //                   child: Padding(
+  //                     padding: const EdgeInsets.all(3),
+  //                     child: ElevatedButton(
+  //                       style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+  //                       onPressed: () {
+  //                         Navigator.pushReplacement(
+  //                           context,
+  //                           MaterialPageRoute(
+  //                               builder: (context) => const ScorePage(
+  //                               )
+  //                           ),
+  //                         );
+  //                       },
+  //                       child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ],
+  //             ),
+  //
+  //           ],
+  //
+  //     );
+  //   });
+  // }
 
   Future<void> _sameNameErrorDialog(){
     return showDialog(
@@ -443,54 +442,54 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Future<void> _showExitConfirmationDialog() async {
-    _willExitApp = true; // Set flag to prevent immediate exit
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
-        content: Text('Are you sure you want to exit the game?'),
-        actions: [
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 50,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
-                    onPressed: () {
-                      Navigator.pop(context); // Cancel exit
-                      _willExitApp = false; // Reset flag
-                    },
-                    child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
-                  ),
-                ),
-              ),
-              SizedBox(width: 20,),
-              SizedBox(
-                height: 50,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
-                    onPressed: () {
-                      SystemNavigator.pop(); // Exit the app
-                    },
-                    child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+  // Future<void> _showExitConfirmationDialog() async {
+  //   _willExitApp = true; // Set flag to prevent immediate exit
+  //   return showDialog(
+  //     context: context,
+  //     builder: (context) => AlertDialog(
+  //       title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
+  //       content: Text('Are you sure you want to exit the game?'),
+  //       actions: [
+  //
+  //         Row(
+  //           mainAxisAlignment: MainAxisAlignment.center,
+  //           children: [
+  //             SizedBox(
+  //               height: 50,
+  //               width: 100,
+  //               child: Padding(
+  //                 padding: const EdgeInsets.all(3),
+  //                 child: ElevatedButton(
+  //                   style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
+  //                   onPressed: () {
+  //                     Navigator.pop(context); // Cancel exit
+  //                     _willExitApp = false; // Reset flag
+  //                   },
+  //                   child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
+  //                 ),
+  //               ),
+  //             ),
+  //             SizedBox(width: 20,),
+  //             SizedBox(
+  //               height: 50,
+  //               width: 100,
+  //               child: Padding(
+  //                 padding: const EdgeInsets.all(3),
+  //                 child: ElevatedButton(
+  //                   style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+  //                   onPressed: () {
+  //                     SystemNavigator.pop(); // Exit the app
+  //                   },
+  //                   child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
+  //                 ),
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
 
 
 }

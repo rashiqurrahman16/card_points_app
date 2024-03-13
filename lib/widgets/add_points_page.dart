@@ -23,8 +23,6 @@ class _AddPointsPageState extends State<AddPointsPage> {
   final score3Controller = TextEditingController();
   final score4Controller = TextEditingController();
 
-
-
   String player1 = "";
   String player2 = "";
   String player3 = "";
@@ -57,10 +55,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
       child: ListView(
         children: [
           AlertDialog(
-
             title: Center(child: Text("Add Points", style: TextStyle(fontSize: 20),)),
-
-
             content: SizedBox(
               width: double.infinity,
               child: Column(
@@ -234,9 +229,6 @@ class _AddPointsPageState extends State<AddPointsPage> {
                                   return; // Prevent saving and showing the dialog
                                 }
 
-
-
-
                                 final scoreData = ScoreModel(
                                     score1: int.parse(score1Controller.text),
                                     score2: int.parse(score2Controller.text),
@@ -251,7 +243,8 @@ class _AddPointsPageState extends State<AddPointsPage> {
                                   context,
                                   MaterialPageRoute(builder: (context) => const ScorePage()),
                                 );
-                              }, child: Text("Submit", style: TextStyle(color: Colors.white, fontSize: 18),)),
+                              },
+                              child: Text("Submit", style: TextStyle(color: Colors.white, fontSize: 18),)),
                         ),
                       ),
                     ],

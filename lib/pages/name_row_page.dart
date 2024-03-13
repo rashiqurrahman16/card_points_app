@@ -31,6 +31,7 @@ class NameRow extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
+              height: 20,
               width: screenSize.width/4,
               decoration: BoxDecoration(
                 color: Colors.orange.shade100,
@@ -42,14 +43,15 @@ class NameRow extends StatelessWidget {
               child:  dealer==1 ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.front_hand, size: 15,),
+                  Icon(Icons.front_hand, size: 13,),
                   SizedBox(width: 5,),
-                  Text("dealer",style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                  Text("dealer",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
                 ],
               )
                   : Text(""),
             ),
             Container(
+              height: 20,
               width: screenSize.width/4,
               decoration: BoxDecoration(
                 color: Colors.orange.shade100,
@@ -61,14 +63,15 @@ class NameRow extends StatelessWidget {
               child:  dealer==2 ? const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.front_hand, size: 10,),
+                  Icon(Icons.front_hand, size: 13,),
                   SizedBox(width: 5,),
-                  Text("dealer",style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                  Text("dealer",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
                 ],
               )
                   : Text(""),
             ),
             Container(
+              height: 20,
               width: screenSize.width/4,
               decoration: BoxDecoration(
                 color: Colors.orange.shade100,
@@ -80,14 +83,15 @@ class NameRow extends StatelessWidget {
               child:  dealer==3 ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.front_hand, size: 15,),
+                  Icon(Icons.front_hand, size: 13,),
                   SizedBox(width: 5,),
-                  Text("dealer",style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                  Text("dealer",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
                 ],
               )
                   : Text(""),
             ),
             Container(
+              height: 20,
               width: screenSize.width/4,
               decoration: BoxDecoration(
                 color: Colors.orange.shade100,
@@ -99,9 +103,9 @@ class NameRow extends StatelessWidget {
               child:  dealer==4 ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.front_hand, size: 15,),
+                  Icon(Icons.front_hand, size: 13,),
                   SizedBox(width: 5,),
-                  Text("dealer",style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                  Text("dealer",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
                 ],
               )
                   : Text(""),
@@ -110,32 +114,28 @@ class NameRow extends StatelessWidget {
         ),
         Row(
           children: [
-            Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.orange.shade400,
-                      borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
-                      border: Border.symmetric(
-                        vertical: BorderSide(width: 2, color: Colors.orange.shade500),
-                      ),
+            Container(
+              decoration: BoxDecoration(
+                  color: Colors.orange.shade400,
+                  borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
+                  border: Border.symmetric(
+                    vertical: BorderSide(width: 1, color: Colors.orange.shade500),
                   ),
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.all(5),
-                  width: screenSize.width / 4,
-                  child: Text(player1, style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,),),
-              
-                ),
-              ]
+              ),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(5),
+              width: screenSize.width / 4,
+              child: Text(player1, style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,),),
+
             ),
             Container(
               decoration: BoxDecoration(
                 color: Colors.orange.shade400,
                 borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
                 border: Border.symmetric(
-                  vertical: BorderSide(width: 2, color: Colors.orange.shade500),
+                  vertical: BorderSide(width: 1, color: Colors.orange.shade500),
                 ),
               ),
               alignment: Alignment.center,
@@ -151,7 +151,7 @@ class NameRow extends StatelessWidget {
                 color: Colors.orange.shade400,
                 borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
                 border: Border.symmetric(
-                  vertical: BorderSide(width: 2, color: Colors.orange.shade500),
+                  vertical: BorderSide(width: 1, color: Colors.orange.shade500),
                 ),
               ),
               alignment: Alignment.center,
@@ -166,7 +166,7 @@ class NameRow extends StatelessWidget {
                 color: Colors.orange.shade400,
                 borderRadius: BorderRadius.vertical(top: Radius.zero, bottom: Radius.circular(10)),
                 border: Border.symmetric(
-                  vertical: BorderSide(width: 2, color: Colors.orange.shade500),
+                  vertical: BorderSide(width: 1, color: Colors.orange.shade500),
                 ),
               ),
               alignment: Alignment.center,
