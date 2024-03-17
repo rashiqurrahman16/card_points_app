@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:hazari/pages/home_page.dart';
 
 
 class SplashScreenPage extends StatefulWidget {
@@ -8,14 +11,30 @@ class SplashScreenPage extends StatefulWidget {
   State<SplashScreenPage> createState() => _SplashScreenPageState();
 }
 
-class _SplashScreenPageState extends State<SplashScreenPage> {
+class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerProviderStateMixin{
 
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+
+    Future.delayed(Duration(seconds: 3), (){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => HomePage(),));
+    }
+    );
+  }
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    super.dispose();
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     final screenSize=MediaQuery.of(context).size;
 
-    return const Scaffold(
-
+    return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -23,27 +42,37 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
-                  image: AssetImage('assets/3cards.png'),
-                height: 120,
-                width: 120,
+                  image: AssetImage('assets/only_cards.png'),
+                height: 140,
               ),
               SizedBox(width: 10,),
-              Text("HAZARI", style: TextStyle(fontWeight: FontWeight.w900),),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
 
-              Image(
-                image: AssetImage('assets/Desktopit-logo.png'),
-                height: 120,
-                width: 120,
-              ),
-
+              Text("হাজারি", style: TextStyle(
+                  color: Colors.yellow.shade700,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900),),
             ],
           ),
         ],
+      ),
+
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue.shade50,
+        child: Container(
+          alignment: Alignment.center,
+          height: 10,
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Developed By", style: TextStyle(fontWeight: FontWeight.w600),),
+              Image(
+                image: AssetImage('assets/Logo.png'),
+                height: 60,
+              ),
+            ],
+          ),
+
+        ),
       ),
     );
   }

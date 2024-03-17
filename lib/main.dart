@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hazari/pages/home_page.dart';
 import 'package:hazari/pages/splash_screen.dart';
-import 'package:hazari/pages/winner_page.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hazari/models/name_score_model.dart';
@@ -33,9 +31,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hazari App',
-      theme: ThemeData.light(),
-      debugShowCheckedModeBanner: true,
-      home: const WinnerPage(),
+      theme: ThemeData.light().copyWith(
+        scaffoldBackgroundColor: Colors.blue.shade50,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const SplashScreenPage(),
     );
   }
 }
