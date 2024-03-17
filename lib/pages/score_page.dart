@@ -86,34 +86,35 @@ class _ScorePageState extends State<ScorePage> {
                 width: 35.0,
                 height: 35.0,
                 child: Image(
-                  image: AssetImage('assets/3cards.png'),
+                  image: AssetImage('assets/only_cards.png'),
                 ),
               ),
+              SizedBox(width: 5),
               Text(
-                'HAZARI',
+                'হাজারি',
                 style: TextStyle(color: Colors.white,
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.w400,),
               ),
               Spacer(),
               Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => AboutUsPage()),
-                      );
-                    },
-                    child: Text(
-                      "Who We Are",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(builder: (context) => AboutUsPage()),
+                  //     );
+                  //   },
+                  //   child: Text(
+                  //     "আমাদের সম্পর্কে",
+                  //     style: TextStyle(
+                  //       color: Colors.white,
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w400,
+                  //     ),
+                  //   ),
+                  // ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -129,14 +130,8 @@ class _ScorePageState extends State<ScorePage> {
                       ),
                     ),
                   ),
-
-
-
-
-
                 ],
               ),
-
             ],
           ),
           toolbarHeight: 80,
@@ -177,8 +172,37 @@ class _ScorePageState extends State<ScorePage> {
                           totalScore3: calculateTotalScore3(scoresList),
                           totalScore4: calculateTotalScore4(scoresList),
                           ),
-                          if (calculateTotalScore1(scoresList)>=300||calculateTotalScore2(scoresList)>=300||calculateTotalScore3(scoresList)>=300||calculateTotalScore4(scoresList)>=300)
-                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList) ),
+
+                          // (calculateTotalScore1(scoresList)>=500)?
+                          // ((calculateTotalScore1(scoresList)!= calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)!= calculateTotalScore3(scoresList)
+                          //     && calculateTotalScore1(scoresList)!= calculateTotalScore4(scoresList))
+                          //     ?_riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList))
+                          //     :SizedBox()):SizedBox(),
+                          // (calculateTotalScore2(scoresList)>=500)?
+                          // ((calculateTotalScore2(scoresList)!= calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)!= calculateTotalScore3(scoresList)
+                          //     && calculateTotalScore2(scoresList)!= calculateTotalScore4(scoresList))
+                          //     ?_riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList))
+                          //     :SizedBox()):SizedBox(),
+                          // (calculateTotalScore3(scoresList)>=500)?
+                          // ((calculateTotalScore3(scoresList)!= calculateTotalScore1(scoresList) && calculateTotalScore3(scoresList)!= calculateTotalScore2(scoresList)
+                          //     && calculateTotalScore3(scoresList)!= calculateTotalScore4(scoresList))
+                          //     ?_riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList))
+                          //     :SizedBox()):SizedBox(),
+                          // (calculateTotalScore4(scoresList)>=500)?
+                          // ((calculateTotalScore4(scoresList)!= calculateTotalScore1(scoresList) && calculateTotalScore4(scoresList)!= calculateTotalScore2(scoresList)
+                          //     && calculateTotalScore4(scoresList)!= calculateTotalScore3(scoresList))
+                          //     ?_riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList))
+                          //     :SizedBox()):SizedBox(),
+
+
+                          if (calculateTotalScore1(scoresList)>=500 && calculateTotalScore1(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore4(scoresList))
+                              _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore2(scoresList)>=500 && calculateTotalScore2(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore4(scoresList))
+                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore3(scoresList)>=500 && calculateTotalScore3(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore4(scoresList))
+                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore4(scoresList)>=500 && calculateTotalScore4(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore3(scoresList))
+                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
                         ]
                     );
 

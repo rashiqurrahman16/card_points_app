@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:hazari/pages/total_score_page.dart';
 
 import '../boxes/boxes.dart';
 import '../models/name_score_model.dart';
@@ -83,34 +84,35 @@ class _WinnerPageState extends State<WinnerPage> {
               width: 35.0,
               height: 35.0,
               child: Image(
-                image: AssetImage('assets/3cards.png'),
+                image: AssetImage('assets/only_cards.png'),
               ),
             ),
+            SizedBox(width: 5),
             Text(
-              'HAZARI',
+              'হাজারি',
               style: TextStyle(color: Colors.white,
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.w400,),
             ),
             Spacer(),
             Row(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AboutUsPage()),
-                    );
-                  },
-                  child: Text(
-                    "Who We Are",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
+                // GestureDetector(
+                //   onTap: () {
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => AboutUsPage()),
+                //     );
+                //   },
+                //   child: Text(
+                //     "আমাদের সম্পর্কে",
+                //     style: TextStyle(
+                //       color: Colors.white,
+                //       fontSize: 16,
+                //       fontWeight: FontWeight.w400,
+                //     ),
+                //   ),
+                // ),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -126,11 +128,6 @@ class _WinnerPageState extends State<WinnerPage> {
                     ),
                   ),
                 ),
-
-
-
-
-
               ],
             ),
 
@@ -179,7 +176,7 @@ class _WinnerPageState extends State<WinnerPage> {
                       Text("Congrats!", style: TextStyle(color: Colors.blue, fontSize: 30),),
                     ],
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 10,),
                   Container(
                     width: screenSize.width/2,
                     child: Row(
@@ -202,6 +199,9 @@ class _WinnerPageState extends State<WinnerPage> {
                       ],
                     ),
                   ),
+
+
+
                   Container(
                     width: screenSize.width/2,
                     child: Row(

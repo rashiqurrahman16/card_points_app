@@ -35,19 +35,22 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
     final screenSize=MediaQuery.of(context).size;
 
     return Scaffold(
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(
-                  image: AssetImage('assets/3cards.png'),
-                height: 120,
-                width: 120,
+                  image: AssetImage('assets/only_cards.png'),
+                height: 140,
               ),
               SizedBox(width: 10,),
-              Text("HAZARI", style: TextStyle(fontWeight: FontWeight.w900),),
+
+              Text("হাজারি", style: TextStyle(
+                  color: Colors.yellow.shade700,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900),),
             ],
           ),
         ],

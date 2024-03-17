@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'about_us.dart';
 import 'home_page.dart';
 
 class RulesPage extends StatelessWidget {
@@ -13,37 +14,58 @@ class RulesPage extends StatelessWidget {
     final screenSize=MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: const Row(
+          title: Row(
             children: [
               SizedBox(
                 width: 35.0,
                 height: 35.0,
                 child: Image(
-                  image: AssetImage('assets/3cards.png'),
+                  image: AssetImage('assets/only_cards.png'),
                 ),
               ),
+              SizedBox(width: 5),
               Text(
-                'HAZARI',
+                'হাজারি',
                 style: TextStyle(color: Colors.white,
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.w400,),
               ),
               Spacer(),
               Row(
                 children: [
-                  Text("Who We Are", style: TextStyle(color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,),),
-                  SizedBox(
-                    width: 35.0,
-                    height: 35.0,
-                    child: Image(
-                      image: AssetImage('assets/Logo.png'),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(builder: (context) => AboutUsPage()),
+                  //     );
+                  //   },
+                  //   child: Text(
+                  //     "আমাদের সম্পর্কে",
+                  //     style: TextStyle(
+                  //       color: Colors.white,
+                  //       fontSize: 16,
+                  //       fontWeight: FontWeight.w400,
+                  //     ),
+                  //   ),
+                  // ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutUsPage()),
+                      );
+                    },
+                    child:  SizedBox(
+                      width: 35.0,
+                      height: 35.0,
+                      child: Image(
+                        image: AssetImage('assets/Logo.png'),
+                      ),
                     ),
                   ),
                 ],
               ),
-
             ],
           ),
           toolbarHeight: 80,

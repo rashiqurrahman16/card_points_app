@@ -17,21 +17,22 @@ class AboutUsPage extends StatelessWidget {
               width: 35.0,
               height: 35.0,
               child: Image(
-                image: AssetImage('assets/3cards.png'),
+                image: AssetImage('assets/only_cards.png'),
               ),
             ),
+            SizedBox(width: 5),
             Text(
-              'HAZARI',
+              'হাজারি',
               style: TextStyle(color: Colors.white,
-                fontSize: 18,
+                fontSize: 20,
                 fontWeight: FontWeight.w400,),
             ),
             Spacer(),
             Row(
               children: [
-                Text("Who We Are", style: TextStyle(color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,),),
+                // Text("Who We Are", style: TextStyle(color: Colors.white,
+                //   fontSize: 16,
+                //   fontWeight: FontWeight.w400,),),
                 SizedBox(
                   width: 35.0,
                   height: 35.0,

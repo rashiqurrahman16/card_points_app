@@ -1,6 +1,8 @@
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hazari/models/name_score_model.dart';
 import 'package:hazari/pages/score_page.dart';
 import '../boxes/boxes.dart';
@@ -64,116 +66,128 @@ class _AddPointsPageState extends State<AddPointsPage> {
                 children: [
                   Text("(Sum of all Points must be 360)", style: TextStyle(fontSize: 13),),
                   SizedBox(height: 5,),
-                  ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                      children: [
-                        Text(
-                          player1,
-                          style: const TextStyle(
-                            fontSize: 18,
-                          ),
-
-                        ),
-                        const SizedBox(width: 10,),
-                        SizedBox(
-                          width: screenSize.width/4,
-                          child: TextField(
-                            controller: score1Controller,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              counterText: "",
-                              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          SizedBox(
+                            child: Text(
+                              player1,
+                              style: const TextStyle(
+                                fontSize: 18,
+                              ),
                             ),
-                            maxLength: 3,
-                            keyboardType: TextInputType.number,
                           ),
-                        ),
-                      ],
+                          Spacer(),
+                          SizedBox(
+                            width: screenSize.width/3,
+                            height: 35,
+                            child: TextField(
+                              controller: score1Controller,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                counterText: "",
+                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                              ),
+                              maxLength: 3,
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          player2,
-                          style: const TextStyle(
-                            fontSize: 18,
-                          ),
-
-                        ),
-                        const SizedBox(width: 10,),
-                        SizedBox(
-                          width: screenSize.width/4,
-                          child: TextField(
-                            controller: score2Controller,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              counterText: "",
-                              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text(
+                            player2,
+                            style: const TextStyle(
+                              fontSize: 18,
                             ),
-                            maxLength: 3,
-                            keyboardType: TextInputType.number,
+
                           ),
-                        ),
-                      ],
+                          Spacer(),
+                          SizedBox(
+                            width: screenSize.width/3,
+                            height: 35,
+                            child: TextField(
+                              controller: score2Controller,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                counterText: "",
+                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                              ),
+                              maxLength: 3,
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          player3,
-                          style: const TextStyle(
-                            fontSize: 18,
-                          ),
-                        ),
-                        const SizedBox(width: 10,),
-                        SizedBox(
-                          width: screenSize.width/4,
-                          child: TextField(
-                            controller: score3Controller,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              counterText: "",
-                              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text(
+                            player3,
+                            style: const TextStyle(
+                              fontSize: 18,
                             ),
-                            maxLength: 3,
-                            keyboardType: TextInputType.number,
                           ),
-                        ),
-                      ],
+                          Spacer(),
+                          SizedBox(
+                            width: screenSize.width/3,
+                            height: 35,
+                            child: TextField(
+                              controller: score3Controller,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                counterText: "",
+                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                              ),
+                              maxLength: 3,
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  ListTile(
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          player4,
-                          style: const TextStyle(
-                            fontSize: 18,
-                          ),
-
-                        ),
-                        const SizedBox(width: 10,),
-                        SizedBox(
-                          width: screenSize.width/4,
-                          child: TextField(
-                            controller: score4Controller,
-                            decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              counterText: "",
-                              contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Text(
+                            player4,
+                            style: const TextStyle(
+                              fontSize: 18,
                             ),
-                            maxLength: 3,
-                            keyboardType: TextInputType.number,
+
                           ),
-                        ),
-                      ],
+                          Spacer(),
+                          SizedBox(
+                            width: screenSize.width/3,
+                            height: 35,
+                            child: TextField(
+                              controller: score4Controller,
+                              decoration: const InputDecoration(
+                                border: OutlineInputBorder(),
+                                counterText: "",
+                                contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                              ),
+                              maxLength: 3,
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   SizedBox(height: 10,),

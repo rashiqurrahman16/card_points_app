@@ -82,7 +82,7 @@ flutter:
      - assets/DesktopIt-logo-white.png
      - assets/Logo.png
      - assets/Gplay.png
-     #- assets/WinnerPageBckground.png
+     - assets/WinnerPageBckground.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
