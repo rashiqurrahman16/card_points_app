@@ -30,9 +30,9 @@ class ScoreModel {
 
   @HiveField(0)
   int score1;
-  @HiveField(4)
+  @HiveField(1)
   int score2;
-  @HiveField(5)
+  @HiveField(2)
   int score3;
   @HiveField(3)
   int score4;
@@ -42,6 +42,39 @@ class ScoreModel {
     required this.score2,
     required this.score3,
     required this.score4,
+  });
+
+}
+
+@HiveType(typeId: 3)
+class FinalScoreModel {
+
+  @HiveField(0)
+  String finalPlayer1;
+  @HiveField(1)
+  int finalScore1;
+  @HiveField(2)
+  String finalPlayer2;
+  @HiveField(3)
+  int finalScore2;
+  @HiveField(4)
+  String finalPlayer3;
+  @HiveField(5)
+  int finalScore3;
+  @HiveField(6)
+  String finalPlayer4;
+  @HiveField(7)
+  int finalScore4;
+
+  FinalScoreModel({
+    required this.finalPlayer1,
+    required this.finalScore1,
+    required this.finalPlayer2,
+    required this.finalScore2,
+    required this.finalPlayer3,
+    required this.finalScore3,
+    required this.finalPlayer4,
+    required this.finalScore4,
   });
 
 }

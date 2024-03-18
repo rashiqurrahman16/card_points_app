@@ -1,12 +1,9 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hazari/pages/total_score_page.dart';
-
 import '../boxes/boxes.dart';
+import '../data/players_page.dart';
 import '../models/name_score_model.dart';
 import '../widgets/exit_confirmation_page.dart';
 import 'about_us.dart';
@@ -14,7 +11,6 @@ import 'home_page.dart';
 
 
 class WinnerPage extends StatefulWidget {
-
   final int totalScore1;
   final int totalScore2;
   final int totalScore3;
@@ -33,7 +29,6 @@ class WinnerPage extends StatefulWidget {
 
 class _WinnerPageState extends State<WinnerPage> {
 
-  bool _willRefresh = false;
 
   List<ScoreModel> scoresList = [];
 
@@ -45,6 +40,9 @@ class _WinnerPageState extends State<WinnerPage> {
   int score2 = 0;
   int score3 = 0;
   int score4 = 0;
+  late List <int> finalScores = [widget.totalScore1, widget.totalScore2, widget.totalScore3, widget.totalScore4];
+
+
 
   @override
   void initState() {
@@ -68,6 +66,7 @@ class _WinnerPageState extends State<WinnerPage> {
     // final scoreData = scores.first; //
     setState(() {
       scoresList = scores;
+      finalScores.sort();
     });
   }
 
@@ -160,14 +159,14 @@ class _WinnerPageState extends State<WinnerPage> {
             ),
           ),
           child: Container(
-              height: screenSize.height/2.5,
-              width: screenSize.width / 1.5,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              child: Column(
+            // height: screenSize.height/2.5,
+            // width: screenSize.width / 1.5,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
@@ -199,8 +198,6 @@ class _WinnerPageState extends State<WinnerPage> {
                       ],
                     ),
                   ),
-
-
 
                   Container(
                     width: screenSize.width/2,
@@ -291,9 +288,48 @@ class _WinnerPageState extends State<WinnerPage> {
                     ),
                   ),
 
+                  ElevatedButton(onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PlayersPage(),
+                      ),
+                    );
+
+                  }, child: Text("a"))
                 ]
-              ),
-            ),
+            )
+
+
+            //   (widget.totalScore1>widget.totalScore2 && widget.totalScore1>widget.totalScore3 && widget.totalScore1>widget.totalScore4)
+            //     ?(widget.totalScore2>=widget.totalScore3 && widget.totalScore2>=widget.totalScore4)
+            //     ?(widget.totalScore3>=widget.totalScore4)?
+            //
+            //     : Container()
+            //     :SizedBox()
+            //     :(widget.totalScore2>widget.totalScore1 && widget.totalScore2>widget.totalScore3 && widget.totalScore2>widget.totalScore4)
+            //     ?(widget.totalScore1>=widget.totalScore3 && widget.totalScore1>=widget.totalScore4)
+            //     ?(widget.totalScore3>=widget.totalScore4)?
+            // Container()
+            //     :SizedBox()
+            //     :SizedBox()
+            //     :(widget.totalScore3>widget.totalScore1 && widget.totalScore3>widget.totalScore2 && widget.totalScore3>widget.totalScore4)
+            //     ?(widget.totalScore1>=widget.totalScore2 && widget.totalScore1>=widget.totalScore4)
+            //     ?(widget.totalScore2>=widget.totalScore4)?
+            // Container()
+            //     :SizedBox()
+            //     :SizedBox()
+            //     :(widget.totalScore4>widget.totalScore1 && widget.totalScore4>widget.totalScore2 && widget.totalScore4>widget.totalScore3)
+            //     ?(widget.totalScore1>=widget.totalScore2 && widget.totalScore1>=widget.totalScore3)
+            //     ?(widget.totalScore2>=widget.totalScore3)?
+            // Container()
+            //     :SizedBox()
+            //     :SizedBox()
+            //     :SizedBox()
+            ,
+          )
+
+
         ),
       ),
 
@@ -349,7 +385,6 @@ class _WinnerPageState extends State<WinnerPage> {
   }
 
   Future<void> _showRefreshDialog() async{
-    _willRefresh = true;
     return showDialog(
         context: context,
         builder: (context){
@@ -369,7 +404,6 @@ class _WinnerPageState extends State<WinnerPage> {
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                           onPressed: () async{
                             Navigator.pop(context);
-                            bool _willRefresh = false;
                           },
                           child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),

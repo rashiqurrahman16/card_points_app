@@ -6,4 +6,5 @@ class Boxes {
 
   static Box<NameModel> getNames() => Hive.box<NameModel>('names');
   static Box<ScoreModel> getScores() => Hive.box<ScoreModel>('scores');
+  static Box<FinalScoreModel> getFinalScores() => Hive.box<FinalScoreModel>('finalScores');
 }
