@@ -19,6 +19,10 @@ void main() async {
 
   await Hive.openBox<ScoreModel>('scores');
 
+  Hive.registerAdapter(FinalScoreModelAdapter());
+
+  await Hive.openBox<FinalScoreModel>('finalScores');
+
 
   runApp(const MyApp());
 }

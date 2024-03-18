@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:hazari/boxes/boxes.dart';
 import 'package:hazari/pages/home_page.dart';
 import 'package:hazari/pages/name_row_page.dart';
-
 import 'package:hazari/pages/score_row_page.dart';
 import 'package:hazari/pages/total_score_page.dart';
 import 'package:hazari/pages/winner_page.dart';
@@ -23,9 +22,10 @@ class ScorePage extends StatefulWidget {
 
 class _ScorePageState extends State<ScorePage> {
 
-  bool _willRefresh = false;
 
   List<ScoreModel> scoresList = [];
+  List<FinalScoreModel> finalScoresList = [];
+
 
   String player1 = "";
   String player2 = "";
@@ -48,6 +48,8 @@ class _ScorePageState extends State<ScorePage> {
     final names = box1.values.toList().cast<NameModel>();
     final box2 = Boxes.getScores();
     final scores = box2.values.toList().cast<ScoreModel>();
+    final box3 = Boxes.getFinalScores();
+    final finalScores = box3.values.toList().cast<FinalScoreModel>();
 
     final nameData = names.last;
     setState(() {
@@ -58,6 +60,7 @@ class _ScorePageState extends State<ScorePage> {
     });
     setState(() {
       scoresList = scores;
+      finalScoresList = finalScores;
     });
   }
 
@@ -172,31 +175,8 @@ class _ScorePageState extends State<ScorePage> {
                           totalScore3: calculateTotalScore3(scoresList),
                           totalScore4: calculateTotalScore4(scoresList),
                           ),
-
-                          // (calculateTotalScore1(scoresList)>=500)?
-                          // ((calculateTotalScore1(scoresList)!= calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)!= calculateTotalScore3(scoresList)
-                          //     && calculateTotalScore1(scoresList)!= calculateTotalScore4(scoresList))
-                          //     ?_riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList))
-                          //     :SizedBox()):SizedBox(),
-                          // (calculateTotalScore2(scoresList)>=500)?
-                          // ((calculateTotalScore2(scoresList)!= calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)!= calculateTotalScore3(scoresList)
-                          //     && calculateTotalScore2(scoresList)!= calculateTotalScore4(scoresList))
-                          //     ?_riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList))
-                          //     :SizedBox()):SizedBox(),
-                          // (calculateTotalScore3(scoresList)>=500)?
-                          // ((calculateTotalScore3(scoresList)!= calculateTotalScore1(scoresList) && calculateTotalScore3(scoresList)!= calculateTotalScore2(scoresList)
-                          //     && calculateTotalScore3(scoresList)!= calculateTotalScore4(scoresList))
-                          //     ?_riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList))
-                          //     :SizedBox()):SizedBox(),
-                          // (calculateTotalScore4(scoresList)>=500)?
-                          // ((calculateTotalScore4(scoresList)!= calculateTotalScore1(scoresList) && calculateTotalScore4(scoresList)!= calculateTotalScore2(scoresList)
-                          //     && calculateTotalScore4(scoresList)!= calculateTotalScore3(scoresList))
-                          //     ?_riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList))
-                          //     :SizedBox()):SizedBox(),
-
-
                           if (calculateTotalScore1(scoresList)>=500 && calculateTotalScore1(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore4(scoresList))
-                              _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
+                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
                           if (calculateTotalScore2(scoresList)>=500 && calculateTotalScore2(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore4(scoresList))
                             _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
                           if (calculateTotalScore3(scoresList)>=500 && calculateTotalScore3(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore4(scoresList))
@@ -280,7 +260,6 @@ class _ScorePageState extends State<ScorePage> {
 
 
   Future<void> _showRefreshDialog() async{
-    _willRefresh = true;
     return showDialog(
         context: context,
         builder: (context){
@@ -406,6 +385,20 @@ class _ScorePageState extends State<ScorePage> {
 
   _riderctToWinnerPage(totalScore1, totalScore2, totalScore3, totalScore4) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
+
+
+      final finalScoreData = FinalScoreModel(
+      finalPlayer1: player1;
+      finalScore1: totalScore1;
+      finalPlayer2: player2;
+      finalScore2: totalScore2;
+      finalPlayer3: player3;
+      finalScore3: totalScore3;
+      finalPlayer4: player4;
+      finalScore4: totalScore4;
+      );
+      final box = Boxes.getFinalScores();
+      box.add(finalScoreData);
       Navigator.of(context).popUntil((route) => route.isFirst);
       Navigator.push(
         context,

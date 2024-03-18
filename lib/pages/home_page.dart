@@ -3,11 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:hazari/boxes/boxes.dart';
 import 'package:hazari/pages/about_us.dart';
 import 'package:hazari/pages/rules_page.dart';
-import 'package:hazari/pages/score_page.dart';
 import 'package:hazari/models/name_score_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hazari/widgets/exit_confirmation_page.dart';
-
 import '../widgets/name_confirmation_page.dart';
 
 
@@ -206,7 +204,6 @@ class _HomePageState extends State<HomePage> {
                                 player2 == player3 ||
                                 player2 == player4 ||
                                 player3 == player4) {
-                              // Show an error Dialog if duplicates found
                               _sameNameErrorDialog();
                               return; // Prevent saving and showing the dialog
                             }

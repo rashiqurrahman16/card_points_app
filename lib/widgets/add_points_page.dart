@@ -61,8 +61,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
             content: SizedBox(
               width: double.infinity,
               child: Column(
-                mainAxisSize: MainAxisSize.min
-                ,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text("(Sum of all Points must be 360)", style: TextStyle(fontSize: 13),),
                   SizedBox(height: 5,),
@@ -279,14 +278,14 @@ class _AddPointsPageState extends State<AddPointsPage> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Text('Error'),
+            title: Center(child: Text('Error')),
             content: SingleChildScrollView(
               child: Column(
                 children: [
                   if(i==1)
                   Text('Sum of all players points must be equal to 360'),
                   if(i==2)
-                  Text('No player can have less than 60 points'),
+                  Text('Players must have 0 or more than 59 points'),
                   if(i==3)
                   Text('Must be able to divide by 5'),
                 ],
@@ -294,10 +293,24 @@ class _AddPointsPageState extends State<AddPointsPage> {
 
             ),
             actions: [
-              TextButton(onPressed: (){
-                Navigator.pop(context);
-              },
-                  child:  Text('OK')
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 50,
+                    width: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.all(3),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                          onPressed: (){
+                        Navigator.pop(context);
+                      },
+                          child:  Text('OK', style: TextStyle(color: Colors.white, fontSize: 18),)
+                      ),
+                    ),
+                  ),
+                ],
               )
             ],
           );
