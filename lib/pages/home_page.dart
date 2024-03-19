@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hazari/boxes/boxes.dart';
 import 'package:hazari/pages/about_us.dart';
+import 'package:hazari/pages/history_page.dart';
 import 'package:hazari/pages/rules_page.dart';
 import 'package:hazari/models/name_score_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -261,6 +262,25 @@ class _HomePageState extends State<HomePage> {
                       );
                     }, child: Text("Rules",
                 style: TextStyle(color: Colors.white, fontSize: 14),
+                )),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.shade400,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(
+                          color: Colors.blue.shade600,  // Set border color to white
+                          width: 2.0,           // Adjust border width as desired
+                        ),
+                      ),
+                    ),
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => HistoryPage(),
+                        ),
+                      );
+                    }, child: Text("History",
+                  style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
 
                 ElevatedButton(
