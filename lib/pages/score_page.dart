@@ -175,6 +175,7 @@ class _ScorePageState extends State<ScorePage> {
                           totalScore3: calculateTotalScore3(scoresList),
                           totalScore4: calculateTotalScore4(scoresList),
                           ),
+
                           if (calculateTotalScore1(scoresList)>=500 && calculateTotalScore1(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore4(scoresList))
                             _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
                           if (calculateTotalScore2(scoresList)>=500 && calculateTotalScore2(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore4(scoresList))
@@ -384,20 +385,24 @@ class _ScorePageState extends State<ScorePage> {
   // }
 
   _riderctToWinnerPage(totalScore1, totalScore2, totalScore3, totalScore4) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
 
 
       final finalScoreData = FinalScoreModel(
-      finalPlayer1: player1;
-      finalScore1: totalScore1;
-      finalPlayer2: player2;
-      finalScore2: totalScore2;
-      finalPlayer3: player3;
-      finalScore3: totalScore3;
-      finalPlayer4: player4;
-      finalScore4: totalScore4;
+      finalPlayer1: player1,
+      finalScore1: totalScore1,
+      finalPlayer2: player2,
+      finalScore2: totalScore2,
+      finalPlayer3: player3,
+      finalScore3: totalScore3,
+      finalPlayer4: player4,
+      finalScore4: totalScore4,
       );
       final box = Boxes.getFinalScores();
+      if (box.length >= 3) {
+        // Remove the oldest score (index 0) before adding a new one
+        await box.deleteAt(0);
+      }
       box.add(finalScoreData);
       Navigator.of(context).popUntil((route) => route.isFirst);
       Navigator.push(
