@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hazari/pages/history_page.dart';
 import '../boxes/boxes.dart';
 import '../models/name_score_model.dart';
 import '../widgets/exit_confirmation_page.dart';
@@ -287,16 +286,6 @@ class _WinnerPageState extends State<WinnerPage> {
                       ],
                     ),
                   ),
-
-                  ElevatedButton(onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HistoryPage(),
-                      ),
-                    );
-
-                  }, child: Text("a"))
                 ]
             )
 
