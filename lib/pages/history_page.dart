@@ -82,32 +82,40 @@ class _HistoryPageState extends State<HistoryPage> {
       ),
       body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 120),
-            child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    side: BorderSide(
-                      // color: Colors.white,  // Set border color to white
-                      width: 2.0,           // Adjust border width as desired
-                    ),
-                  ),
-                ),
-                onPressed: (){
-              _clearHistory();
-            }, child: Text("Clear all")),
-          ),
           SizedBox(
-            height: screenSize.height - 120,
+            height: 35,
+            child: Center(
+              child: TextButton(onPressed: (){_clearHistory();},
+                  child: Text("Clear all")
+              ),
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 60),
+          //   child: ElevatedButton(
+          //       style: ElevatedButton.styleFrom(
+          //         backgroundColor: Colors.white,
+          //         shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(10.0),
+          //           side: BorderSide(
+          //             // color: Colors.white,  // Set border color to white
+          //             width: 2.0,           // Adjust border width as desired
+          //           ),
+          //         ),
+          //       ),
+          //       onPressed: (){
+          //     _clearHistory();
+          //   }, child: Text("Clear all")),
+          // ),
+          SizedBox(
+            height: screenSize.height - 220,
             child: ListView.builder(
               itemCount: finalScoresList.length,
               itemBuilder: (context, index) {
                 final finalScoreData = finalScoresList[index];
                 return ListTile(
                   title: Container(
-
+                    padding: EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.rectangle,
@@ -119,6 +127,15 @@ class _HistoryPageState extends State<HistoryPage> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("Name", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 5,),
                             Container(
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -153,9 +170,19 @@ class _HistoryPageState extends State<HistoryPage> {
                             ),
                           ],
                         ),
+                        SizedBox(width: 50,),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+                            Container(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("Points", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 5,),
                             Container(
                               width: screenSize.width/4,
                               child: Row(
@@ -267,9 +294,9 @@ class _HistoryPageState extends State<HistoryPage> {
                 children: [
                   SizedBox(
                     height: 50,
-                    width: 90,
+                    // width: 90,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      padding: const EdgeInsets.symmetric(vertical: 1),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                           onPressed: () async{
@@ -279,11 +306,11 @@ class _HistoryPageState extends State<HistoryPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 20,),
+                  SizedBox(width: 10,),
                   SizedBox(
                     height: 50,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      padding: const EdgeInsets.symmetric(vertical: 1),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
                           onPressed: () async {
