@@ -265,6 +265,8 @@ class _AddPointsPageState extends State<AddPointsPage> {
                               child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
                                   onPressed: (){
+                                    FocusScope.of(context).unfocus();
+
                                     final score1 = score1Controller.text;
                                     final score2 = score2Controller.text;
                                     final score3 = score3Controller.text;

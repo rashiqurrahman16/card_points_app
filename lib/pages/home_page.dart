@@ -5,9 +5,9 @@ import 'package:hazari/pages/about_us.dart';
 import 'package:hazari/pages/history_page.dart';
 import 'package:hazari/pages/rules_page.dart';
 import 'package:hazari/models/name_score_model.dart';
+import 'package:hazari/pages/score_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hazari/widgets/exit_confirmation_page.dart';
-import '../widgets/name_confirmation_page.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -217,7 +217,13 @@ class _HomePageState extends State<HomePage> {
                             );
                             final box = Boxes.getNames();
                             box.add(nameData);
-                            await NameConfirmationPage().nameConfirmationDialog(context, player1, player2, player3, player4);
+                            await Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ScorePage(
+                                  )
+                              ),
+                            );
                           },
                           child: Text("Start", style: TextStyle(color: Colors.white),)),
                     )

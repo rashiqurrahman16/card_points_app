@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hazari/models/name_score_model.dart';
 import '../boxes/boxes.dart';
 import '../widgets/exit_confirmation_page.dart';
 import 'about_us.dart';
@@ -8,7 +9,6 @@ import 'home_page.dart';
 class Player {
   String name;
   int score;
-
   Player(this.name, this.score);
 }
 
@@ -50,6 +50,27 @@ class _WinnerPageState extends State<WinnerPage> {
     players.add(Player(widget.player4, widget.totalScore4));
     // Sort players by score in descending order
     players.sort((a, b) => b.score.compareTo(a.score));
+
+    // Save sorted data to FinalScoreModel
+    _saveFinalScores();
+  }
+  void _saveFinalScores() async {
+    final finalScoreBox = await Boxes.getFinalScores();
+    final finalScores = FinalScoreModel(
+      finalPlayer1: players[0].name,
+      finalScore1: players[0].score,
+      finalPlayer2: players[1].name,
+      finalScore2: players[1].score,
+      finalPlayer3: players[2].name,
+      finalScore3: players[2].score,
+      finalPlayer4: players[3].name,
+      finalScore4: players[3].score,
+    );
+    if (finalScoreBox.length >= 3) {
+      // Remove the oldest score (index 0) before adding a new one
+      await finalScoreBox.deleteAt(0);
+    }
+    await finalScoreBox.add(finalScores);
   }
 
   @override
@@ -136,7 +157,10 @@ class _WinnerPageState extends State<WinnerPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Scoreboard", style: TextStyle(color: Colors.blue.shade800, fontSize: 30, fontWeight: FontWeight.w800, ),),
+                      Container(
+                          margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                          child: Text("Scoreboard", style: TextStyle(color: Colors.blue.shade800, fontSize: 25, fontWeight: FontWeight.w800, ),)
+                      ),
                     ],
                   ),
                   SizedBox(height: 10,),
@@ -171,14 +195,6 @@ class _WinnerPageState extends State<WinnerPage> {
                       decoration: BoxDecoration(
                         color: Colors.blue.shade800,
                         borderRadius: BorderRadius.circular(10),
-                        // boxShadow: [ // Optional shadow effect
-                        //   BoxShadow(
-                        //     color: Colors.grey.withOpacity(0.2), // Adjust opacity for subtlety
-                        //     spreadRadius: 2.0, // Adjust spread for desired effect
-                        //     blurRadius: 5.0, // Adjust blur for desired effect
-                        //     offset: Offset(0.0, 2.0), // Adjust offset for shadow direction
-                        //   ),
-                        // ],
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
