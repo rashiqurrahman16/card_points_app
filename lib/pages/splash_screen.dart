@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hazari/pages/home_page.dart';
 
 
@@ -35,10 +36,10 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
     final screenSize=MediaQuery.of(context).size;
 
     return Scaffold(
-      body: Column(
+      body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image(

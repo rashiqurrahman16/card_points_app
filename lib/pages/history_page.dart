@@ -82,98 +82,299 @@ class _HistoryPageState extends State<HistoryPage> {
       ),
       body: ListView(
         children: [
-          ElevatedButton(onPressed: (){
-            _clearHistory();
-          }, child: Text("Clear all")),
+          Container(
+            width: screenSize.width,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.rectangle,
+              // borderRadius: BorderRadius.circular(20.0),
+            ),
+            child: Center(
+              child: Text("Previous Scores", style: TextStyle(
+                color: Colors.orange.shade400,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),),
+            ),
+          ),
           SizedBox(
-            height: screenSize.height - 120,
+            height: screenSize.height - 220,
             child: ListView.builder(
               itemCount: finalScoresList.length,
               itemBuilder: (context, index) {
                 final finalScoreData = finalScoresList[index];
                 return ListTile(
-                  title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(finalScoreData.finalPlayer1)
-                              ],
-                            ),
+                  title: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: screenSize.width*.80,
+                          margin: EdgeInsets.symmetric(vertical: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade500,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(finalScoreData.finalPlayer2)
-                              ],
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: screenSize.width*.20,
+                                child: Text('1st', style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),),
+                              ),
+                              Container(
+                                  width: screenSize.width*.40,
+                                  child: Text(finalScoreData.finalPlayer1, style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),)
+                              ),
+                              Container(
+                                  width: screenSize.width*.15,
+                                  child: Text(finalScoreData.finalScore1.toString(), style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),textAlign: TextAlign.right
+                                  )
+                              ),
+                            ],
                           ),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(finalScoreData.finalPlayer3)
-                              ],
-                            ),
+                        ),
+                        Container(
+                          width: screenSize.width*.80,
+                          margin: EdgeInsets.symmetric(vertical: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade600,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(finalScoreData.finalPlayer4)
-                              ],
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: screenSize.width*.20,
+                                child: Text('2nd', style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),),
+                              ),
+                              Container(
+                                  width: screenSize.width*.40,
+                                  child: Text(finalScoreData.finalPlayer2, style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),)
+                              ),
+                              Container(
+                                  width: screenSize.width*.15,
+                                  child: Text(finalScoreData.finalScore2.toString(), style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),textAlign: TextAlign.right
+                                  )
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: screenSize.width/4,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(finalScoreData.finalScore1.toString()),
-                              ],
-                            ),
+                        ),
+                        Container(
+                          width: screenSize.width*.80,
+                          margin: EdgeInsets.symmetric(vertical: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade500,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          Container(
-                            width: screenSize.width/4,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(finalScoreData.finalScore2.toString()),
-                              ],
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: screenSize.width*.20,
+                                child: Text('3rd', style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                ),),
+                              ),
+                              Container(
+                                  width: screenSize.width*.40,
+                                  child: Text(finalScoreData.finalPlayer3, style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),)
+                              ),
+                              Container(
+                                  width: screenSize.width*.15,
+                                  child: Text(finalScoreData.finalScore3.toString(), style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                  ),textAlign: TextAlign.right
+                                  )
+                              ),
+                            ],
                           ),
-                          Container(
-                            width: screenSize.width/4,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(finalScoreData.finalScore3.toString()),
-                              ],
-                            ),
+                        ),
+                        Container(
+                          width: screenSize.width*.80,
+                          margin: EdgeInsets.symmetric(vertical: 5),
+                          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade600,
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          Container(
-                            width: screenSize.width/5,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(finalScoreData.finalScore4.toString()),
-                              ],
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: screenSize.width*.20,
+                                child: Text('4th', style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                ),),
+                              ),
+                              Container(
+                                  width: screenSize.width*.40,
+                                  child: Text(finalScoreData.finalPlayer4, style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                  ),)
+                              ),
+                              Container(
+                                  width: screenSize.width*.15,
+                                  child: Text(finalScoreData.finalScore4.toString(), style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w600,
+                                  ),textAlign: TextAlign.right
+                                  )
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    )
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Column(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: [
+                    //         Container(
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text("Name", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         SizedBox(height: 5,),
+                    //         Container(
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text(finalScoreData.finalPlayer1)
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text(finalScoreData.finalPlayer2)
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text(finalScoreData.finalPlayer3)
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text(finalScoreData.finalPlayer4)
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     SizedBox(width: 50,),
+                    //     Column(
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: [
+                    //         Container(
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text("Points", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         SizedBox(height: 5,),
+                    //         Container(
+                    //           width: screenSize.width/4,
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text(finalScoreData.finalScore1.toString()),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           width: screenSize.width/4,
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text(finalScoreData.finalScore2.toString()),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           width: screenSize.width/4,
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text(finalScoreData.finalScore3.toString()),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //         Container(
+                    //           width: screenSize.width/5,
+                    //           child: Row(
+                    //             mainAxisAlignment: MainAxisAlignment.center,
+                    //             children: [
+                    //               Text(finalScoreData.finalScore4.toString()),
+                    //             ],
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
                   ),
                 );
               }
@@ -206,6 +407,20 @@ class _HistoryPageState extends State<HistoryPage> {
                     onPressed: () => Navigator.pop(context),
                     child: Text("Back",
                       style: TextStyle(color: Colors.white, fontSize: 14),
+                )),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.shade400,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(
+                          color: Colors.blue.shade600,  // Set border color to white
+                          width: 2.0,           // Adjust border width as desired
+                        ),
+                      ),
+                    ),
+                    onPressed: (){_clearHistory();}, child: Text("Clear all",
+                  style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
 
                 ElevatedButton(
@@ -245,9 +460,9 @@ class _HistoryPageState extends State<HistoryPage> {
                 children: [
                   SizedBox(
                     height: 50,
-                    width: 90,
+                    // width: 90,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      padding: const EdgeInsets.symmetric(vertical: 1),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                           onPressed: () async{
@@ -257,11 +472,11 @@ class _HistoryPageState extends State<HistoryPage> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 20,),
+                  SizedBox(width: 10,),
                   SizedBox(
                     height: 50,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      padding: const EdgeInsets.symmetric(vertical: 1),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
                           onPressed: () async {
@@ -270,7 +485,11 @@ class _HistoryPageState extends State<HistoryPage> {
                             setState(() {
                               finalScoresList = [];
                             });
-                            onPressed: () => Navigator.pop(context);
+                            Navigator.of(context).popUntil((route) => route.isFirst);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => HistoryPage()),
+                            );
                           },
                           child: Text('Confirm', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),

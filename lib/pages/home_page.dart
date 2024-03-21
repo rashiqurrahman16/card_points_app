@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hazari/boxes/boxes.dart';
 import 'package:hazari/pages/about_us.dart';
+import 'package:hazari/pages/history_page.dart';
 import 'package:hazari/pages/rules_page.dart';
 import 'package:hazari/models/name_score_model.dart';
+import 'package:hazari/pages/score_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hazari/widgets/exit_confirmation_page.dart';
-import '../widgets/name_confirmation_page.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -216,7 +217,13 @@ class _HomePageState extends State<HomePage> {
                             );
                             final box = Boxes.getNames();
                             box.add(nameData);
-                            await NameConfirmationPage().nameConfirmationDialog(context, player1, player2, player3, player4);
+                            await Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const ScorePage(
+                                  )
+                              ),
+                            );
                           },
                           child: Text("Start", style: TextStyle(color: Colors.white),)),
                     )
@@ -261,6 +268,25 @@ class _HomePageState extends State<HomePage> {
                       );
                     }, child: Text("Rules",
                 style: TextStyle(color: Colors.white, fontSize: 14),
+                )),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue.shade400,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        side: BorderSide(
+                          color: Colors.blue.shade600,  // Set border color to white
+                          width: 2.0,           // Adjust border width as desired
+                        ),
+                      ),
+                    ),
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => HistoryPage(),
+                        ),
+                      );
+                    }, child: Text("History",
+                  style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
 
                 ElevatedButton(

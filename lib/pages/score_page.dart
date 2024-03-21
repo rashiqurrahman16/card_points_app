@@ -143,6 +143,7 @@ class _ScorePageState extends State<ScorePage> {
           automaticallyImplyLeading: false,
         ),
         body: ListView(
+
           children:[
             if((scoresList.length==0)||(scoresList.length%2==0 && scoresList.length%4==0))
               NameRow(dealer: 1, player1: player1, player2: player2, player3: player3, player4: player4),
@@ -156,7 +157,7 @@ class _ScorePageState extends State<ScorePage> {
 
 
           SizedBox(
-            height: screenSize.height - 120,
+            height: screenSize.height-260,
             child: ListView.builder(
                 itemCount: scoresList.length,
                 itemBuilder: (context, index) {
@@ -169,21 +170,26 @@ class _ScorePageState extends State<ScorePage> {
                           const SizedBox(height: 5),
                           ScoreRow(scoreData: scoreData),
                           if (index == scoresList.length - 1)
-                          TotalScore(
-                          totalScore1: calculateTotalScore1(scoresList),
-                          totalScore2: calculateTotalScore2(scoresList),
-                          totalScore3: calculateTotalScore3(scoresList),
-                          totalScore4: calculateTotalScore4(scoresList),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
+                            child: TotalScore(
+                            totalScore1: calculateTotalScore1(scoresList),
+                            totalScore2: calculateTotalScore2(scoresList),
+                            totalScore3: calculateTotalScore3(scoresList),
+                            totalScore4: calculateTotalScore4(scoresList),
+                            ),
                           ),
 
-                          if (calculateTotalScore1(scoresList)>=500 && calculateTotalScore1(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore4(scoresList))
-                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
-                          if (calculateTotalScore2(scoresList)>=500 && calculateTotalScore2(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore4(scoresList))
-                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
-                          if (calculateTotalScore3(scoresList)>=500 && calculateTotalScore3(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore4(scoresList))
-                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
-                          if (calculateTotalScore4(scoresList)>=500 && calculateTotalScore4(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore3(scoresList))
-                            _riderctToWinnerPage(calculateTotalScore1(scoresList), calculateTotalScore2(scoresList), calculateTotalScore3(scoresList), calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore1(scoresList)>=1000 && calculateTotalScore1(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore4(scoresList))
+                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore2(scoresList)>=1000 && calculateTotalScore2(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore4(scoresList))
+                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore3(scoresList)>=1000 && calculateTotalScore3(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore4(scoresList))
+                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore4(scoresList)>=1000 && calculateTotalScore4(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore3(scoresList))
+                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                          if (calculateTotalScore1(scoresList)>=2000 || calculateTotalScore2(scoresList)>=2000 || calculateTotalScore3(scoresList)>=2000 || calculateTotalScore4(scoresList)>=2000)
+                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
                         ]
                     );
 
@@ -252,6 +258,7 @@ class _ScorePageState extends State<ScorePage> {
             ),
 
           ),
+          height: 80.0,
         )
 
       ),
@@ -384,30 +391,13 @@ class _ScorePageState extends State<ScorePage> {
   //   );
   // }
 
-  _riderctToWinnerPage(totalScore1, totalScore2, totalScore3, totalScore4) {
+  _riderctToWinnerPage(player1, totalScore1, player2, totalScore2, player3, totalScore3, player4, totalScore4) {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-
-
-      final finalScoreData = FinalScoreModel(
-      finalPlayer1: player1,
-      finalScore1: totalScore1,
-      finalPlayer2: player2,
-      finalScore2: totalScore2,
-      finalPlayer3: player3,
-      finalScore3: totalScore3,
-      finalPlayer4: player4,
-      finalScore4: totalScore4,
-      );
-      final box = Boxes.getFinalScores();
-      if (box.length >= 3) {
-        // Remove the oldest score (index 0) before adding a new one
-        await box.deleteAt(0);
-      }
-      box.add(finalScoreData);
+      FocusScope.of(context).unfocus();
       Navigator.of(context).popUntil((route) => route.isFirst);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => WinnerPage(totalScore1: totalScore1, totalScore2: totalScore2, totalScore3: totalScore3, totalScore4: totalScore4,)),
+        MaterialPageRoute(builder: (context) => WinnerPage(player1: player1, totalScore1: totalScore1, player2: player2, totalScore2: totalScore2, player3: player3, totalScore3: totalScore3, player4: player4, totalScore4: totalScore4)),
       );
     });
   }

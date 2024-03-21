@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:hazari/widgets/exit_confirmation_page.dart';
 import 'about_us.dart';
-import 'home_page.dart';
 
 class RulesPage extends StatelessWidget {
   const RulesPage({super.key});
@@ -213,8 +212,8 @@ class RulesPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onPressed: (){
-                      _showExitConfirmationDialog(context);
+                    onPressed: () async {
+                      await ExitConfirmationPage().showExitConfirmationDialog(context);
                     }, child: Text("Exit Game",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
@@ -227,51 +226,4 @@ class RulesPage extends StatelessWidget {
     );
   }
 
-  Future<void> _showExitConfirmationDialog(BuildContext context) async {
-    // Set flag to prevent immediate exit
-    return showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
-        content: Text('Are you sure you want to exit the game?'),
-        actions: [
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 50,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
-                    onPressed: () {
-                      Navigator.pop(context); // Cancel exit
-                    },
-                    child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
-                  ),
-                ),
-              ),
-              SizedBox(width: 20,),
-              SizedBox(
-                height: 50,
-                width: 100,
-                child: Padding(
-                  padding: const EdgeInsets.all(3),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
-                    onPressed: () {
-                      SystemNavigator.pop(); // Exit the app
-                    },
-                    child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 }

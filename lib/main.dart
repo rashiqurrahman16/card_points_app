@@ -37,6 +37,8 @@ class MyApp extends StatelessWidget {
       title: 'Hazari App',
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.blue.shade50,
+        dialogTheme: DialogTheme(backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent),
       ),
       debugShowCheckedModeBanner: false,
       home: const SplashScreenPage(),
