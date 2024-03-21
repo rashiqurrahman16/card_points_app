@@ -234,7 +234,7 @@ class _WinnerPageState extends State<WinnerPage> {
                           ),
 
                           Container(
-                            width: screenSize.width*.55,
+                            width: screenSize.width*.45,
                             child: (i==0) ? Text(
                               players[i].name,
                               style: TextStyle(
@@ -263,7 +263,7 @@ class _WinnerPageState extends State<WinnerPage> {
                           ),
 
                           Container(
-                            width: screenSize.width*.10,
+                            width: screenSize.width*.20,
                             child: (i==0) ? Text(
                                 players[i].score.toString(),
                                 style: TextStyle(

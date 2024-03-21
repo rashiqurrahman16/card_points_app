@@ -135,7 +135,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),),
                               ),
                               Container(
-                                  width: screenSize.width*.45,
+                                  width: screenSize.width*.40,
                                   child: Text(finalScoreData.finalPlayer1, style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -143,7 +143,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),)
                               ),
                               Container(
-                                  width: screenSize.width*.10,
+                                  width: screenSize.width*.15,
                                   child: Text(finalScoreData.finalScore1.toString(), style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -174,7 +174,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),),
                               ),
                               Container(
-                                  width: screenSize.width*.45,
+                                  width: screenSize.width*.40,
                                   child: Text(finalScoreData.finalPlayer2, style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -182,7 +182,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),)
                               ),
                               Container(
-                                  width: screenSize.width*.10,
+                                  width: screenSize.width*.15,
                                   child: Text(finalScoreData.finalScore2.toString(), style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -213,7 +213,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),),
                               ),
                               Container(
-                                  width: screenSize.width*.45,
+                                  width: screenSize.width*.40,
                                   child: Text(finalScoreData.finalPlayer3, style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -221,7 +221,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),)
                               ),
                               Container(
-                                  width: screenSize.width*.10,
+                                  width: screenSize.width*.15,
                                   child: Text(finalScoreData.finalScore3.toString(), style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -252,7 +252,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),),
                               ),
                               Container(
-                                  width: screenSize.width*.45,
+                                  width: screenSize.width*.40,
                                   child: Text(finalScoreData.finalPlayer4, style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -260,7 +260,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),)
                               ),
                               Container(
-                                  width: screenSize.width*.10,
+                                  width: screenSize.width*.15,
                                   child: Text(finalScoreData.finalScore4.toString(), style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
