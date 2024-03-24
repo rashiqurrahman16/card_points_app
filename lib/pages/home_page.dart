@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hazari/boxes/boxes.dart';
-import 'package:hazari/pages/about_us.dart';
-import 'package:hazari/pages/history_page.dart';
-import 'package:hazari/pages/rules_page.dart';
-import 'package:hazari/models/name_score_model.dart';
-import 'package:hazari/pages/score_page.dart';
+import 'package:Hazari/boxes/boxes.dart';
+import 'package:Hazari/pages/about_us.dart';
+import 'package:Hazari/pages/history_page.dart';
+import 'package:Hazari/pages/rules_page.dart';
+import 'package:Hazari/models/name_score_model.dart';
+import 'package:Hazari/pages/score_page.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:hazari/widgets/exit_confirmation_page.dart';
+import 'package:Hazari/widgets/exit_confirmation_page.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 10,),
                   Center(
                     child: Text(
-                        "Players Name",
+                        "খেলোয়াড়দের নাম",
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w400,
@@ -136,10 +136,8 @@ class _HomePageState extends State<HomePage> {
                       child: TextField(
                         controller: player1Controller,
                         decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-
-                            ),
-                            labelText: "Player 1 - Dealer",
+                            border: OutlineInputBorder(),
+                            labelText: "১ম খেলোয়াড় - ডিলার",
                           counterText: "",
                           contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10)),
                         maxLength: 8,
@@ -150,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                         controller: player2Controller,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: "Player 2",
+                            labelText: "২য় খেলোয়াড়",
                           counterText: "",
                             contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10)),
                         maxLength: 8,
@@ -161,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                         controller: player3Controller,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: "Player 3",
+                            labelText: "৩য় খেলোয়াড়",
                           counterText: "",
                             contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10)),
                         maxLength: 8,
@@ -172,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                         controller: player4Controller,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
-                            labelText: "Player 4",
+                            labelText: "৪র্থ খেলোয়াড়",
                           counterText: "",
                             contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10)),
                         maxLength: 8,
@@ -225,7 +223,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           },
-                          child: Text("Start", style: TextStyle(color: Colors.white),)),
+                          child: Text("শুরু করুন", style: TextStyle(color: Colors.white),)),
                     )
                   ),
         
@@ -266,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                         context,
                         MaterialPageRoute(builder: (context) => RulesPage()),
                       );
-                    }, child: Text("Rules",
+                    }, child: Text("নিয়ম",
                 style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
                 ElevatedButton(
@@ -285,7 +283,7 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => HistoryPage(),
                         ),
                       );
-                    }, child: Text("History",
+                    }, child: Text("ইতিহাস",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
 
@@ -302,7 +300,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     onPressed: () async {
                       await ExitConfirmationPage().showExitConfirmationDialog(context);
-                    }, child: Text("Exit Game",
+                    }, child: Text("প্রস্থান",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
               ],

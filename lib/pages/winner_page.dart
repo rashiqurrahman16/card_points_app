@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hazari/models/name_score_model.dart';
+import 'package:Hazari/models/name_score_model.dart';
 import '../boxes/boxes.dart';
 import '../widgets/exit_confirmation_page.dart';
 import 'about_us.dart';

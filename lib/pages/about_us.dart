@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hazari/widgets/exit_confirmation_page.dart';
+import 'package:Hazari/widgets/exit_confirmation_page.dart';
 
 
 class AboutUsPage extends StatelessWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hazari/pages/splash_screen.dart';
+import 'package:Hazari/pages/splash_screen.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:hazari/models/name_score_model.dart';
+import 'package:Hazari/models/name_score_model.dart';
 
 
 

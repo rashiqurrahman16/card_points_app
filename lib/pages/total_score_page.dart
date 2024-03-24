@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hazari/pages/winner_page.dart';
 import '../models/name_score_model.dart';
 
 
