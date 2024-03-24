@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hazari/pages/about_us.dart';
-import 'package:hazari/pages/rules_page.dart';
-import 'package:hazari/widgets/exit_confirmation_page.dart';
+import 'package:Hazari/pages/about_us.dart';
+import 'package:Hazari/pages/rules_page.dart';
+import 'package:Hazari/widgets/exit_confirmation_page.dart';
 
 import '../boxes/boxes.dart';
 import '../models/name_score_model.dart';

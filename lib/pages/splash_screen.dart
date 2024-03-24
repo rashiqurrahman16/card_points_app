@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:hazari/pages/home_page.dart';
+import 'package:Hazari/pages/home_page.dart';
 
 
 class SplashScreenPage extends StatefulWidget {
@@ -68,7 +68,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
               Text("Developed By", style: TextStyle(fontWeight: FontWeight.w600),),
               Image(
                 image: AssetImage('assets/Logo.png'),
-                height: 60,
+                height: 35,
               ),
             ],
           ),

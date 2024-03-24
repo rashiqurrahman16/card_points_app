@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hazari/boxes/boxes.dart';
-import 'package:hazari/pages/home_page.dart';
-import 'package:hazari/pages/name_row_page.dart';
-import 'package:hazari/pages/score_row_page.dart';
-import 'package:hazari/pages/total_score_page.dart';
-import 'package:hazari/pages/winner_page.dart';
+import 'package:Hazari/boxes/boxes.dart';
+import 'package:Hazari/pages/home_page.dart';
+import 'package:Hazari/pages/name_row_page.dart';
+import 'package:Hazari/pages/score_row_page.dart';
+import 'package:Hazari/pages/total_score_page.dart';
+import 'package:Hazari/pages/winner_page.dart';
 import '../models/name_score_model.dart';
 import '../widgets/add_points_page.dart';
 import '../widgets/exit_confirmation_page.dart';

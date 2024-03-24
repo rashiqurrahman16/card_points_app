@@ -45,7 +45,7 @@ class NameRow extends StatelessWidget {
                 children: [
                   Icon(Icons.front_hand, size: 13,),
                   SizedBox(width: 5,),
-                  Text("dealer",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                  Text("ডিলার",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
                 ],
               )
                   : Text(""),
@@ -65,7 +65,7 @@ class NameRow extends StatelessWidget {
                 children: [
                   Icon(Icons.front_hand, size: 13,),
                   SizedBox(width: 5,),
-                  Text("dealer",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                  Text("ডিলার",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
                 ],
               )
                   : Text(""),
@@ -85,7 +85,7 @@ class NameRow extends StatelessWidget {
                 children: [
                   Icon(Icons.front_hand, size: 13,),
                   SizedBox(width: 5,),
-                  Text("dealer",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                  Text("ডিলার",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
                 ],
               )
                   : Text(""),
@@ -105,7 +105,7 @@ class NameRow extends StatelessWidget {
                 children: [
                   Icon(Icons.front_hand, size: 13,),
                   SizedBox(width: 5,),
-                  Text("dealer",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
+                  Text("ডিলার",style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, fontStyle: FontStyle.italic),),
                 ],
               )
                   : Text(""),
@@ -113,6 +113,7 @@ class NameRow extends StatelessWidget {
           ],
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
               decoration: BoxDecoration(
@@ -123,11 +124,12 @@ class NameRow extends StatelessWidget {
                   ),
               ),
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(2),
+              height: 50,
               width: screenSize.width / 4,
               child: Text(player1, style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 15,),),
+                  fontSize: 14,),),
 
             ),
             Container(
@@ -140,11 +142,12 @@ class NameRow extends StatelessWidget {
               ),
               alignment: Alignment.center,
 
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(2),
+              height: 50,
               width: screenSize.width / 4,
               child: Text(player2, style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 15,),),
+                  fontSize: 14,),),
             ),
             Container(
               decoration: BoxDecoration(
@@ -155,11 +158,12 @@ class NameRow extends StatelessWidget {
                 ),
               ),
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(2),
+              height: 50,
               width: screenSize.width / 4,
               child: Text(player3, style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 15,),),
+                  fontSize: 14,),),
             ),
             Container(
               decoration: BoxDecoration(
@@ -170,14 +174,13 @@ class NameRow extends StatelessWidget {
                 ),
               ),
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(2),
+              height: 50,
               width: screenSize.width / 4,
               child: Text(player4, style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 15,),),
+                  fontSize: 14,),),
             ),
-
-
           ],
         ),
 
