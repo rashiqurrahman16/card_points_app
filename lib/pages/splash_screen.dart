@@ -68,7 +68,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
               Text("Developed By", style: TextStyle(fontWeight: FontWeight.w600),),
               Image(
                 image: AssetImage('assets/Logo.png'),
-                height: 60,
+                height: 35,
               ),
             ],
           ),
