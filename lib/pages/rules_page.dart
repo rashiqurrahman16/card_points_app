@@ -32,22 +32,6 @@ class RulesPage extends StatelessWidget {
               Spacer(),
               Row(
                 children: [
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(builder: (context) => AboutUsPage()),
-                  //     );
-                  //   },
-                  //   child: Text(
-                  //     "আমাদের সম্পর্কে",
-                  //     style: TextStyle(
-                  //       color: Colors.white,
-                  //       fontSize: 16,
-                  //       fontWeight: FontWeight.w400,
-                  //     ),
-                  //   ),
-                  // ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -161,12 +145,6 @@ class RulesPage extends StatelessWidget {
                     Text("The player with the highest score at the end of the game wins!", style: TextStyle(fontSize: 14),
                       textAlign: TextAlign.justify,),
                     SizedBox(height: 40,),
-
-
-
-
-
-
                   ],
                 ),
               ),
@@ -197,7 +175,7 @@ class RulesPage extends StatelessWidget {
                       ),
                     ),
                     onPressed: () => Navigator.pop(context),
-                    child: Text("Back",
+                    child: Text("পেছনে",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
 
@@ -214,7 +192,7 @@ class RulesPage extends StatelessWidget {
                     ),
                     onPressed: () async {
                       await ExitConfirmationPage().showExitConfirmationDialog(context);
-                    }, child: Text("Exit Game",
+                    }, child: Text("বাহির",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
               ],

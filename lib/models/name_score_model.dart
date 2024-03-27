@@ -65,6 +65,9 @@ class FinalScoreModel {
   String finalPlayer4;
   @HiveField(7)
   int finalScore4;
+  @HiveField(8)
+  String time;
+
 
   FinalScoreModel({
     required this.finalPlayer1,
@@ -75,6 +78,7 @@ class FinalScoreModel {
     required this.finalScore3,
     required this.finalPlayer4,
     required this.finalScore4,
+    required this.time,
   });
 
 }

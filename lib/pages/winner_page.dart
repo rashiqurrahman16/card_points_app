@@ -22,6 +22,7 @@ class WinnerPage extends StatefulWidget {
   final int totalScore3;
   final String player4;
   final int totalScore4;
+  final String currentDate;
 
   const WinnerPage({
     required this.player1,
@@ -32,6 +33,7 @@ class WinnerPage extends StatefulWidget {
     required this.totalScore3,
     required this.player4,
     required this.totalScore4,
+    required this.currentDate,
     super.key});
 
   @override
@@ -65,6 +67,7 @@ class _WinnerPageState extends State<WinnerPage> {
       finalScore3: players[2].score,
       finalPlayer4: players[3].name,
       finalScore4: players[3].score,
+      time: widget.currentDate,
     );
     if (finalScoreBox.length >= 3) {
       // Remove the oldest score (index 0) before adding a new one
@@ -159,7 +162,7 @@ class _WinnerPageState extends State<WinnerPage> {
                     children: [
                       Container(
                           margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
-                          child: Text("Scoreboard", style: TextStyle(color: Colors.blue.shade800, fontSize: 25, fontWeight: FontWeight.w800, ),)
+                          child: Text("স্কোরবোর্ড", style: TextStyle(color: Colors.blue.shade800, fontSize: 25, fontWeight: FontWeight.w800, ),)
                       ),
                     ],
                   ),
@@ -202,29 +205,25 @@ class _WinnerPageState extends State<WinnerPage> {
                           Container(
                             width: screenSize.width*.20,
                             padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                            child: (i==0) ? Text(
-                              (i + 1).toString()+"st", // Rank
+                            child: (i==0) ? Text("1st",
                               style: TextStyle(
                                 color: Colors.lightGreen.shade400,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                               ),
-                            ) : (i==1) ? Text(
-                              (i + 1).toString()+"nd", // Rank
+                            ) : (i==1) ? Text("2nd",
                               style: TextStyle(
                                 color: Colors.yellow.shade600,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                               ),
-                            ) : (i==2) ? Text(
-                              (i + 1).toString()+"rd", // Rank
+                            ) : (i==2) ? Text("3rd",
                               style: TextStyle(
                                 color: Colors.tealAccent.shade400,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
                               ),
-                            ) : Text(
-                              (i + 1).toString()+"th", // Rank
+                            ) : Text("4th",
                               style: TextStyle(
                                 color: Colors.orange.shade300,
                                 fontSize: 18,
@@ -234,7 +233,7 @@ class _WinnerPageState extends State<WinnerPage> {
                           ),
 
                           Container(
-                            width: screenSize.width*.45,
+                            width: screenSize.width*.40,
                             child: (i==0) ? Text(
                               players[i].name,
                               style: TextStyle(
@@ -263,30 +262,30 @@ class _WinnerPageState extends State<WinnerPage> {
                           ),
 
                           Container(
-                            width: screenSize.width*.20,
+                            width: screenSize.width*.25,
                             child: (i==0) ? Text(
-                                players[i].score.toString(),
+                                players[i].score.toString()+" pts",
                                 style: TextStyle(
                                   color: Colors.lightGreen.shade400,
                                   fontSize: 18,
                                 ),
                                 textAlign: TextAlign.right
                             ) : (i==1) ? Text(
-                                players[i].score.toString(),
+                                players[i].score.toString()+" pts",
                                 style: TextStyle(
                                   color: Colors.yellow.shade600,
                                   fontSize: 18,
                                 ),
                                 textAlign: TextAlign.right
                             ) : (i==2) ? Text(
-                                players[i].score.toString(),
+                                players[i].score.toString()+" pts",
                                 style: TextStyle(
                                   color: Colors.tealAccent.shade400,
                                   fontSize: 18,
                                 ),
                                 textAlign: TextAlign.right
                             ) : Text(
-                                players[i].score.toString(),
+                                players[i].score.toString()+" pts",
                                 style: TextStyle(
                                   color: Colors.orange.shade300,
                                   fontSize: 18,
@@ -298,89 +297,6 @@ class _WinnerPageState extends State<WinnerPage> {
                       ),
 
                     ),
-
-
-
-                  // Container(
-                  //   width: screenSize.width/2,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text("${widget.player1}",
-                  //         style: TextStyle(
-                  //           color: Colors.orange.shade400,
-                  //           fontSize: 25,
-                  //         ),),
-                  //       SizedBox(width: 15,),
-                  //       Text("${widget.totalScore1}",
-                  //         style: TextStyle(
-                  //           color: Colors.orange.shade400,
-                  //           fontSize: 18,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // Container(
-                  //   width: screenSize.width/2,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text("${widget.player2}",
-                  //         style: TextStyle(
-                  //           color: Colors.orange.shade400,
-                  //           fontSize: 25,
-                  //         ),),
-                  //       SizedBox(width: 15,),
-                  //       Text("${widget.totalScore2}",
-                  //         style: TextStyle(
-                  //           color: Colors.orange.shade400,
-                  //           fontSize: 18,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // Container(
-                  //   width: screenSize.width/2,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text("${widget.player3}",
-                  //         style: TextStyle(
-                  //           color: Colors.orange.shade400,
-                  //           fontSize: 25,
-                  //         ),),
-                  //       SizedBox(width: 15,),
-                  //       Text("${widget.totalScore3}",
-                  //         style: TextStyle(
-                  //           color: Colors.orange.shade400,
-                  //           fontSize: 18,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // Container(
-                  //   width: screenSize.width/2,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text("${widget.player4}",
-                  //         style: TextStyle(
-                  //           color: Colors.orange.shade400,
-                  //           fontSize: 25,
-                  //         ),),
-                  //       // SizedBox(width: 15,),
-                  //       Text("${widget.totalScore4}",
-                  //         style: TextStyle(
-                  //           color: Colors.orange.shade400,
-                  //           fontSize: 18,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ]
             ),
           )
@@ -410,7 +326,7 @@ class _WinnerPageState extends State<WinnerPage> {
                   ),
                   onPressed: (){
                     _showRefreshDialog();
-                  }, child: Text("Restart",
+                  }, child: Text("পুনরারম্ভ",
                 style: TextStyle(color: Colors.white, fontSize: 14),
               )),
 
@@ -427,7 +343,7 @@ class _WinnerPageState extends State<WinnerPage> {
                   ),
                   onPressed: () async {
                     await ExitConfirmationPage().showExitConfirmationDialog(context);
-                  }, child: Text("Exit Game",
+                  }, child: Text("বাহির",
                 style: TextStyle(color: Colors.white, fontSize: 14),
               )),
             ],
@@ -443,7 +359,7 @@ class _WinnerPageState extends State<WinnerPage> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Center(child: Text('Want to Restart the game?', style: TextStyle(fontSize: 18),)),
+            title: Center(child: Text('গেমটি পুনরায় চালু করতে চান?', style: TextStyle(fontSize: 18),)),
 
             actions: [
               Row(
@@ -459,7 +375,7 @@ class _WinnerPageState extends State<WinnerPage> {
                           onPressed: () async{
                             Navigator.pop(context);
                           },
-                          child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),)
+                          child: Text('না', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
                     ),
                   ),
@@ -485,7 +401,7 @@ class _WinnerPageState extends State<WinnerPage> {
                               ),
                             );
                           },
-                          child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),)
+                          child: Text('হ্যাঁ', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
                     ),
                   )

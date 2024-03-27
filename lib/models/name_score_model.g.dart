@@ -111,13 +111,14 @@ class FinalScoreModelAdapter extends TypeAdapter<FinalScoreModel> {
       finalScore3: fields[5] as int,
       finalPlayer4: fields[6] as String,
       finalScore4: fields[7] as int,
+      time: fields[8] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, FinalScoreModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.finalPlayer1)
       ..writeByte(1)
@@ -133,7 +134,9 @@ class FinalScoreModelAdapter extends TypeAdapter<FinalScoreModel> {
       ..writeByte(6)
       ..write(obj.finalPlayer4)
       ..writeByte(7)
-      ..write(obj.finalScore4);
+      ..write(obj.finalScore4)
+      ..writeByte(8)
+      ..write(obj.time);
   }
 
   @override

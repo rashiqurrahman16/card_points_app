@@ -7,10 +7,9 @@ class ExitConfirmationPage{
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
-        content: Text('Are you sure you want to exit the game?'),
+        title: Center(child: Text('খেলা থেকে বাহির', style: TextStyle(fontSize: 18),)),
+        content: Text('আপনি কি নিশ্চিত যে আপনি গেম থেকে বাহির হতে চান?'),
         actions: [
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -25,7 +24,7 @@ class ExitConfirmationPage{
                       Navigator.pop(context); // Cancel exit
                       // _willExitApp = false; // Reset flag
                     },
-                    child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
+                    child: Text('না', style: TextStyle(color: Colors.white, fontSize: 18),),
                   ),
                 ),
               ),
@@ -40,7 +39,7 @@ class ExitConfirmationPage{
                     onPressed: () {
                       SystemNavigator.pop(); // Exit the app
                     },
-                    child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
+                    child: Text('হ্যাঁ', style: TextStyle(color: Colors.white, fontSize: 18),),
                   ),
                 ),
               ),

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:Hazari/pages/about_us.dart';
-import 'package:Hazari/pages/rules_page.dart';
 import 'package:Hazari/widgets/exit_confirmation_page.dart';
 
 import '../boxes/boxes.dart';
@@ -91,7 +90,7 @@ class _HistoryPageState extends State<HistoryPage> {
               // borderRadius: BorderRadius.circular(20.0),
             ),
             child: Center(
-              child: Text("Previous Scores", style: TextStyle(
+              child: Text("আগের স্কোর", style: TextStyle(
                 color: Colors.orange.shade400,
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
@@ -99,11 +98,11 @@ class _HistoryPageState extends State<HistoryPage> {
             ),
           ),
           SizedBox(
-            height: screenSize.height - 220,
+            height: screenSize.height - 240,
             child: ListView.builder(
               itemCount: finalScoresList.length,
               itemBuilder: (context, index) {
-                final finalScoreData = finalScoresList[index];
+                final finalScoreData = finalScoresList.reversed.toList()[index];
                 return ListTile(
                   title: Container(
                     padding: EdgeInsets.all(10),
@@ -116,8 +115,16 @@ class _HistoryPageState extends State<HistoryPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
+                          alignment: Alignment.center,
+                          child: Text(finalScoreData.time,
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Container(
                           width: screenSize.width*.80,
-                          margin: EdgeInsets.symmetric(vertical: 5),
+                          margin: EdgeInsets.symmetric(vertical: 3),
                           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
                           decoration: BoxDecoration(
                             color: Colors.blue.shade500,
@@ -135,7 +142,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),),
                               ),
                               Container(
-                                  width: screenSize.width*.40,
+                                  width: screenSize.width*.30,
                                   child: Text(finalScoreData.finalPlayer1, style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -143,8 +150,8 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),)
                               ),
                               Container(
-                                  width: screenSize.width*.15,
-                                  child: Text(finalScoreData.finalScore1.toString(), style: TextStyle(
+                                  width: screenSize.width*.25,
+                                  child: Text(finalScoreData.finalScore1.toString()+" pts", style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
@@ -156,7 +163,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                         Container(
                           width: screenSize.width*.80,
-                          margin: EdgeInsets.symmetric(vertical: 5),
+                          margin: EdgeInsets.symmetric(vertical: 3),
                           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
                           decoration: BoxDecoration(
                             color: Colors.blue.shade600,
@@ -174,7 +181,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),),
                               ),
                               Container(
-                                  width: screenSize.width*.40,
+                                  width: screenSize.width*.30,
                                   child: Text(finalScoreData.finalPlayer2, style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -182,8 +189,8 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),)
                               ),
                               Container(
-                                  width: screenSize.width*.15,
-                                  child: Text(finalScoreData.finalScore2.toString(), style: TextStyle(
+                                  width: screenSize.width*.25,
+                                  child: Text(finalScoreData.finalScore2.toString()+" pts", style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
@@ -195,7 +202,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                         Container(
                           width: screenSize.width*.80,
-                          margin: EdgeInsets.symmetric(vertical: 5),
+                          margin: EdgeInsets.symmetric(vertical: 3),
                           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
                           decoration: BoxDecoration(
                             color: Colors.blue.shade500,
@@ -213,7 +220,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),),
                               ),
                               Container(
-                                  width: screenSize.width*.40,
+                                  width: screenSize.width*.30,
                                   child: Text(finalScoreData.finalPlayer3, style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
@@ -221,8 +228,8 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),)
                               ),
                               Container(
-                                  width: screenSize.width*.15,
-                                  child: Text(finalScoreData.finalScore3.toString(), style: TextStyle(
+                                  width: screenSize.width*.25,
+                                  child: Text(finalScoreData.finalScore3.toString()+" pts", style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
@@ -234,7 +241,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                         Container(
                           width: screenSize.width*.80,
-                          margin: EdgeInsets.symmetric(vertical: 5),
+                          margin: EdgeInsets.symmetric(vertical: 3),
                           padding: EdgeInsets.symmetric(horizontal: 5, vertical: 4),
                           decoration: BoxDecoration(
                             color: Colors.blue.shade600,
@@ -252,7 +259,7 @@ class _HistoryPageState extends State<HistoryPage> {
                                 ),),
                               ),
                               Container(
-                                  width: screenSize.width*.40,
+                                  width: screenSize.width*.30,
                                   child: Text(finalScoreData.finalPlayer4, style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -260,8 +267,8 @@ class _HistoryPageState extends State<HistoryPage> {
                                   ),)
                               ),
                               Container(
-                                  width: screenSize.width*.15,
-                                  child: Text(finalScoreData.finalScore4.toString(), style: TextStyle(
+                                  width: screenSize.width*.25,
+                                  child: Text(finalScoreData.finalScore4.toString()+" pts", style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,
@@ -273,108 +280,6 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                       ],
                     )
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     Column(
-                    //       mainAxisAlignment: MainAxisAlignment.center,
-                    //       children: [
-                    //         Container(
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text("Name", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         SizedBox(height: 5,),
-                    //         Container(
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text(finalScoreData.finalPlayer1)
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text(finalScoreData.finalPlayer2)
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text(finalScoreData.finalPlayer3)
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text(finalScoreData.finalPlayer4)
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //     SizedBox(width: 50,),
-                    //     Column(
-                    //       mainAxisAlignment: MainAxisAlignment.center,
-                    //       children: [
-                    //         Container(
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text("Points", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         SizedBox(height: 5,),
-                    //         Container(
-                    //           width: screenSize.width/4,
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text(finalScoreData.finalScore1.toString()),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           width: screenSize.width/4,
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text(finalScoreData.finalScore2.toString()),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           width: screenSize.width/4,
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text(finalScoreData.finalScore3.toString()),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //         Container(
-                    //           width: screenSize.width/5,
-                    //           child: Row(
-                    //             mainAxisAlignment: MainAxisAlignment.center,
-                    //             children: [
-                    //               Text(finalScoreData.finalScore4.toString()),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ],
-                    // ),
                   ),
                 );
               }
@@ -405,7 +310,7 @@ class _HistoryPageState extends State<HistoryPage> {
                       ),
                     ),
                     onPressed: () => Navigator.pop(context),
-                    child: Text("Back",
+                    child: Text("পেছনে",
                       style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
                 ElevatedButton(
@@ -419,7 +324,7 @@ class _HistoryPageState extends State<HistoryPage> {
                         ),
                       ),
                     ),
-                    onPressed: (){_clearHistory();}, child: Text("Clear all",
+                    onPressed: (){_clearHistory();}, child: Text("সব মুছুন",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
 
@@ -436,7 +341,7 @@ class _HistoryPageState extends State<HistoryPage> {
                     ),
                     onPressed: () async {
                       await ExitConfirmationPage().showExitConfirmationDialog(context);
-                    }, child: Text("Exit Game",
+                    }, child: Text("বাহির",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
               ],
@@ -453,7 +358,7 @@ class _HistoryPageState extends State<HistoryPage> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Center(child: Text('Are you sure want to clear the history?', style: TextStyle(fontSize: 18),)),
+            title: Center(child: Text('আপনি কি নিশ্চিত ইতিহাস মুছে ফেলতে চান?', style: TextStyle(fontSize: 18),)),
             actions: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -468,7 +373,7 @@ class _HistoryPageState extends State<HistoryPage> {
                           onPressed: () async{
                             Navigator.pop(context);
                           },
-                          child: Text('Cancel', style: TextStyle(color: Colors.white, fontSize: 18),)
+                          child: Text('বাতিল', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
                     ),
                   ),
@@ -491,7 +396,7 @@ class _HistoryPageState extends State<HistoryPage> {
                               MaterialPageRoute(builder: (context) => HistoryPage()),
                             );
                           },
-                          child: Text('Confirm', style: TextStyle(color: Colors.white, fontSize: 18),)
+                          child: Text('নিশ্চিত', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
                     ),
                   )

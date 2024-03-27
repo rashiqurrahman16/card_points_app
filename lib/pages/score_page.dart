@@ -10,6 +10,8 @@ import '../models/name_score_model.dart';
 import '../widgets/add_points_page.dart';
 import '../widgets/exit_confirmation_page.dart';
 import 'about_us.dart';
+import 'package:intl/intl.dart';
+
 
 class ScorePage extends StatefulWidget {
   const ScorePage({
@@ -102,22 +104,6 @@ class _ScorePageState extends State<ScorePage> {
               Spacer(),
               Row(
                 children: [
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(builder: (context) => AboutUsPage()),
-                  //     );
-                  //   },
-                  //   child: Text(
-                  //     "আমাদের সম্পর্কে",
-                  //     style: TextStyle(
-                  //       color: Colors.white,
-                  //       fontSize: 16,
-                  //       fontWeight: FontWeight.w400,
-                  //     ),
-                  //   ),
-                  // ),
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -272,7 +258,7 @@ class _ScorePageState extends State<ScorePage> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Center(child: Text('Refresh the score?', style: TextStyle(fontSize: 18),)),
+            title: Center(child: Text('স্কোর রিফ্রেশ করতে চান?', style: TextStyle(fontSize: 18),)),
 
             actions: [
               Row(
@@ -289,7 +275,7 @@ class _ScorePageState extends State<ScorePage> {
                             Navigator.pop(context);
                             bool _willRefresh = false;
                           },
-                          child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),)
+                          child: Text('না', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
                     ),
                   ),
@@ -307,11 +293,11 @@ class _ScorePageState extends State<ScorePage> {
                                 context: context,
                                 builder: (context){
                                   return AlertDialog(
-                                    title: Center(child: Text('Are you sure?')),
+                                    title: Center(child: Text('আপনি কি নিশ্চিত?')),
                                     content: SingleChildScrollView(
                                       child: Column(
                                         children: [
-                                          Text("Current score will be reset", style: TextStyle(fontSize: 15),),
+                                          Text("বর্তমান স্কোর রিসেট করা হবে", style: TextStyle(fontSize: 15),),
                                         ],
                                       ),
                                     ),
@@ -329,7 +315,7 @@ class _ScorePageState extends State<ScorePage> {
                                                     Navigator.pop(context);
                                                     bool _willRefresh = false;
                                                   },
-                                                  child: Text('Cancel', style: TextStyle(color: Colors.white, fontSize: 18),)
+                                                  child: Text('বাতিল', style: TextStyle(color: Colors.white, fontSize: 18),)
                                               ),
                                             ),
                                           ),
@@ -357,7 +343,7 @@ class _ScorePageState extends State<ScorePage> {
                                                       ),
                                                     );
                                                   },
-                                                  child: Text('Confirm', style: TextStyle(color: Colors.white, fontSize: 18),)
+                                                  child: Text('নিশ্চিত', style: TextStyle(color: Colors.white, fontSize: 18),)
                                               ),
                                             ),
                                           )
@@ -368,7 +354,7 @@ class _ScorePageState extends State<ScorePage> {
                                   );
                                 });
                           },
-                          child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),)
+                          child: Text('হ্যাঁ', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
                     ),
                   )
@@ -381,23 +367,17 @@ class _ScorePageState extends State<ScorePage> {
   }
 
 
-
-  // void _redirectToAddPointPage(BuildContext context) async {
-  //   await Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => AddPointsPage(),
-  //     ),
-  //   );
-  // }
-
   _riderctToWinnerPage(player1, totalScore1, player2, totalScore2, player3, totalScore3, player4, totalScore4) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
+
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       FocusScope.of(context).unfocus();
       Navigator.of(context).popUntil((route) => route.isFirst);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => WinnerPage(player1: player1, totalScore1: totalScore1, player2: player2, totalScore2: totalScore2, player3: player3, totalScore3: totalScore3, player4: player4, totalScore4: totalScore4)),
+        MaterialPageRoute(builder: (context) => WinnerPage(player1: player1, totalScore1: totalScore1, player2: player2, totalScore2: totalScore2, player3: player3, totalScore3: totalScore3, player4: player4, totalScore4: totalScore4, currentDate: formattedDate,)),
       );
     });
   }

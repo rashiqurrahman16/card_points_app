@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 50,
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 120),
+                      padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 3),
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
@@ -300,7 +300,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     onPressed: () async {
                       await ExitConfirmationPage().showExitConfirmationDialog(context);
-                    }, child: Text("প্রস্থান",
+                    }, child: Text("বাহির",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
               ],
@@ -385,11 +385,11 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (context){
           return AlertDialog(
-              title: Center(child: Text('Error')),
+              title: Center(child: Text('ত্রুটি')),
               content: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text("Players can't have the same name."),
+                    Text("খেলোয়াড়দের একই নাম থাকতে পারবে না।"),
                   ],
                 ),
               ),
@@ -399,7 +399,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     SizedBox(
                       height: 50,
-                      width: 100,
+                      width: 150,
                       child: Padding(
                         padding: const EdgeInsets.all(3),
                         child: ElevatedButton(
@@ -407,7 +407,7 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () async{
                               Navigator.pop(context);
                             },
-                            child: Text('Ok', style: TextStyle(color: Colors.white, fontSize: 18),)
+                            child: Text('ঠিক আছে', style: TextStyle(color: Colors.white, fontSize: 18),)
                         ),
                       ),
                     ),
@@ -424,11 +424,11 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (context){
           return AlertDialog(
-              title: Center(child: Text('Error')),
+              title: Center(child: Text('ত্রুটি')),
               content: SingleChildScrollView(
                 child: Column(
                   children: [
-                    Text("Please add the names of each player."),
+                    Text("প্রতিটি খেলোয়াড়ের নাম যোগ করুন."),
                   ],
                 ),
               ),
@@ -438,7 +438,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     SizedBox(
                       height: 50,
-                      width: 100,
+                      width: 150,
                       child: Padding(
                         padding: const EdgeInsets.all(3),
                         child: ElevatedButton(
@@ -446,7 +446,7 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () async{
                               Navigator.pop(context);
                             },
-                            child: Text('Ok', style: TextStyle(color: Colors.white, fontSize: 18),)
+                            child: Text('ঠিক আছে', style: TextStyle(color: Colors.white, fontSize: 18),)
                         ),
                       ),
                     ),
@@ -457,55 +457,6 @@ class _HomePageState extends State<HomePage> {
         }
     );
   }
-
-  // Future<void> _showExitConfirmationDialog() async {
-  //   _willExitApp = true; // Set flag to prevent immediate exit
-  //   return showDialog(
-  //     context: context,
-  //     builder: (context) => AlertDialog(
-  //       title: Center(child: Text('Exit Game', style: TextStyle(fontSize: 18),)),
-  //       content: Text('Are you sure you want to exit the game?'),
-  //       actions: [
-  //
-  //         Row(
-  //           mainAxisAlignment: MainAxisAlignment.center,
-  //           children: [
-  //             SizedBox(
-  //               height: 50,
-  //               width: 100,
-  //               child: Padding(
-  //                 padding: const EdgeInsets.all(3),
-  //                 child: ElevatedButton(
-  //                   style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
-  //                   onPressed: () {
-  //                     Navigator.pop(context); // Cancel exit
-  //                     _willExitApp = false; // Reset flag
-  //                   },
-  //                   child: Text('No', style: TextStyle(color: Colors.white, fontSize: 18),),
-  //                 ),
-  //               ),
-  //             ),
-  //             SizedBox(width: 20,),
-  //             SizedBox(
-  //               height: 50,
-  //               width: 100,
-  //               child: Padding(
-  //                 padding: const EdgeInsets.all(3),
-  //                 child: ElevatedButton(
-  //                   style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
-  //                   onPressed: () {
-  //                     SystemNavigator.pop(); // Exit the app
-  //                   },
-  //                   child: Text('Yes', style: TextStyle(color: Colors.white, fontSize: 18),),
-  //                 ),
-  //               ),
-  //             ),
-  //           ],
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
 
 
 }
