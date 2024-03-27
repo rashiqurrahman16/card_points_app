@@ -125,7 +125,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text("পয়েন্টস যুক্ত করুন", style: TextStyle(fontSize: 20),),
-                Text("(Sum of all Points must be 360)", style: TextStyle(fontSize: 13),),
+                Text("(সমস্ত পয়েন্টের যোগফল ৩৬০ হতে হবে)", style: TextStyle(fontSize: 13),),
                 SizedBox(height: 10,),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
@@ -276,7 +276,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
                                 return;
                               }
                               if (int.parse(score1)+int.parse(score2)+int.parse(score3)+int.parse(score4)!=360
-                              || int.parse(score1)+int.parse(score2)+int.parse(score3)+int.parse(score4)!=0) {
+                              && int.parse(score1)+int.parse(score2)+int.parse(score3)+int.parse(score4)!=0) {
                                 _errorPointsDialog(1);
                                 return; // Prevent saving if total score is not equal to 360
                               }
@@ -307,7 +307,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
                                 MaterialPageRoute(builder: (context) => const ScorePage()),
                               );
                             },
-                            child: Text("Submit", style: TextStyle(color: Colors.white, fontSize: 18),)),
+                            child: Text("জমা", style: TextStyle(color: Colors.white, fontSize: 18),)),
                       ),
                     ),
                   ],
@@ -339,7 +339,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
                       ),
                     ),
                     onPressed: () => Navigator.pop(context),
-                    child: Text("Back",
+                    child: Text("পেছনে",
                       style: TextStyle(color: Colors.white, fontSize: 14),
                     )),
 
@@ -356,7 +356,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
                     ),
                     onPressed: () async {
                       await ExitConfirmationPage().showExitConfirmationDialog(context);
-                    }, child: Text("Exit Game",
+                    }, child: Text("বাহির",
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 )),
               ],
@@ -374,16 +374,16 @@ class _AddPointsPageState extends State<AddPointsPage> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Center(child: Text('Error')),
+            title: Center(child: Text('ত্রুটি')),
             content: SingleChildScrollView(
               child: Column(
                 children: [
                   if(i==1)
-                  Text('Sum of all players points must be equal to 360'),
+                  Text('সমস্ত পয়েন্টের যোগফল ৩৬০ হতে হবে'),
                   if(i==2)
-                  Text('Players must have 0 or more than 59 points'),
+                  Text('খেলোয়াড়দের অবশ্যই ০ বা তার বেশি ৫৯ পয়েন্ট থাকতে হবে'),
                   if(i==3)
-                  Text('Must be able to divide by 5'),
+                  Text('৫ দ্বারা ভাগ করতে সক্ষম হতে হবে'),
                 ],
               ),
 
@@ -394,7 +394,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
                 children: [
                   SizedBox(
                     height: 50,
-                    width: 100,
+                    width: 140,
                     child: Padding(
                       padding: const EdgeInsets.all(3),
                       child: ElevatedButton(
@@ -402,7 +402,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
                           onPressed: (){
                         Navigator.pop(context);
                       },
-                          child:  Text('OK', style: TextStyle(color: Colors.white, fontSize: 18),)
+                          child:  Text('ঠিক আছে', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
                     ),
                   ),
