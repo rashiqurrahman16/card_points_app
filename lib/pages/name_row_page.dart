@@ -1,6 +1,5 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class NameRow extends StatelessWidget {
   final int dealer;
@@ -125,7 +124,7 @@ class NameRow extends StatelessWidget {
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(2),
-              height: 50,
+              height: 60,
               width: screenSize.width / 4,
               child: Text(player1, style: const TextStyle(
                   color: Colors.white,
@@ -141,9 +140,8 @@ class NameRow extends StatelessWidget {
                 ),
               ),
               alignment: Alignment.center,
-
               padding: const EdgeInsets.all(2),
-              height: 50,
+              height: 60,
               width: screenSize.width / 4,
               child: Text(player2, style: const TextStyle(
                   color: Colors.white,
@@ -159,7 +157,7 @@ class NameRow extends StatelessWidget {
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(2),
-              height: 50,
+              height: 60,
               width: screenSize.width / 4,
               child: Text(player3, style: const TextStyle(
                   color: Colors.white,
@@ -175,7 +173,7 @@ class NameRow extends StatelessWidget {
               ),
               alignment: Alignment.center,
               padding: const EdgeInsets.all(2),
-              height: 50,
+              height: 60,
               width: screenSize.width / 4,
               child: Text(player4, style: const TextStyle(
                   color: Colors.white,

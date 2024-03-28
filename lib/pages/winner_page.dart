@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Hazari/models/name_score_model.dart';
 import '../boxes/boxes.dart';

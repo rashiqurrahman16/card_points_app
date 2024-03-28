@@ -82,6 +82,7 @@ flutter:
      - assets/Logo.png
      - assets/Gplay.png
      - assets/WinnerPageBckground.png
+     - assets/ad_banner.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
