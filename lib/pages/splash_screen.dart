@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -33,8 +32,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
   
   @override
   Widget build(BuildContext context) {
-    final screenSize=MediaQuery.of(context).size;
-
     return Scaffold(
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,

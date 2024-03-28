@@ -128,61 +128,80 @@ class _ScorePageState extends State<ScorePage> {
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
         ),
-        body: ListView(
+        body: Stack(
+          children: [
+            ListView(
 
-          children:[
-            if((scoresList.length==0)||(scoresList.length%2==0 && scoresList.length%4==0))
-              NameRow(dealer: 1, player1: player1, player2: player2, player3: player3, player4: player4),
-            if(scoresList.length!=0 && scoresList.length%2!=0 && scoresList.length%4!=0 && (scoresList.length+1)%4!=0)
-              NameRow(dealer: 2, player1: player1, player2: player2, player3: player3, player4: player4),
-            if(scoresList.length%2==0 && scoresList.length%4!=0)
-              NameRow(dealer: 3, player1: player1, player2: player2, player3: player3, player4: player4),
-            if((scoresList.length+1)%4==0)
-              NameRow(dealer: 4, player1: player1, player2: player2, player3: player3, player4: player4),
+              children:[
+                if((scoresList.length==0)||(scoresList.length%2==0 && scoresList.length%4==0))
+                  NameRow(dealer: 1, player1: player1, player2: player2, player3: player3, player4: player4),
+                if(scoresList.length!=0 && scoresList.length%2!=0 && scoresList.length%4!=0 && (scoresList.length+1)%4!=0)
+                  NameRow(dealer: 2, player1: player1, player2: player2, player3: player3, player4: player4),
+                if(scoresList.length%2==0 && scoresList.length%4!=0)
+                  NameRow(dealer: 3, player1: player1, player2: player2, player3: player3, player4: player4),
+                if((scoresList.length+1)%4==0)
+                  NameRow(dealer: 4, player1: player1, player2: player2, player3: player3, player4: player4),
 
 
+                SizedBox(
+                  height: screenSize.height - kToolbarHeight-kBottomNavigationBarHeight-260,
 
-          SizedBox(
-            height: screenSize.height-260,
-            child: ListView.builder(
-                itemCount: scoresList.length,
-                itemBuilder: (context, index) {
-                  final scoreData = scoresList[index];
+                  child: ListView.builder(
+                    itemCount: scoresList.length,
+                    itemBuilder: (context, index) {
+                      final scoreData = scoresList[index];
 
-                  return Column(
-                        children: [
-                          if (index == 0)
+                      return Column(
 
-                          const SizedBox(height: 5),
-                          ScoreRow(scoreData: scoreData),
-                          if (index == scoresList.length - 1)
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 30),
-                            child: TotalScore(
-                            totalScore1: calculateTotalScore1(scoresList),
-                            totalScore2: calculateTotalScore2(scoresList),
-                            totalScore3: calculateTotalScore3(scoresList),
-                            totalScore4: calculateTotalScore4(scoresList),
-                            ),
-                          ),
+                            children: [
+                              if (index == 0)
 
-                          if (calculateTotalScore1(scoresList)>=1000 && calculateTotalScore1(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore4(scoresList))
-                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
-                          if (calculateTotalScore2(scoresList)>=1000 && calculateTotalScore2(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore4(scoresList))
-                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
-                          if (calculateTotalScore3(scoresList)>=1000 && calculateTotalScore3(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore4(scoresList))
-                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
-                          if (calculateTotalScore4(scoresList)>=1000 && calculateTotalScore4(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore3(scoresList))
-                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
-                          if (calculateTotalScore1(scoresList)>=2000 || calculateTotalScore2(scoresList)>=2000 || calculateTotalScore3(scoresList)>=2000 || calculateTotalScore4(scoresList)>=2000)
-                            _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
-                        ]
-                    );
+                              const SizedBox(height: 5),
+                              ScoreRow(scoreData: scoreData),
+                              if (index == scoresList.length - 1)
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                child: TotalScore(
+                                totalScore1: calculateTotalScore1(scoresList),
+                                totalScore2: calculateTotalScore2(scoresList),
+                                totalScore3: calculateTotalScore3(scoresList),
+                                totalScore4: calculateTotalScore4(scoresList),
+                                ),
+                              ),
 
-                }
+                              if (calculateTotalScore1(scoresList)>=1000 && calculateTotalScore1(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore1(scoresList)>calculateTotalScore4(scoresList))
+                                _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                              if (calculateTotalScore2(scoresList)>=1000 && calculateTotalScore2(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore3(scoresList) && calculateTotalScore2(scoresList)>calculateTotalScore4(scoresList))
+                                _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                              if (calculateTotalScore3(scoresList)>=1000 && calculateTotalScore3(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore3(scoresList)>calculateTotalScore4(scoresList))
+                                _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                              if (calculateTotalScore4(scoresList)>=1000 && calculateTotalScore4(scoresList)>calculateTotalScore1(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore2(scoresList) && calculateTotalScore4(scoresList)>calculateTotalScore3(scoresList))
+                                _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                              if (calculateTotalScore1(scoresList)>=2000 || calculateTotalScore2(scoresList)>=2000 || calculateTotalScore3(scoresList)>=2000 || calculateTotalScore4(scoresList)>=2000)
+                                _riderctToWinnerPage(player1, calculateTotalScore1(scoresList), player2, calculateTotalScore2(scoresList), player3, calculateTotalScore3(scoresList), player4, calculateTotalScore4(scoresList)),
+                            ]
+                        );
+
+                    }
+                ),
+              ),
+              ]
             ),
-          ),
-          ]
+            Positioned(
+              bottom: 5, // Position at the bottom
+              left: 5, // Align to the left
+              right: 5,
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: SizedBox(
+                  height: 70,
+                  child: Image(
+                    image: AssetImage('assets/ad_banner.jpg'),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton: Container(
@@ -273,7 +292,6 @@ class _ScorePageState extends State<ScorePage> {
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.orange.shade400),
                           onPressed: () async{
                             Navigator.pop(context);
-                            bool _willRefresh = false;
                           },
                           child: Text('না', style: TextStyle(color: Colors.white, fontSize: 18),)
                       ),
