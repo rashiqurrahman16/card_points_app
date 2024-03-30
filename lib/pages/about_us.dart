@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:Hazari/widgets/exit_confirmation_page.dart';
+import 'package:Card_Points/widgets/exit_confirmation_page.dart';
 
 
 class AboutUsPage extends StatelessWidget {
@@ -22,7 +21,7 @@ class AboutUsPage extends StatelessWidget {
             ),
             SizedBox(width: 5),
             Text(
-              'হাজারি',
+              'কার্ড পয়েন্টস',
               style: TextStyle(color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w400,),
@@ -55,33 +54,30 @@ class AboutUsPage extends StatelessWidget {
             child: ListView(
               children: [
                 SizedBox(height: 10,),
-                Container(
-                  width: screenSize.width*0.80,
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 80,
-                        child: Image(
-                          image: AssetImage('assets/only_cards.png'),
-                        ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 80,
+                      child: Image(
+                        image: AssetImage('assets/only_cards.png'),
                       ),
-                      SizedBox(height: 10,),
-                      SizedBox(
-                        width: screenSize.width*0.8,
-                        child: Column(
-                          children: [
-                            Text("হাজারি", style: TextStyle(fontSize: 14),),
-                            Text("ভার্সনঃ ১.০.০", style: TextStyle(fontSize: 14),),
-                            Text("সর্বশেষ আপডেটঃ ২৮/০৩/২০২৪", style: TextStyle(fontSize: 14),),
-                            SizedBox(height: 10,),
-                            Text('হাজারি একটি জনপ্রিয় কার্ড গেম। ৪ জন খেলার এই অ্যাপে প্লেয়ারদের স্কোরবোর্ড পরিচালনা এবং পূর্ববর্তী খেলার স্কোরবোর্ড দেখতে পারবেন যা আপনাদের খেলাকে আরোও আনন্দদায়ক করে তুলবে। ',
-                              style: TextStyle(fontSize: 14),
-                              textAlign: TextAlign.justify,),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 10,),
+                    SizedBox(
+                      width: screenSize.width*0.8,
+                      child: Column(
+                        children: [
+                          Text("কার্ড পয়েন্টস", style: TextStyle(fontSize: 14),),
+                          Text("ভার্সনঃ ১.০.০", style: TextStyle(fontSize: 14),),
+                          Text("সর্বশেষ আপডেটঃ ৩০/০৩/২০২৪", style: TextStyle(fontSize: 14),),
+                          SizedBox(height: 10,),
+                          Text('কার্ড গেমস অনেক জনপ্রিয় খেলা। কার্ড গেমস এর এই অ্যাপে প্লেয়ারদের স্কোরবোর্ড পরিচালনা এবং পূর্ববর্তী খেলার স্কোরবোর্ড দেখতে পারবেন যা আপনাদের খেলাকে আরোও আনন্দদায়ক করে তুলবে। ',
+                            style: TextStyle(fontSize: 14),
+                            textAlign: TextAlign.justify,),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 30,),
 

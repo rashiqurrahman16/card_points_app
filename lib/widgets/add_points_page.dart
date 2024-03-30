@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:Hazari/models/name_score_model.dart';
-import 'package:Hazari/pages/about_us.dart';
-import 'package:Hazari/pages/score_page.dart';
-import 'package:Hazari/widgets/exit_confirmation_page.dart';
+import 'package:Card_Points/models/name_score_model.dart';
+import 'package:Card_Points/pages/about_us.dart';
+import 'package:Card_Points/pages/score_page.dart';
+import 'package:Card_Points/widgets/exit_confirmation_page.dart';
 import '../boxes/boxes.dart';
 
 
@@ -65,7 +64,7 @@ class _AddPointsPageState extends State<AddPointsPage> {
             ),
             SizedBox(width: 5),
             Text(
-              'হাজারি',
+              'কার্ড পয়েন্টস',
               style: TextStyle(color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w400,),

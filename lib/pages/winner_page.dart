@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:Hazari/models/name_score_model.dart';
+import 'package:Card_Points/models/name_score_model.dart';
 import '../boxes/boxes.dart';
 import '../widgets/exit_confirmation_page.dart';
 import 'about_us.dart';
-import 'home_page.dart';
+import 'homepage.dart';
 
 class Player {
   String name;
@@ -91,7 +91,7 @@ class _WinnerPageState extends State<WinnerPage> {
             ),
             SizedBox(width: 5),
             Text(
-              'হাজারি',
+              'কার্ড পয়েন্টস',
               style: TextStyle(color: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.w400,),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:Hazari/pages/home_page.dart';
+import 'package:Card_Points/pages/homepage.dart';
 
 
 class SplashScreenPage extends StatefulWidget {
@@ -45,7 +44,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> with SingleTickerPr
               ),
               SizedBox(width: 10,),
 
-              Text("হাজারি", style: TextStyle(
+              Text("কার্ড পয়েন্টস", style: TextStyle(
                   color: Colors.yellow.shade700,
                   fontSize: 30,
                   fontWeight: FontWeight.w900),),

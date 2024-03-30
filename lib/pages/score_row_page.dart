@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Hazari/models/name_score_model.dart';
+import 'package:Card_Points/models/name_score_model.dart';
 
 
 class ScoreRow extends StatelessWidget {
