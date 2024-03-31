@@ -1,6 +1,6 @@
-# hazari
+# card_points
 
-A new Flutter project for Hazari game.
+A new Flutter project for Card Points game.
 
 ## Getting Started
 
