@@ -1,4 +1,4 @@
-package com.desktopit.hazari
+package com.desktopit.cardpoints
 
 import io.flutter.embedding.android.FlutterActivity
 

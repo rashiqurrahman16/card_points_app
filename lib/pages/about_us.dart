@@ -69,7 +69,7 @@ class AboutUsPage extends StatelessWidget {
                         children: [
                           Text("কার্ড পয়েন্টস", style: TextStyle(fontSize: 14),),
                           Text("ভার্সনঃ ১.০.০", style: TextStyle(fontSize: 14),),
-                          Text("সর্বশেষ আপডেটঃ ৩০/০৩/২০২৪", style: TextStyle(fontSize: 14),),
+                          Text("সর্বশেষ আপডেটঃ ৩১/০৩/২০২৪", style: TextStyle(fontSize: 14),),
                           SizedBox(height: 10,),
                           Text('কার্ড গেমস অনেক জনপ্রিয় খেলা। কার্ড গেমস এর এই অ্যাপে প্লেয়ারদের স্কোরবোর্ড পরিচালনা এবং পূর্ববর্তী খেলার স্কোরবোর্ড দেখতে পারবেন যা আপনাদের খেলাকে আরোও আনন্দদায়ক করে তুলবে। ',
                             style: TextStyle(fontSize: 14),
